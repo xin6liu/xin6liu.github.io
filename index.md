@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## liuixn's website
 
 You can use the [editor on GitHub](https://github.com/xin6liu/xin6liu.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
 
