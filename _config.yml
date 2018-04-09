@@ -1,1 +1,37 @@
-theme: jekyll-theme-cayman
+# Site settings
+title: LiuXin
+subtitle: To be a romantic scientist
+email: 15514657777@163.com
+description: 梦想是成为一个浪漫科研狗 <br /> To be a romantic scientist.
+baseurl:  # the subpath of your site, e.g. /blog
+url: # the base hostname & protocol for your site
+author: liuxin
+street_address: 201 Lester St.
+city: Waterloo
+state: Ontario
+zip_code: N2L3W3
+country: Canada
+phone: (1)-226-505-6868
+
+# Homepage tiles
+tiles-source: posts # accepts "posts" or "pages"
+tiles-count: 6
+
+# Social settings
+500px_url:
+facebook_url: https://www.facebook.com/profile.php?id=100009585159226
+github_url:
+gitlab_url: 
+googleplus_url: 
+instagram_url: https://www.instagram.com/harryliuxin/
+linkedin_url: https://www.linkedin.com/in/xin-liu-868501134
+pinterest_url:
+video_url: http://www.miaopai.com/u/wxsso_p4mslofx14
+twitter_url: 
+weibo_url: http://weibo.com/u/2377304267
+
+# Build settings
+markdown: kramdown
+
+sass:
+  style: compressed
