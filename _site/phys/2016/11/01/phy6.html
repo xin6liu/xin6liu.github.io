@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>LiuXin</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="/assets/css/main.css">
+	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
+	<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+
+
+<body>
+
+    <!-- Wrapper -->
+<div id="wrapper">
+
+<!-- Header -->
+<header id="header">
+	<a href="http://localhost:4000/" class="logo"><strong>LiuXin</strong> <span>To be a romantic scientist</span></a>
+	<nav>
+		<a href="#menu">Menu</a>
+	</nav>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+	<ul class="links">
+        
+		    
+		
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/">Home</a></li>
+	    	
+		
+		
+		    
+		        <li><a href="http://localhost:4000/about.html">我的故事 My Stories</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/category.html">目录 Category</a></li>
+		    
+		
+		    
+		
+	</ul>
+	<ul class="actions vertical">
+		<li><a href="#" class="button special fit">Get Started</a></li>
+		<li><a href="#" class="button fit">Log In</a></li>
+	</ul>
+</nav> 
+    
+    
+<!-- Main -->
+<div id="main" class="alt">
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+<!-- title -->
+			<h1>Prove Laplace's elementary theorem (Biot-Savart law)</h1>
+<!-- 日期 -->		
+		
+		2016-11-01
+		
+		</header>
+<!-- description -->	
+		<h5>证明毕奥-萨伐尔定律</h5>
+<!-- 图片 -->		
+		<!-- 
+		 -->
+<!-- 正文 -->
+		<p><p>同样从这个式子出发：</p>
+
+<script type="math/tex; mode=display">\bbox[5px,border:2px solid red]
+{\displaystyle \overrightarrow{A} = \frac{\mu_0}{4\pi} \iiint \frac{\overrightarrow{J}}{r} dV}</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{aligned}
+\displaystyle
+\overrightarrow{B_{(P)}} &= \overrightarrow{\nabla_{(P)}} \times \overrightarrow{A_{(P)}}\\ 
+&= \frac{\mu_0}{4\pi} \iiint \overrightarrow{\nabla_{(P)}} \times \frac{\overrightarrow{J_Q}}{r_{(QP)}} dV \\
+&= \frac{\mu_0}{4\pi} \iiint 
+[\frac{1}{r_{(QP)}} \overrightarrow{\nabla_{(P)}} \times \overrightarrow{J_{(Q)}} 
+-\overrightarrow{J_{(Q)}} \times (\overrightarrow{\nabla_{(P)}} \frac{1}{r_{(QP)}})] dV \\
+&= -\frac{\mu_0}{4\pi} \iiint \overrightarrow{J_{(Q)}} \times (\overrightarrow{\nabla_{(P)}} \frac{1}{r_{(QP)}})] dV \\
+&= \frac{\mu_0}{4\pi} \iiint \frac{\overrightarrow{J_{(Q)}}\times \hat{r} }{r^2} dV \\
+\end{aligned} %]]></script>
+
+<p>\(
+\because dV = dS dl, \ I = \iint \overrightarrow{J} \overrightarrow{n} dS
+\)</p>
+
+<p>\(\displaystyle
+\therefore \overrightarrow{B} = \frac{\mu_0}{4\pi} I \oint \frac{\overrightarrow{t} \times \hat{r}}{r^2} dl \ \ \ 
+\)
+(对比：\(\displaystyle
+\overrightarrow{A} = \frac{\mu_0}{4\pi} I \oint \frac{\overrightarrow{t}}{r} dl
+\)
+)</p>
+
+<p>\( \displaystyle
+\therefore d\overrightarrow{B} = \frac{\mu_0}{4\pi} I dl \frac{\overrightarrow{t} \times \hat{r}}{r^2} 
+\)</p>
+
+</p>
+	</div>
+
+</section>
+</div>
+
+
+<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<ul class="icons">
+				
+				
+				<li><a href="http://weibo.com/u/2377304267" class="icon alt fa-weibo" target="_blank"><span class="label">weibo</span></a></li>
+				
+				
+				<li><a href="https://www.facebook.com/profile.php?id=100009585159226" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
+				
+				
+				<li><a href="https://www.instagram.com/harryliuxin/" class="icon alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+				
+				
+				
+				
+				
+				
+				<li><a href="http://www.miaopai.com/u/wxsso_p4mslofx14" class="icon alt fa-video-camera" target="_blank"><span class="label">video</span></a></li>
+				
+				
+				<li><a href="https://www.linkedin.com/in/xin-liu-868501134" class="icon alt fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
+				
+			</ul>
+			<ul class="copyright">
+				<li>&copy; LiuXin </li>
+				<li> To be a romantic scientist</li>
+				<li>Designed by: <a href="https://liuxin.in/about/" target="_blank">刘鑫</a></li>
+
+			</ul>
+		</div>
+	</footer>
+
+	
+
+</body>
+
+</html>

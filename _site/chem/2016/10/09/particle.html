@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>LiuXin</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="/assets/css/main.css">
+	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
+	<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+
+
+<body>
+
+    <!-- Wrapper -->
+<div id="wrapper">
+
+<!-- Header -->
+<header id="header">
+	<a href="http://localhost:4000/" class="logo"><strong>LiuXin</strong> <span>To be a romantic scientist</span></a>
+	<nav>
+		<a href="#menu">Menu</a>
+	</nav>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+	<ul class="links">
+        
+		    
+		
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/">Home</a></li>
+	    	
+		
+		
+		    
+		        <li><a href="http://localhost:4000/about.html">我的故事 My Stories</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/category.html">目录 Category</a></li>
+		    
+		
+		    
+		
+	</ul>
+	<ul class="actions vertical">
+		<li><a href="#" class="button special fit">Get Started</a></li>
+		<li><a href="#" class="button fit">Log In</a></li>
+	</ul>
+</nav> 
+    
+    
+<!-- Main -->
+<div id="main" class="alt">
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+<!-- title -->
+			<h1>A Particle in a Box Problem (The Infinite Square Well)</h1>
+<!-- 日期 -->		
+		
+		2016-10-09
+		
+		</header>
+<!-- description -->	
+		<h5>最近很多课程都推导了一维无限深势阱问题，看起来简单但是光说不练假把式，于是到家我也自己亲手推了一遍。</h5>
+<!-- 图片 -->		
+		<!-- 
+		 -->
+<!-- 正文 -->
+		<p><p>最近很多课程都推导了一维无限深势阱问题，看起来简单但是光说不练假把式，于是到家我也自己亲手推了一遍。这篇文章假设你已经了解了\(\hat{H} \Psi (x) = E \Psi (x)\) 和其中的 energy operator \(\hat{H} = \displaystyle \frac{\hat{p}^2}{2m} + V(m) = - \frac{\hbar^2}{2m} \frac{d^2}{dx^2} + V(x) \) 的大致意思。</p>
+
+<p>本文主要任务就是解出一个粒子在盒子中的波函数\(\Psi\)和能量<strong>E</strong>.</p>
+
+<p>为了简化问题，我们假设这个盒子是一维的，也就是\(\Psi\)是关于x的方程（即\(\Psi(x)\)）,盒子的长度为a，在盒子里势能为0，在盒子外的势能为无穷大.</p>
+
+<p>为了方便大家理解，给出了现实中的模型：在金属中的自由电子不会自发地逃出金属，它们在各晶格结点（正离子）形成的“周期场”中运动。进一步简化这个模型，可以粗略地认为粒子被“无限高”的势能壁束缚在金属之中，由此而抽象出粒子在无限深势阱中运动。为简单起见，设势阱是一维的，这是量子力学中最简单的例子。自由电子在一块金属中的运动相当于在势阱中的运动。在阱内，由于势能为零，粒子受到的总的力为零，其运动是自由的。在边界上x=0或x=a处，由于势能突然增加到无限大，粒子受到无限大指向阱内的力。因此，粒子的位置不可能到达0~a的范围以外，即概率为零，也就是粒子的wave function波函数\(\Psi(x)=0,\ for \ x&lt;0,x&gt;a \)。又因为波函数是连续的，所以无论\(0 &lt; x &lt; a \)中波函数怎么变，\(\Psi(0)=\Psi(a)=0\).</p>
+
+<p>总结一下：
+盒子外部的情况：势能\(V(x)=\infty\), 波函数\(\Psi(x)=0\)；
+盒子的壁：\(\Psi(0)=\Psi(a)=0\)；
+盒子内部的情况势能\(V(x)=0\)，接下来我们就来从方程\(\hat{H} \Psi (x) = E \Psi (x)\)中解出盒子内部的\(\Psi(x)\)和常数E.</p>
+
+<p>把\(\displaystyle \hat{H} = - \frac{\hbar^2}{2m} \frac{d^2}{dx^2} + V(x) \)带入\(\hat{H} \Psi (x) = E \Psi (x)\)中得到：\(\displaystyle - \frac{\hbar^2}{2m} \frac{d^2}{dx^2} \Psi(x) + V(x) \Psi(x) = E \Psi(x)\). 因为\(V(x)=0\)，所以\(\displaystyle - \frac{\hbar^2}{2m} \frac{d^2}{dx^2} \Psi(x)= E \Psi(x)\). 移项得：\(\displaystyle  \frac{d^2}{dx^2} \Psi(x) + \frac{2m}{\hbar^2} E \Psi(x) = 0\). 令\(\displaystyle k^2\) = \(\frac{2m}{\hbar^2} E\), 则有：
+<script type="math/tex">\displaystyle  \frac{d^2}{dx^2} \Psi(x) + k^2 \Psi(x) = 0</script></p>
+
+<p>这是典型的二阶偏微分方程，详细的解法在我的另一篇文章:<a href="http://liuxin.in/chem/2016/09/30/chem.html">Math Techniques for Quantum Mechanics/ 量子力学的数学工具</a>里.
+我们算出它的通解为：\(\Psi(x)=Asin(kx)+Bcos(kx)\), 再根据边界条件：\(\Psi(0)=\Psi(a)=0\)算出：\(B=0, ka = n\pi\)</p>
+
+<p>所以我们得到：\(\displaystyle \Psi(x)=Asin(\frac{n\pi}{a}x)\), \(\displaystyle E = \frac{\hbar^2}{2m}k^2 = \frac{n^2\pi^2\hbar^2}{2ma^2}\)</p>
+
+<p>再根据概率\(\Psi^2\)的归一化：\(\displaystyle \int^a_0 A^2 sin^2(\frac{n\pi}{a}x) dx = 1\), 解出\(A=\sqrt{2/a}\) (积分详细步骤见图)。</p>
+
+<p><img src="http://ww2.sinaimg.cn/mw690/8db2c8cbgw1f8mx9vipeyj21kw0lpnbn.jpg" alt="hah" /></p>
+
+<p>所以，\(\displaystyle \Psi(x)=\sqrt{2/a} \ \ sin(\frac{n\pi}{a}x)\)</p>
+</p>
+	</div>
+
+</section>
+</div>
+
+
+<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<ul class="icons">
+				
+				
+				<li><a href="http://weibo.com/u/2377304267" class="icon alt fa-weibo" target="_blank"><span class="label">weibo</span></a></li>
+				
+				
+				<li><a href="https://www.facebook.com/profile.php?id=100009585159226" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
+				
+				
+				<li><a href="https://www.instagram.com/harryliuxin/" class="icon alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+				
+				
+				
+				
+				
+				
+				<li><a href="http://www.miaopai.com/u/wxsso_p4mslofx14" class="icon alt fa-video-camera" target="_blank"><span class="label">video</span></a></li>
+				
+				
+				<li><a href="https://www.linkedin.com/in/xin-liu-868501134" class="icon alt fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
+				
+			</ul>
+			<ul class="copyright">
+				<li>&copy; LiuXin </li>
+				<li> To be a romantic scientist</li>
+				<li>Designed by: <a href="https://liuxin.in/about/" target="_blank">刘鑫</a></li>
+
+			</ul>
+		</div>
+	</footer>
+
+	
+
+</body>
+
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>LiuXin</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="/assets/css/main.css">
+	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
+	<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+
+
+<body>
+
+    <!-- Wrapper -->
+<div id="wrapper">
+
+<!-- Header -->
+<header id="header">
+	<a href="http://localhost:4000/" class="logo"><strong>LiuXin</strong> <span>To be a romantic scientist</span></a>
+	<nav>
+		<a href="#menu">Menu</a>
+	</nav>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+	<ul class="links">
+        
+		    
+		
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/">Home</a></li>
+	    	
+		
+		
+		    
+		        <li><a href="http://localhost:4000/about.html">我的故事 My Stories</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/category.html">目录 Category</a></li>
+		    
+		
+		    
+		
+	</ul>
+	<ul class="actions vertical">
+		<li><a href="#" class="button special fit">Get Started</a></li>
+		<li><a href="#" class="button fit">Log In</a></li>
+	</ul>
+</nav> 
+    
+    
+<!-- Main -->
+<div id="main" class="alt">
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+<!-- title -->
+			<h1>D3.js Notes 2 -- select() and data()</h1>
+<!-- 日期 -->		
+		
+		2016-10-31
+		
+		</header>
+<!-- description -->	
+		<h5>D3.js学习笔记2--select() and data()</h5>
+<!-- 图片 -->		
+		<!-- 
+		 -->
+<!-- 正文 -->
+		<p><p><strong>选择元素</strong>和<strong>绑定数据</strong>是 D3 最基础的内容</p>
+
+<h2 id="选择元素">选择元素</h2>
+
+<p>在 D3 中，用于选择元素的函数有两个：</p>
+
+<ul>
+  <li><code class="highlighter-rouge">d3.select()</code>：是选择所有指定元素的第一个</li>
+  <li><code class="highlighter-rouge">d3.selectAll()</code>：是选择指定元素的全部</li>
+</ul>
+
+<p>这两个函数返回的结果称为<strong>选择集</strong>。</p>
+
+<p>举个栗子：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var body = d3.select("body"); //选择文档中的body元素
+var p1 = body.select("p");      //选择body中的第一个p元素
+var p = body.selectAll("p");    //选择body中的所有p元素
+var svg = body.select("svg");   //选择body中的svg元素
+var rects = svg.selectAll("rect");  //选择svg中所有的svg元素
+</code></pre></div></div>
+
+<p>选择集和绑定数据通常是一起使用的，所以接下来我们学习怎样绑定数据。</p>
+
+<h2 id="绑定数据">绑定数据</h2>
+
+<p>D3 有一个很独特的功能：能将数据绑定到 DOM 上，也就是绑定到文档上。
+这么说可能不好理解，例如网页中有段落元素 &lt;p&gt; 和一个整数 5，于是可以将整数 5 与 &lt;p&gt;绑定到一起。
+绑定之后，当需要依靠这个数据才操作元素的时候，会很方便。</p>
+
+<p>D3 中是通过以下两个函数来绑定数据的：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>datum()：绑定一个数据到选择集上
+data()：绑定一个数组到选择集上，数组的各项值分别与选择集的各元素绑定
+</code></pre></div></div>
+
+<p>相对而言，data() 比较常用。</p>
+
+<p>举个栗子：</p>
+
+<p>假设现在有三个段落元素如下：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;p&gt;Apple&lt;/p&gt;
+&lt;p&gt;Pear&lt;/p&gt;
+&lt;p&gt;Banana&lt;/p&gt;
+</code></pre></div></div>
+
+<p>接下来分别使用 datum() 和 data()，将数据绑定到上面三个段落元素上。</p>
+
+<h2 id="datum">datum()</h2>
+
+<p>假设有一字符串 China，要将此字符串分别与三个段落元素绑定，代码如下：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span> 
+  <span class="nt">&lt;head&gt;</span> 
+        <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span> 
+        <span class="nt">&lt;title&gt;</span>test1<span class="nt">&lt;/title&gt;</span> 
+  <span class="nt">&lt;/head&gt;</span> 
+    <span class="nt">&lt;body&gt;</span> 
+        <span class="nt">&lt;p&gt;</span>Apple<span class="nt">&lt;/p&gt;</span>
+		<span class="nt">&lt;p&gt;</span>Pear<span class="nt">&lt;/p&gt;</span>
+		<span class="nt">&lt;p&gt;</span>Banana<span class="nt">&lt;/p&gt;</span>
+
+		<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://d3js.org/d3.v4.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+		<span class="nt">&lt;script&gt;</span>
+			<span class="c1">//之前是把选择集保存在变量p中，这里是创建一个字符串china保存在变量str中</span>
+			<span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s2">"China"</span><span class="p">;</span>
+			<span class="c1">//选择</span><span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span><span class="err">中所有的</span><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="err">，把选择集保存在变量</span><span class="nx">p</span><span class="err">中</span>
+			<span class="c1">//跟上节最后例子一样，只是少了.text("liuxin")使其文本内容为liuxin</span>
+			<span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">"body"</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="nx">body</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">"p"</span><span class="p">);</span>
+			<span class="c1">//使用datum函数将两个变量str和p绑定</span>
+			<span class="nx">p</span><span class="p">.</span><span class="nx">datum</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+			<span class="c1">//绑定数据后，使用此数据来修改三个段落元素的内容</span>
+			<span class="c1">//与上节的.text("liuxin")类似</span>
+			<span class="nx">p</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span>
+				<span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">i</span><span class="p">){</span><span class="k">return</span> <span class="s2">"第 "</span><span class="o">+</span> <span class="nx">i</span> <span class="o">+</span> <span class="s2">" 个元素绑定的数据是 "</span> <span class="o">+</span> <span class="nx">d</span><span class="p">;}</span>
+			<span class="p">);</span>
+
+		<span class="nt">&lt;/script&gt;</span>
+    <span class="nt">&lt;/body&gt;</span> 
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>其结果如下：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>第 0 个元素绑定的数据是 China
+第 1 个元素绑定的数据是 China
+第 2 个元素绑定的数据是 China
+</code></pre></div></div>
+
+<p>在上面的代码中，用到了一个无名函数 <code class="highlighter-rouge">function(d, i)</code></p>
+
+<p>当选择集需要使用被绑定的数据时，常需要这么使用。其包含两个参数，其中：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>d 代表数据，也就是与某元素绑定的数据。
+i 代表索引，代表数据的索引号，从 0 开始。
+</code></pre></div></div>
+
+<p>例如，上述例子中：第 0 个 <code class="highlighter-rouge">p</code> 中的元素 <code class="highlighter-rouge">apple</code> 绑定的数据是 <code class="highlighter-rouge">China</code>。</p>
+
+<h2 id="data">data()</h2>
+
+<p>有一个数组，接下来要分别将数组的各元素绑定到三个段落元素上。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var dataset = ["I like dogs","I like cats","I like snakes"];
+</code></pre></div></div>
+
+<p>绑定之后，其对应关系的要求为：</p>
+
+<ul>
+  <li>Apple 与 I like dogs 绑定</li>
+  <li>Pear 与 I like cats 绑定</li>
+  <li>Banana 与 I like snakes 绑定</li>
+</ul>
+
+<p>调用 data() 绑定数据，并替换三个段落元素的字符串为被绑定的字符串，代码如下：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//之前是创建一个字符串china保存在变量str中
+//这里是创建一个数组保存在变量dataset中
+var dataset = ["I like dogs","I like cats","I like snakes"];
+//选择&lt;body&gt;中所有的&lt;p&gt;，把选择集保存在变量p中
+var body = d3.select("body");
+var p = body.selectAll("p");
+//使用date函数将两个变量dataset和p绑定
+p.data(dataset);
+//绑定数据后，使用此数据来修改三个段落元素的内容
+p.text(function(d, i){return d;});
+//当然也可以直接写成p.data(dataset).text(function(d, i){return d;});
+</code></pre></div></div>
+
+<p>结果自然是三个段落的文字分别变成了数组的三个字符串:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I like dogs
+I like cats
+I like snakes
+</code></pre></div></div>
+
+</p>
+	</div>
+
+</section>
+</div>
+
+
+<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<ul class="icons">
+				
+				
+				<li><a href="http://weibo.com/u/2377304267" class="icon alt fa-weibo" target="_blank"><span class="label">weibo</span></a></li>
+				
+				
+				<li><a href="https://www.facebook.com/profile.php?id=100009585159226" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
+				
+				
+				<li><a href="https://www.instagram.com/harryliuxin/" class="icon alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+				
+				
+				
+				
+				
+				
+				<li><a href="http://www.miaopai.com/u/wxsso_p4mslofx14" class="icon alt fa-video-camera" target="_blank"><span class="label">video</span></a></li>
+				
+				
+				<li><a href="https://www.linkedin.com/in/xin-liu-868501134" class="icon alt fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
+				
+			</ul>
+			<ul class="copyright">
+				<li>&copy; LiuXin </li>
+				<li> To be a romantic scientist</li>
+				<li>Designed by: <a href="https://liuxin.in/about/" target="_blank">刘鑫</a></li>
+
+			</ul>
+		</div>
+	</footer>
+
+	
+
+</body>
+
+</html>

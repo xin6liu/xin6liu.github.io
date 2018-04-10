@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Heating Circuit 3 —— Modeling Process &middot; LiuXin
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/simple/poole.css">
+  <link rel="stylesheet" href="/assets/css/simple/lanyon.css">
+</head>
+
+
+
+  <body>
+
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">LiuXin</a>
+            <small>COMSOL专题</small>
+          </h3>
+        </div>
+      </div>
+      <div class="container content">
+
+
+<!-- 正文 -->
+<div class="post">
+  <h1 class="post-title">Heating Circuit 3 —— Modeling Process</h1>
+  <span class="post-date">23 Jan 2017 </span>
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath:[['$','$']]}});</script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  <h2 id="建立四个接口">建立四个接口：</h2>
+<p>Model Wizard -&gt; 3D -&gt;</p>
+<ol>
+  <li>structural mechanics -&gt; thermal stress -&gt; add</li>
+  <li>AC/DC -&gt; electric currents, shell (ecs) -&gt; add</li>
+  <li>structural mechanics -&gt; Shell (shell) -&gt; add</li>
+</ol>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*Md9r-oo-mqnTCNPGkSSsOQ.png" alt="" /></p>
+
+<p>study -&gt; stationary</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*ipatMFSmv0TYPm5BqlRX-Q.png" alt="" /></p>
+
+<p><strong>thermal stress</strong> 接口包括了<strong>heat transfer in solids</strong> 和 <strong>solid mechanics</strong> 两个接口</p>
+<ol>
+  <li>in the volume, 这两个接口分别计算温度和位移</li>
+  <li>in the shell representing the circuit, 只有heat transfer in solids来计算温度</li>
+</ol>
+
+<p>剩下两个接口：<strong>electric currents, shell</strong> 和 <strong>shell</strong> 只应用在circuit shell 上，他俩分别计算电势和位移。</p>
+
+<h2 id="global-definitions-全局定义-">GLOBAL DEFINITIONS 全局定义 :</h2>
+<p>全局定义里选择参数</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*vxyvrYeINaw1PuGc8kOIjA.png" alt="" /></p>
+
+<p>设置parameters参数如下：</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*gfGLC8w2rGc3k6MndcMNmQ.png" alt="" /></p>
+
+<h2 id="几何创建">几何创建：</h2>
+<p>component 1 (comp1) -&gt; Geometry 1
+其中 length unit 改为 mm</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*MhFwfx-LvL1frKO494IVSg.png" alt="" /></p>
+
+<p>建立一个block</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*HDdJj610duStR98RGSuakw.png" alt="" /></p>
+
+<p>在blk1里设置如下，然后点击构建选定</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*og36XD-z9trvoogb51W6RQ.png" alt="" /></p>
+
+<p>返回上级component 1, 在里面选择创建工作平面。</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*08zhj8TQ2DuRgaNnGsxp0w.png" alt="" /></p>
+
+<p>在工作平面里选择x-y平面，z轴改为2，也就是说我们在上表面工作，构建选定(build selected)</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*NTgXLGcB3t4q01TRqQ091Q.png" alt="" /></p>
+
+<p>因为是在2维平面上工作画图，所以选项都是primitives
+在面几何上创建一个正方形sq1，参数如下，</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*4jBs2b6leHNI-6TcHSvzxA.png" alt="" /></p>
+
+<p>复制sq1，自动生成sq2，边长不变，改变位置。参数如下：</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*oQ0SrAku1bfIGlLi4MQkoQ.png" alt="" /></p>
+
+<p>这也就是之前文章里提到的两个正方形银制片，用来加电路两端电压的，最终如图：</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*Nhm_A78f-q3aHBi1HGp78A.png" alt="" /></p>
+
+<p>创建多边形，导入数据，直接搜索：heating_circuit_polygon格式为txt，肯定有的，不同电脑路径可能不同，我的是mac，路径为/Applications/COMSOL51/Multiphysics/applications/Structural_Mechanics_Module/Thermal-Structure_Interaction/heating_circuit_polygon.txt</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*IR-NlLxewChRpExOkNRdEw.png" alt="" /></p>
+
+<p>导入后如下：</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*wSeo1VAsP5hO9kar81HYHw.png" alt="" /></p>
+
+<p>创建圆角(fillet)，选择外围这些点，半径设为10mm：</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*KXNnQtQY-chKePTjlZV1sw.png" alt="" /></p>
+
+<p>在建立第二个圆角组(fil2), 选择内侧这些点，注意半径不一样，设为5mm：</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*czOqrb3KtVFMe4O3RUVlzw.png" alt="" /></p>
+
+<p>返回几何1，点击全部构建</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*YElOyWPld8ofWD6_JlvqkA.png" alt="" /></p>
+
+<p>最后效果如下：</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*qCTexbXDYIZDrBqZ4E2eeA.png" alt="" /></p>
+
+<h2 id="再次-definitions">再次 Definitions:</h2>
+<p>选择一组边界并label，便于接下来设定边界条件和shell物理设置。
+在定义里选择显式(Explicit)：</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*JGD2QPdpI-SmPQzCMsKjqA.png" alt="" /></p>
+
+<p>把标签改成Circuit, 选择边界几何实体层次，选择边界6，7，8：</p>
+
+<p><img src="https://cdn-images-1.medium.com/max/800/1*0ZO-E2smVWSIkSOuMEW9uw.png" alt="" /></p>
+
+<p>小贴士：在选择材料之前，明确哪些边界是作为conduction shells 是很必要的。利用这些信息，comsol可以探测我们需要哪些材料性质。</p>
+
+<p>至此，<strong>模型</strong>和<strong>全局定义</strong>已经全部完成，接下来的教程会进行<strong>物理场</strong>和<strong>材料</strong>以及<strong>后处理</strong>，尽情期待～</p>
+
+
+</div>
+
+<!-- 相关 -->
+<div class="related">
+  <h1>CATEGORY</h1>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/ai/2018/03/18/ai.html">
+            机器学习
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/01/06/mns.html">
+            纳米材料与技术 Materials and Nanoscience
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/01/05/comsol.html">
+            物理场耦合仿真 COMSOL Multiphysics
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/01/04/cs.html">
+            计算机科学 Computer Science
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/01/03/course.html">
+            课程 Course
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/01/02/categories.html">
+            总目录 Categories
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+
+</div>
+    </div>
+
+  </body>
+</html>

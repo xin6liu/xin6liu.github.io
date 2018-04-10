@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>LiuXin</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="/assets/css/main.css">
+	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
+	<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+
+
+<body>
+
+    <!-- Wrapper -->
+<div id="wrapper">
+
+<!-- Header -->
+<header id="header">
+	<a href="http://localhost:4000/" class="logo"><strong>LiuXin</strong> <span>To be a romantic scientist</span></a>
+	<nav>
+		<a href="#menu">Menu</a>
+	</nav>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+	<ul class="links">
+        
+		    
+		
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/">Home</a></li>
+	    	
+		
+		
+		    
+		        <li><a href="http://localhost:4000/about.html">我的故事 My Stories</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/category.html">目录 Category</a></li>
+		    
+		
+		    
+		
+	</ul>
+	<ul class="actions vertical">
+		<li><a href="#" class="button special fit">Get Started</a></li>
+		<li><a href="#" class="button fit">Log In</a></li>
+	</ul>
+</nav> 
+    
+    
+<!-- Main -->
+<div id="main" class="alt">
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+<!-- title -->
+			<h1>D3.js Notes 1 --hello world</h1>
+<!-- 日期 -->		
+		
+		2016-10-30
+		
+		</header>
+<!-- description -->	
+		<h5>D3.js学习笔记1--hello world</h5>
+<!-- 图片 -->		
+		<!-- 
+		 -->
+<!-- 正文 -->
+		<p><p>从今天起正式学习伟大的d3.js啦！</p>
+
+<p>这就是我的d3.js的第一篇学习笔记，以后我会不定期的更新，最后在一篇文章中汇总，希望能在接下来一个月里顺利完成d3的学习～加油！</p>
+
+<p>D3 的全称是（<strong>Data-Driven Documents</strong>），顾名思义可以知道是一个被数据驱动的文档。听名字有点抽象，说简单一点，其实就是一个 JavaScript 的函数库，使用它主要是用来做数据可视化的。</p>
+
+<p>关于js的学习，我之前是在<strong>W3School</strong>的JavaScript教程学习的，给大家推荐一下。</p>
+
+<p>D3 是一个 JavaScript 函数库，并不需要通常所说的“安装”。它只有一个文件，在 HTML 中引用即可。有两种方法：</p>
+
+<p>（1）下载 D3.js 的文件<a href="https://github.com/mbostock/d3/releases/download/v3.4.8/d3.zip">d3.zip</a>
+解压后，在 HTML 文件中包含相关的 js 文件即可。</p>
+
+<p>（2）还可以直接包含网络的链接，这种方法较简单：</p>
+
+<p><code class="highlighter-rouge">&lt;script src="http://d3js.org/d3.v3.min.js" charset="utf-8"&gt;&lt;/script&gt;</code></p>
+
+<p>或者最新的：</p>
+
+<p><code class="highlighter-rouge">&lt;script src="https://d3js.org/d3.v4.min.js"&gt;&lt;/script&gt;</code></p>
+
+<p>但使用的时候要保持网络连接有效，不能在断网的情况下使用。</p>
+
+<p>想要通过 D3 来开启数据可视化之旅的朋友，需要什么预备知识呢？</p>
+
+<ul>
+  <li>HTML：超文本标记语言，用于设定网页的内容</li>
+  <li>CSS：层叠样式表，用于设定网页的样式</li>
+  <li>JavaScript：一种直译式脚本语言，用于设定网页的行为</li>
+  <li>DOM：文档对象模型，用于修改文档的内容和结构</li>
+  <li>SVG：可缩放矢量图形，用于绘制可视化的图形</li>
+</ul>
+
+<p>其实不会也没太大关系啦，知道这些的基本概念就好啦，但html还是要简单学一下的～ 下面我们就来按照惯例写我们的第一个<strong>hello world</strong>程序吧～</p>
+
+<p>举个栗子：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span> 
+  <span class="nt">&lt;head&gt;</span> 
+        <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span> 
+        <span class="nt">&lt;title&gt;</span>HelloWorld<span class="nt">&lt;/title&gt;</span> 
+  <span class="nt">&lt;/head&gt;</span> 
+    <span class="nt">&lt;body&gt;</span> 
+        <span class="nt">&lt;p&gt;</span>Hello World 1<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Hello World 2<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/body&gt;</span> 
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>利用d3.js改写：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span> 
+  <span class="nt">&lt;head&gt;</span> 
+        <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span> 
+        <span class="nt">&lt;title&gt;</span>HelloWorld<span class="nt">&lt;/title&gt;</span> 
+  <span class="nt">&lt;/head&gt;</span> 
+    <span class="nt">&lt;body&gt;</span> 
+        <span class="nt">&lt;p&gt;</span>Hello World 1<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;p&gt;</span>Hello World 2<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://d3js.org/d3.v4.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span> 
+        <span class="nt">&lt;script&gt;</span>  
+        <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">"body"</span><span class="p">).</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">"p"</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s2">"liuxin"</span><span class="p">);</span>      
+        <span class="nt">&lt;/script&gt;</span> 
+    <span class="nt">&lt;/body&gt;</span> 
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>另外一种方法：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;script src="https://d3js.org/d3.v4.min.js"&gt;&lt;/script&gt; 
+&lt;script&gt;  
+	//选择&lt;body&gt;中所有的&lt;p&gt;，其文本内容为liuxin，选择集保存在变量 p 中
+	var p = d3.select("body")
+	          .selectAll("p")
+	          .text("liuxin");
+	//修改段落的颜色和字体大小
+	p.style("color","red")
+	 .style("font-size","72px");    
+&lt;/script&gt; 
+</code></pre></div></div>
+
+<p>上面的代码是先将选中的元素赋值给变量 p，然后通过变量 p 来改变样式，这样可以使代码更整洁。
+这里涉及一个概念：<strong>选择集</strong> 后面也会说到，使用 <code class="highlighter-rouge">d3.select()</code> 或 <code class="highlighter-rouge">d3.selectAll()</code> 选择元素后返回的对象，就是选择集。</p>
+
+<p>另外，D3 能够连续不断地调用函数，形如：<code class="highlighter-rouge">d3.select().selectAll().text()</code>
+这称为链式语法，和 JQuery 的语法很像，常用 JQuery 的朋友一定会感到很亲切哈哈～</p>
+
+<h2 id="reference">Reference</h2>
+
+<p>书籍：
+– Interactive Data Visualization for the Web
+– Eloquent JavaScript</p>
+
+<p>教程：
+– Line Chart in D3
+– D3 for Mere Mortals
+– OUR D3.JS
+– Thinking with joins
+– How selections work</p>
+</p>
+	</div>
+
+</section>
+</div>
+
+
+<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<ul class="icons">
+				
+				
+				<li><a href="http://weibo.com/u/2377304267" class="icon alt fa-weibo" target="_blank"><span class="label">weibo</span></a></li>
+				
+				
+				<li><a href="https://www.facebook.com/profile.php?id=100009585159226" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
+				
+				
+				<li><a href="https://www.instagram.com/harryliuxin/" class="icon alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+				
+				
+				
+				
+				
+				
+				<li><a href="http://www.miaopai.com/u/wxsso_p4mslofx14" class="icon alt fa-video-camera" target="_blank"><span class="label">video</span></a></li>
+				
+				
+				<li><a href="https://www.linkedin.com/in/xin-liu-868501134" class="icon alt fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
+				
+			</ul>
+			<ul class="copyright">
+				<li>&copy; LiuXin </li>
+				<li> To be a romantic scientist</li>
+				<li>Designed by: <a href="https://liuxin.in/about/" target="_blank">刘鑫</a></li>
+
+			</ul>
+		</div>
+	</footer>
+
+	
+
+</body>
+
+</html>

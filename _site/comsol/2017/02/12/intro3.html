@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      ［基础知识］What are some good projects in Finite Element Analysis &middot; LiuXin
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/simple/poole.css">
+  <link rel="stylesheet" href="/assets/css/simple/lanyon.css">
+</head>
+
+
+
+  <body>
+
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">LiuXin</a>
+            <small>COMSOL专题</small>
+          </h3>
+        </div>
+      </div>
+      <div class="container content">
+
+
+<!-- 正文 -->
+<div class="post">
+  <h1 class="post-title">［基础知识］What are some good projects in Finite Element Analysis</h1>
+  <span class="post-date">12 Feb 2017 </span>
+  <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath:[['$','$']]}});</script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  <p>The answers to “What are some good projects in Finite Element Analysis”</p>
+
+<h3 id="nathan-rhoades">Nathan Rhoades:</h3>
+<p>Ahh. I used COMSOL in my thesis. I <strong>modeled, tested and manufactured</strong> a <strong>micro fluidic temperature and flow sensor</strong> from a small block of high PTC material… kind of like a distributed hot-wire anemometer.
+COMSOL is great for <strong>iterative multi-variable solutions</strong>. For example, for my research, I wrote an <strong>FDM</strong> program by hand (in <strong>Python</strong>) to solve the <strong>thermodynamic problem</strong> of what the temperature is of a pipe is axially as fluid flows through it. Simple.
+Then I wrote a separate FDM to figure out the heat generated if the pipe was made of <strong>a material with resistance proportional to temperature</strong>, and assuming the inside of the pipe was connected to ground and the outside of the pipe was connected to a fixed voltage. Simple as well.
+Then I tried to <strong>iterate between the two FDM’s to find the solution for the temperature of the pipe in the axial direction given a voltage bias</strong>. The solution instantly produced spurs and blew up. More or less I eventually discovered that iterative multi-variable analysis requires a lot of numerical method wizardry.
+COMSOL is great at this.</p>
+
+<p>总结：作者用Python写了两个差分方程的程序(刚开始我还以为是3D打印的FDM。。)，一个计算当水在管中流动时管的轴线温度，另一个计算加了电压之后，一种电阻和温度成正比的材料做成的管子的产热。最后用comsol迭代计算在给定电压时管中轴线的温度。
+感悟：Python还是要学的啊。。大神都说了：python is an ideal language for Abaqus。</p>
+
+<h3 id="shankar">Shankar:</h3>
+<p>Design <strong>optimization problems</strong> are the best, and are of real use.
+Optimize the design of anything - a <strong>HV feedthrough</strong>, a <strong>relay</strong>, a <strong>Rogowsky coil</strong>.. there is no end to it.
+Simulate the structures in the FEM based code, and depending on some attributes of it, use <strong>Genetic Algorithm</strong> or <strong>Simulated Annealing</strong> to optimize the physical design.
+NB: If it is not mandatory to work with COMSOL, there is a simpler 2D FEM tool to start with, called FEMM. It is an open-source tool, quite helpful and easy to learn.</p>
+
+<p>总结：作者说优化问题是最实用的。先用FEM代码仿真模拟结构，然后根据它的属性，用遗传算法或者模拟退火来最优化物理设计。（咦？怎么好像回到了数学建模竞赛。。）</p>
+
+<h3 id="ashish-jadaun">Ashish Jadaun</h3>
+<p>COMSOL has specialized modules for particular type of problems and the learning curve is quite steep compared to other FEM software. There are a number of tutorials (step by step) which can help you for your specific type of problem. Although I am from a mechanical background,  I have seen lots of people working with AC/DC module in all the frequency ranges. You can pick any of the tutorial, modify the problem here and there (complicate it a bit) and you have your project.</p>
+
+<p>总结：呃。。</p>
+
+</div>
+
+<!-- 相关 -->
+<div class="related">
+  <h1>CATEGORY</h1>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/ai/2018/03/18/ai.html">
+            机器学习
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/01/06/mns.html">
+            纳米材料与技术 Materials and Nanoscience
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/01/05/comsol.html">
+            物理场耦合仿真 COMSOL Multiphysics
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/01/04/cs.html">
+            计算机科学 Computer Science
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/01/03/course.html">
+            课程 Course
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/01/02/categories.html">
+            总目录 Categories
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+
+</div>
+    </div>
+
+  </body>
+</html>

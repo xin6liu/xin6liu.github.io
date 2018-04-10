@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>LiuXin</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="/assets/css/main.css">
+	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
+	<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+
+
+<body>
+
+    <!-- Wrapper -->
+<div id="wrapper">
+
+<!-- Header -->
+<header id="header">
+	<a href="http://localhost:4000/" class="logo"><strong>LiuXin</strong> <span>To be a romantic scientist</span></a>
+	<nav>
+		<a href="#menu">Menu</a>
+	</nav>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+	<ul class="links">
+        
+		    
+		
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/">Home</a></li>
+	    	
+		
+		
+		    
+		        <li><a href="http://localhost:4000/about.html">我的故事 My Stories</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/category.html">目录 Category</a></li>
+		    
+		
+		    
+		
+	</ul>
+	<ul class="actions vertical">
+		<li><a href="#" class="button special fit">Get Started</a></li>
+		<li><a href="#" class="button fit">Log In</a></li>
+	</ul>
+</nav> 
+    
+    
+<!-- Main -->
+<div id="main" class="alt">
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+<!-- title -->
+			<h1>The Electromotive Force Acting in a Circuit with Current</h1>
+<!-- 日期 -->		
+		
+		2016-10-28
+		
+		</header>
+<!-- description -->	
+		<h5>推电源电动势与电源两端电压的关系</h5>
+<!-- 图片 -->		
+		<!-- 
+		 -->
+<!-- 正文 -->
+		<p><p><img src="http://ww1.sinaimg.cn/mw690/8db2c8cbgw1f9hvw4alh3j20vx09et9a.jpg" alt="" /></p>
+
+<h4 id="已知">已知</h4>
+
+<p>E是处处存在的，\(E_m\)只在电源里存在，在电源内两者方向相反。\(r_{int}\)的方向取从A(正)到B(负),E和r同方向，\(E_m\)和\(r_{int}\)反方向. 关于j的方向，书中有一句话很关键，也正是忽视了这句话大家对此类问题的推导中的符号问题会感到迷惑：</p>
+
+<blockquote>
+  <p>We remind that, in this case, the electromotive field Em prevails on E and, thus, a current with density J directed as Em is generated.</p>
+</blockquote>
+
+<p>说明了在电源内部，j的方向是与\(r_{int}\)、E相反的，也就是为什么推导的时候故意把正号变为负号，其实是后面为了凑出\((-\overrightarrow{J})\cdot \overrightarrow{t}\)。</p>
+
+<h4 id="推导过程">推导过程</h4>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{aligned}
+V_{AB} &= V_{(A)} - V_{(B)}\\
+&= \int_{r_{int}} \overrightarrow{E} \overrightarrow{t} dl\\
+&= \int_{r_{int}} (\mu_o \overrightarrow{J} - \overrightarrow{E_m}) \overrightarrow{t} dl\\
+&= \int_{r_{int}} (- \overrightarrow{E_m}) \overrightarrow{t} dl + \int_{r_{int}} \mu_o \overrightarrow{J}  \overrightarrow{t} dl\\
+&= \epsilon - \int_{r_{int}} \mu_o (-\overrightarrow{J}) \overrightarrow{t} dl\\
+\end{aligned} %]]></script>
+
+<p>\(
+\because I = (- \overrightarrow{J}) \cdot \overrightarrow{t} \cdot S
+\)</p>
+
+<p>\( \displaystyle
+\therefore V_{AB} = \epsilon - I \int_{r_{int}} \frac{\mu_0}{S} dl
+= \epsilon - R_g I
+\)</p>
+
+<blockquote>
+  <p>ps: \(\displaystyle R = \mu \frac{L}{S} \ \), \( \displaystyle Rg =\int \frac{\mu}{S}dl \)</p>
+</blockquote>
+</p>
+	</div>
+
+</section>
+</div>
+
+
+<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<ul class="icons">
+				
+				
+				<li><a href="http://weibo.com/u/2377304267" class="icon alt fa-weibo" target="_blank"><span class="label">weibo</span></a></li>
+				
+				
+				<li><a href="https://www.facebook.com/profile.php?id=100009585159226" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
+				
+				
+				<li><a href="https://www.instagram.com/harryliuxin/" class="icon alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+				
+				
+				
+				
+				
+				
+				<li><a href="http://www.miaopai.com/u/wxsso_p4mslofx14" class="icon alt fa-video-camera" target="_blank"><span class="label">video</span></a></li>
+				
+				
+				<li><a href="https://www.linkedin.com/in/xin-liu-868501134" class="icon alt fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
+				
+			</ul>
+			<ul class="copyright">
+				<li>&copy; LiuXin </li>
+				<li> To be a romantic scientist</li>
+				<li>Designed by: <a href="https://liuxin.in/about/" target="_blank">刘鑫</a></li>
+
+			</ul>
+		</div>
+	</footer>
+
+	
+
+</body>
+
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>LiuXin</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="/assets/css/main.css">
+	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
+	<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+
+
+<body>
+
+    <!-- Wrapper -->
+<div id="wrapper">
+
+<!-- Header -->
+<header id="header">
+	<a href="http://localhost:4000/" class="logo"><strong>LiuXin</strong> <span>To be a romantic scientist</span></a>
+	<nav>
+		<a href="#menu">Menu</a>
+	</nav>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+	<ul class="links">
+        
+		    
+		
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/">Home</a></li>
+	    	
+		
+		
+		    
+		        <li><a href="http://localhost:4000/about.html">我的故事 My Stories</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/category.html">目录 Category</a></li>
+		    
+		
+		    
+		
+	</ul>
+	<ul class="actions vertical">
+		<li><a href="#" class="button special fit">Get Started</a></li>
+		<li><a href="#" class="button fit">Log In</a></li>
+	</ul>
+</nav> 
+    
+    
+<!-- Main -->
+<div id="main" class="alt">
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+<!-- title -->
+			<h1>Prove flux tube</h1>
+<!-- 日期 -->		
+		
+		2016-10-27
+		
+		</header>
+<!-- description -->	
+		<h5>用环路定理推出 I/S 不变</h5>
+<!-- 图片 -->		
+		<!-- 
+		 -->
+<!-- 正文 -->
+		<p><p>通量 -&gt; 散度\(\ \ \ 
+\rm flux = \iiint divergence \ dV
+\)</p>
+
+<p>环量 -&gt; 旋度\(\ \ \ 
+\rm circulation = \iint \overrightarrow{curve} \cdot \overrightarrow{n} dS
+\)</p>
+
+<blockquote>
+  <p>之前说过Stationary Current的E无散无旋（局部）。前者是电流的连续性方程得出，后者是E保守场无旋的性质得出。这里证明flux tube用到的是电场（电流密度）无散的性质。</p>
+</blockquote>
+
+<blockquote>
+  <p>总体来说就是用\( \iint_{环}  \overrightarrow{J} \overrightarrow{n} dS = 0\)推出 I/S 不变。</p>
+</blockquote>
+
+<p><img src="http://ww4.sinaimg.cn/mw690/8db2c8cbgw1f9q4isj67kj20tc09ggmb.jpg" alt="123" /></p>
+
+<p>\(
+\iint_{s_1} \overrightarrow{J} \overrightarrow{n_1} dS + \iint_{s_2} \overrightarrow{J} \overrightarrow{n_2} dS + \iint_{s} \overrightarrow{J} \overrightarrow{n} dS = 0
+\)</p>
+
+<p>接下来我们需证明J平行于内壁，从而使第三项等于零。所以考虑取边壁上的圆柱高斯面，令h-&gt;0：</p>
+
+<p>\( \iint_{环}  \overrightarrow{J} \overrightarrow{n}^` dS = 0\)</p>
+
+<p>\(J_{nint} dS +J_{nout}  dS = 0\)</p>
+
+<p>由于壁外面没有电流，所以\(J_{nout} = 0\), 所以只能有\(J_{nint} dS = 0\)</p>
+
+<p>从而得出结论：<strong>the vector J is tangent to the lateral surface of the conductor.</strong></p>
+
+<p>\(\therefore \iint_{s} \overrightarrow{J} \overrightarrow{n} dS = 0
+\)</p>
+
+<p>\(\therefore
+\iint_{s_1} \overrightarrow{J} \overrightarrow{n_1} dS + \iint_{s_2} \overrightarrow{J} \overrightarrow{n_2} dS = 0
+\)</p>
+
+<p>\(\therefore
+\iint_{s_1} \overrightarrow{J} \overrightarrow{n_1} dS = - \iint_{s_2} \overrightarrow{J} \overrightarrow{n_2} dS
+\)</p>
+
+<p>If the direction chosen for \(\overrightarrow{n_1}\) is consistent with that chosen for \(\overrightarrow{n_2}\) (e.g., both outward with respect to the corresponding bases):</p>
+
+<p>\(
+\iint_{s_1} \overrightarrow{J} \overrightarrow{n_1} dS = \iint_{s_2} \overrightarrow{J} \overrightarrow{n_2} dS
+\)</p>
+
+<p>This proves <strong>the conductor is a flux tube for \(\overrightarrow{J}\)</strong></p>
+
+<blockquote>
+  <p>ps: 一般情况下I/S是不变的(filiform J不变)，但题中若给定\(J \propto r^2 \) 之类的，I就不再正比于\(r^2\)了，而是\( I = J \cdot s \propto r^4 \) 
+可由\( \iint r^2 dS = \int_0^r r^2 (2\pi r) dr \)，或\( \int_0^r \int_0^{2\pi} \rho^2 \rho d\varphi d\rho \)推出</p>
+</blockquote>
+
+</p>
+	</div>
+
+</section>
+</div>
+
+
+<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<ul class="icons">
+				
+				
+				<li><a href="http://weibo.com/u/2377304267" class="icon alt fa-weibo" target="_blank"><span class="label">weibo</span></a></li>
+				
+				
+				<li><a href="https://www.facebook.com/profile.php?id=100009585159226" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
+				
+				
+				<li><a href="https://www.instagram.com/harryliuxin/" class="icon alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+				
+				
+				
+				
+				
+				
+				<li><a href="http://www.miaopai.com/u/wxsso_p4mslofx14" class="icon alt fa-video-camera" target="_blank"><span class="label">video</span></a></li>
+				
+				
+				<li><a href="https://www.linkedin.com/in/xin-liu-868501134" class="icon alt fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
+				
+			</ul>
+			<ul class="copyright">
+				<li>&copy; LiuXin </li>
+				<li> To be a romantic scientist</li>
+				<li>Designed by: <a href="https://liuxin.in/about/" target="_blank">刘鑫</a></li>
+
+			</ul>
+		</div>
+	</footer>
+
+	
+
+</body>
+
+</html>
