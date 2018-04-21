@@ -11,10 +11,10 @@ nav-menu: true
 	<div class="inner">
 		<nav>
 				<ul>
-					<li><a href="#intro">Welcome</a></li>
-						<li><a href="#one">Who we are</a></li>
-						<li><a href="#two">What we do</a></li>
-						<li><a href="#three">Get in touch</a></li>
+					<li><a href="#intro">最近文章</a></li>
+					<li><a href="#one">分类</a></li>
+					<li><a href="#two">介绍</a></li>
+					<li><a href="#three">联系我</a></li>
 				</ul>
 		</nav>
 	</div>
@@ -39,8 +39,6 @@ nav-menu: true
 					<li><a href="#one" class="button scrolly">Learn more</a></li>
 				</ul>
 			</div>
-<ul class="posts">
-</ul>
     </section>
 
 <!-- One -->
@@ -49,7 +47,7 @@ nav-menu: true
 			<a href="#" class="image"><img src="/file/2ai/images/pic01.jpg" alt="" data-position="center center" /></a>
 			<div class="content">
 				<div class="inner">
-					<h2>Sed ipsum dolor</h2>
+					<h2>理论知识</h2>
 					<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
 					<ul class="actions">
 						<li><a href="#" class="button">Learn more</a></li>
@@ -61,7 +59,7 @@ nav-menu: true
 			<a href="#" class="image"><img src="/file/2ai/images/pic02.jpg" alt="" data-position="top center" /></a>
 			<div class="content">
 				<div class="inner">
-					<h2>Feugiat consequat</h2>
+					<h2>编程相关</h2>
 					<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
 					<ul class="actions">
 						<li><a href="#" class="button">Learn more</a></li>
@@ -73,7 +71,7 @@ nav-menu: true
 			<a href="#" class="image"><img src="/file/2ai/images/pic03.jpg" alt="" data-position="25% 25%" /></a>
 			<div class="content">
 				<div class="inner">
-					<h2>Ultricies aliquam</h2>
+					<h2>实战</h2>
 					<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
 					<ul class="actions">
 						<li><a href="#" class="button">Learn more</a></li>
@@ -88,7 +86,7 @@ nav-menu: true
 <!-- Two -->
 <section id="two" class="wrapper style3 fade-up">
 						<div class="inner">
-							<h2>What we do</h2>
+							<h2>介绍</h2>
 							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
 							<div class="features">
 								<section>
@@ -135,7 +133,7 @@ nav-menu: true
 <!-- Three -->
 <section id="three" class="wrapper style1 fade-up">
 						<div class="inner">
-							<h2>Get in touch</h2>
+							<h2>联系我</h2>
 							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
 							<div class="split style1">
 								<section>
@@ -161,17 +159,17 @@ nav-menu: true
 									<ul class="contact">
 										<li>
 											<h3>Address</h3>
-											<span>12345 Somewhere Road #654<br />
-											Nashville, TN 00000-0000<br />
-											USA</span>
+											<span>201 Lester<br />
+											Waterloo, ON<br />
+											CANADA</span>
 										</li>
 										<li>
 											<h3>Email</h3>
-											<a href="#">user@untitled.tld</a>
+													<a href="#">x399liu@eud.uwaterloo.ca</a>
 										</li>
 										<li>
 											<h3>Phone</h3>
-											<span>(000) 000-0000</span>
+											<span>(226) 505-6868</span>
 										</li>
 										<li>
 											<h3>Social</h3>
