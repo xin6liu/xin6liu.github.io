@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>LiuXin</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="/assets/css/main.css">
+	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
+	<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+
+
+<body>
+
+    <!-- Wrapper -->
+<div id="wrapper">
+
+<!-- Header -->
+<header id="header"	
+					>
+	<a href="http://localhost:4000/" class="logo"><strong>LiuXin</strong> <span>stay hungry, stay foolish</span></a>
+	<nav>
+		<a href="#menu">Menu</a>
+	</nav>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+	<ul class="links">
+        
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/">Home</a></li>
+	    	
+		
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/1python.html">Python</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/2ai.html">机器学习 Machine Learning</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/3cfd.html">计算流体力学 CFD</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/4cs.html">计算机科学 Computer Science</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/5mns.html">纳米材料与技术 Materials and Nanoscience</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/6course.html">课程 Course</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/7diary.html">生活 Diary</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/8categories.html">总目录 Categories</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/file/about.html">我的故事 My Stories</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/file/category.html">目录 Category</a></li>
+		    
+		
+		    
+		
+	</ul>
+	<ul class="actions vertical">
+		<li><a href="#" class="button special fit">Get Started</a></li>
+		<li><a href="#" class="button fit">Log In</a></li>
+	</ul>
+</nav> 
+    
+    
+<!-- Main -->
+<div id="main" class="alt">
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+<!-- title -->
+			<h1>parcel</h1>
+<!-- 日期 -->		
+		
+		2018-03-01
+		
+		</header>
+<!-- description -->	
+		<h5></h5>
+<!-- 图片 -->		
+		<!-- 
+		 -->
+<!-- 正文 -->
+		<p><h2 id="in-unsteady-dpm">In Unsteady DPM:</h2>
+<p>It is very expensive to track each individual particle in a particle flow system. Instead of tracking each particle, FLUENT tracks Parcel. Parcel contains <strong>particles with same properties including diameter, velocity and position.</strong> The behavior of each parcel is determined by the behavior of the particles inside. Fluent tracks parcels and number of particles in a parcel can be obtained using macro p-&gt;number_in_parcel. The number of particles in each parcel can be a fractional number.</p>
+
+<p>Streams are defined for injecting the parcels in the computational domain. <code class="highlighter-rouge">N</code> streams means <code class="highlighter-rouge">N</code> locations of parcel injection</p>
+
+<p>每个stream代表一个parcel发射的位置。</p>
+
+<p>Stream mass flow rate, and number of particles in a parcel are related as:</p>
+
+<p>Number of particles in a parcel = 
+$
+\bf
+\frac{Stream\ mass\ flow\ rate\ * Injection\ time\ interval}{Mass\ of\ single\ particle}
+$</p>
+
+<p>每个parcel里particle的数量 = 一个stream每秒发射的质量 * 一次发射的时间步长 / 一个particle的质量</p>
+
+<p>移项，也就是：一个stream一次发射的质量 = 一个parcel的质量</p>
+
+<p>Number of particle streams: the number of parcels that get injected after each injection time interval.</p>
+
+<h2 id="in-steady-dpm">In Steady DPM:</h2>
+<p>Number of particles in parcel is not valid for steady tracking. Instead there is “strength” which is essentially number particles in parcel / second and is calculated as:</p>
+
+<p>Strength = (Stream mass flow rate)/(Mass of single particle)</p>
+
+<p>strength = 一个stream每秒发射的质量 / 一个particle的质量</p>
+
+<h2 id="clarification">Clarification:</h2>
+<p>FLUENT user`s documentation mentions “particles” everywhere, when it should be actually parcels.</p>
+</p>
+	</div>
+
+</section>
+</div>
+
+
+<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<ul class="icons">
+				
+				
+				<li><a href="http://weibo.com/u/2377304267" class="icon alt fa-weibo" target="_blank"><span class="label">weibo</span></a></li>
+				
+				
+				<li><a href="https://www.facebook.com/profile.php?id=100009585159226" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
+				
+				
+				<li><a href="https://www.instagram.com/harryliuxin/" class="icon alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+				
+				
+				
+				
+				
+				<li><a href="http://www.miaopai.com/u/wxsso_p4mslofx14" class="icon alt fa-video-camera" target="_blank"><span class="label">video</span></a></li>
+				
+				
+				<li><a href="https://www.linkedin.com/in/xin-liu-868501134" class="icon alt fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
+				
+			</ul>
+			<ul class="copyright">
+				<li>&copy; LiuXin </li>
+				<li> stay hungry, stay foolish</li>
+				<li>Designed by: <a href="https://liuxin.in/about/" target="_blank">刘鑫</a></li>
+
+			</ul>
+		</div>
+	</footer>
+
+	
+
+</body>
+
+</html>

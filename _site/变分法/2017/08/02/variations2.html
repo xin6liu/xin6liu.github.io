@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>LiuXin</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="/assets/css/main.css">
+	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
+	<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+
+
+<body>
+
+    <!-- Wrapper -->
+<div id="wrapper">
+
+<!-- Header -->
+<header id="header"	
+					>
+	<a href="http://localhost:4000/" class="logo"><strong>LiuXin</strong> <span>stay hungry, stay foolish</span></a>
+	<nav>
+		<a href="#menu">Menu</a>
+	</nav>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+	<ul class="links">
+        
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/">Home</a></li>
+	    	
+		
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/1python.html">Python</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/2ai.html">机器学习 Machine Learning</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/3cfd.html">计算流体力学 CFD</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/4cs.html">计算机科学 Computer Science</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/5mns.html">纳米材料与技术 Materials and Nanoscience</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/6course.html">课程 Course</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/7diary.html">生活 Diary</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/8categories.html">总目录 Categories</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/file/about.html">我的故事 My Stories</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/file/category.html">目录 Category</a></li>
+		    
+		
+		    
+		
+	</ul>
+	<ul class="actions vertical">
+		<li><a href="#" class="button special fit">Get Started</a></li>
+		<li><a href="#" class="button fit">Log In</a></li>
+	</ul>
+</nav> 
+    
+    
+<!-- Main -->
+<div id="main" class="alt">
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+<!-- title -->
+			<h1>2-变分法近似解法</h1>
+<!-- 日期 -->		
+		
+		2017-08-02
+		
+		</header>
+<!-- description -->	
+		<h5></h5>
+<!-- 图片 -->		
+		<!-- 
+		 -->
+<!-- 正文 -->
+		<p><h2 id="强解">强解</h2>
+
+<p><img src="http://wx2.sinaimg.cn/mw690/8db2c8cbgy1ficnnlgy4dj20i60egtb9.jpg" alt="" /></p>
+
+<h2 id="弱解">弱解</h2>
+
+<p><img src="http://wx3.sinaimg.cn/mw690/8db2c8cbly1fiaw27g8gij20jb02rmxn.jpg" alt="" /></p>
+
+<p>将微分方程乘以一个权函数（基函数），然后令加权积分为零</p>
+
+<p>在弱形式中，我们将乘的这个函数称为检验函数(test function)，用V￼表示。</p>
+
+<p><img src="http://wx4.sinaimg.cn/mw690/8db2c8cbgy1fiawxi3fzzj20kt050js0.jpg" alt="" /></p>
+
+<p>第一项积分内y是二次微分而检验函数v是零次微分。如果使用分部积分，就可以将一次微分转移到检验函数v上，这样y的近似解函数只需是一阶线性的而不用是二次的了。通过分部积分可得：</p>
+
+<p><img src="http://wx4.sinaimg.cn/mw690/8db2c8cbgy1fiawxjy0huj20kq02wwev.jpg" alt="" /></p>
+
+<p>最后得到加权积分(弱形式)：</p>
+
+<p><img src="http://wx3.sinaimg.cn/mw690/8db2c8cbgy1fiawxlswh9j20i101y0su.jpg" alt="" /></p>
+
+<p>反求出I，我们知道 I 的一阶变分，与上面的加权积分形式是一样的。原来，$\delta y$ 就是v。</p>
+
+<p><img src="http://wx4.sinaimg.cn/mw690/8db2c8cbgy1fiaythj8auj20gx04aq3f.jpg" alt="" /></p>
+
+<h2 id="example2">Example2:</h2>
+
+<p><img src="http://wx3.sinaimg.cn/mw690/8db2c8cbgy1fiaytj4a0wj20g605djs0.jpg" alt="" /></p>
+
+<blockquote>
+  <p><img src="http://wx3.sinaimg.cn/mw690/8db2c8cbgy1fickqggrnrj20dn067t9k.jpg" alt="" /></p>
+</blockquote>
+
+<p><img src="http://wx3.sinaimg.cn/mw690/8db2c8cbgy1fickqifcsij20fx0e3jtb.jpg" alt="" /></p>
+
+<p><img src="http://wx2.sinaimg.cn/mw690/8db2c8cbgy1fickqkcv6zj20gj05yt9l.jpg" alt="" /></p>
+
+<p>强解解法：</p>
+
+<p><img src="http://wx2.sinaimg.cn/mw690/8db2c8cbgy1ficnnnkdnqj20hl0cc763.jpg" alt="" /></p>
+
+<h2 id="总结">总结</h2>
+
+<p><img src="http://wx2.sinaimg.cn/mw690/8db2c8cbgy1ficubsrdtgj20ei0af3zu.jpg" alt="" /></p>
+
+<h2 id="注释">注释</h2>
+
+<p><img src="http://wx1.sinaimg.cn/mw690/8db2c8cbly1fiaw28zmuej20iy05h74w.jpg" alt="" /></p>
+
+</p>
+	</div>
+
+</section>
+</div>
+
+
+<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<ul class="icons">
+				
+				
+				<li><a href="http://weibo.com/u/2377304267" class="icon alt fa-weibo" target="_blank"><span class="label">weibo</span></a></li>
+				
+				
+				<li><a href="https://www.facebook.com/profile.php?id=100009585159226" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
+				
+				
+				<li><a href="https://www.instagram.com/harryliuxin/" class="icon alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+				
+				
+				
+				
+				
+				<li><a href="http://www.miaopai.com/u/wxsso_p4mslofx14" class="icon alt fa-video-camera" target="_blank"><span class="label">video</span></a></li>
+				
+				
+				<li><a href="https://www.linkedin.com/in/xin-liu-868501134" class="icon alt fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
+				
+			</ul>
+			<ul class="copyright">
+				<li>&copy; LiuXin </li>
+				<li> stay hungry, stay foolish</li>
+				<li>Designed by: <a href="https://liuxin.in/about/" target="_blank">刘鑫</a></li>
+
+			</ul>
+		</div>
+	</footer>
+
+	
+
+</body>
+
+</html>

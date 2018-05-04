@@ -224,6 +224,33 @@ Connection to github.com closed.
 </code></pre></div></div>
 
 <p>大功告成，同样的，用x399liu的账号clone然后push也是同样的道理～ 不知道这篇文章有没有帮到你呢？</p>
+
+<p>视频在这里：</p>
+
+<p>NOTE: 如果一直用的帐户A(harryliuxin) commit 而这次想用帐户B(liuxin21) 操作的话（两个账号都已设置好），只需要</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git config user.name “liuxin21”
+$ git config user.email "x399liu@edu.uwaterloo.ca"
+</code></pre></div></div>
+
+<p>之后正常操作就行了。</p>
+
+<h2 id="更新2">更新2：</h2>
+
+<p>有时候需要输入密码，可能是KEY没有了。解决方法：</p>
+
+<p>先查看ssh 列表：
+$ ssh-add -l
+若显示The agent has no identities.
+则要把KEY加到 SSH AGENT 上</p>
+
+<p>因为有多个KEY，不用默认的.ssh/id_rsa
+ 所以要把KEY加到 SSH AGENT 上，</p>
+
+<p>$ ssh-add ~/.ssh/liuxin21</p>
+
+<p>再查看ssh 列表：
+$ ssh-add -l</p>
 </p>
 	</div>
 

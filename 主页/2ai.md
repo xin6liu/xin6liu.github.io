@@ -6,82 +6,86 @@ image: assets/images/pic02.jpg
 nav-menu: true
 ---
 
+<html>
+	<head>
+		<title>Hyperspace by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
 <!-- Sidebar -->
 <section id="sidebar">
-	<div class="inner">
-		<nav>
-				<ul>
-					<li><a href="#intro">最近文章</a></li>
-					<li><a href="#one">分类</a></li>
-					<li><a href="#two">介绍</a></li>
-					<li><a href="#three">联系我</a></li>
-				</ul>
-		</nav>
-	</div>
-</section>
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="#intro">最近文章</a></li>
+							<li><a href="#one">分类</a></li>
+							<li><a href="#two">主页</a></li>
+							<li><a href="#three">联系我</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
 
 <!-- Wrapper -->
 <div id="wrapper">
+
 <!-- Intro -->
-    <section id="intro" class="wrapper style1 fullscreen fade-up">
-			<div class="inner">
-				<h1>最近文章</h1>
-					{% for post in site.posts %}
-		            {% if post.category == "comsol" %}
-		            <li>
-			        <a href="{{ post.url }}">{{ post.title }}</a>
-			        <span> &raquo; {{ post.date | date: "%B %d, %Y" }}</span>
-		            </li>
-		            {% endif %}
-	                {% endfor %}
-                <br />
-				<ul class="actions">
-					<li><a href="#one" class="button scrolly">Learn more</a></li>
-				</ul>
-			</div>
-    </section>
+<section id="intro" class="wrapper style1 fullscreen fade-up">
+						<div class="inner">
+							<h1>Hyperspace</h1>
+							<p>Just another fine responsive site template designed by <a href="http://html5up.net">HTML5 UP</a><br />
+							and released for free under the <a href="http://html5up.net/license">Creative Commons</a>.</p>
+							<ul class="actions">
+								<li><a href="#one" class="button scrolly">Learn more</a></li>
+							</ul>
+						</div>
+					</section>
 
 <!-- One -->
 <section id="one" class="wrapper style2 spotlights">
-		<section>
-			<a href="#" class="image"><img src="/file/2ai/images/pic01.jpg" alt="" data-position="center center" /></a>
-			<div class="content">
-				<div class="inner">
-					<h2>理论知识</h2>
-					<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
-					<ul class="actions">
-						<li><a href="#" class="button">Learn more</a></li>
-					</ul>
-				</div>
-			</div>
-		</section>
-		<section>
-			<a href="#" class="image"><img src="/file/2ai/images/pic02.jpg" alt="" data-position="top center" /></a>
-			<div class="content">
-				<div class="inner">
-					<h2>编程相关</h2>
-					<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
-					<ul class="actions">
-						<li><a href="#" class="button">Learn more</a></li>
-					</ul>
-				</div>
-			</div>
-		</section>
-		<section>
-			<a href="#" class="image"><img src="/file/2ai/images/pic03.jpg" alt="" data-position="25% 25%" /></a>
-			<div class="content">
-				<div class="inner">
-					<h2>实战</h2>
-					<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
-					<ul class="actions">
-						<li><a href="#" class="button">Learn more</a></li>
-					</ul>
-				</div>
-			</div>
-		</section>
-	</section>
-
-
+						<section>
+							<a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a>
+							<div class="content">
+								<div class="inner">
+									<h2>理论知识</h2>
+									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<ul class="actions">
+										<li><a href="#" class="button">Learn more</a></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+						<section>
+							<a href="#" class="image"><img src="images/pic02.jpg" alt="" data-position="top center" /></a>
+							<div class="content">
+								<div class="inner">
+									<h2>编程相关</h2>
+									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<ul class="actions">
+										<li><a href="#" class="button">Learn more</a></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+						<section>
+							<a href="#" class="image"><img src="images/pic03.jpg" alt="" data-position="25% 25%" /></a>
+							<div class="content">
+								<div class="inner">
+									<h2>实战</h2>
+									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<ul class="actions">
+										<li><a href="#" class="button">Learn more</a></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+					</section>
 
 <!-- Two -->
 <section id="two" class="wrapper style3 fade-up">
@@ -126,10 +130,6 @@ nav-menu: true
 						</div>
 					</section>
 
-				
-                
-                
-                
 <!-- Three -->
 <section id="three" class="wrapper style1 fade-up">
 						<div class="inner">
@@ -165,7 +165,7 @@ nav-menu: true
 										</li>
 										<li>
 											<h3>Email</h3>
-													<a href="#">x399liu@eud.uwaterloo.ca</a>
+											<a href="#">x399liu@eud.uwaterloo.ca</a>
 										</li>
 										<li>
 											<h3>Phone</h3>
@@ -189,23 +189,23 @@ nav-menu: true
 
 			</div>
 
-		
-        
-        
 <!-- Footer -->
 <footer id="footer" class="wrapper style1-alt">
 				<div class="inner">
 					<ul class="menu">
-						<li>&copy; 作者：刘鑫</li><li>素材: <a href="">HTML5 UP</a></li>
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 					</ul>
 				</div>
 			</footer>
 
 <!-- Scripts -->
 <script src="/file/2ai/assets/js/jquery.min.js"></script>
-<script src="/file/2ai/assets/js/jquery.scrollex.min.js"></script>
-<script src="/file/2ai/assets/js/jquery.scrolly.min.js"></script>
-<script src="/file/2ai/assets/js/skel.min.js"></script>
-<script src="/file/2ai/assets/js/util.js"></script>
-<!--[if lte IE 8]><script src="/file/2ai/assets/js/ie/respond.min.js"></script><![endif]-->
-<script src="/file/2ai/assets/js/main.js"></script>
+			<script src="/file/2ai/assets/js/jquery.scrollex.min.js"></script>
+			<script src="/file/2ai/assets/js/jquery.scrolly.min.js"></script>
+			<script src="/file/2ai/assets/js/skel.min.js"></script>
+			<script src="/file/2ai/assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="/file/2ai/assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="/file/2ai/assets/js/main.js"></script>
+
+	</body>
+</html>

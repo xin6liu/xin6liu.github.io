@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>LiuXin</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="/assets/css/main.css">
+	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
+	<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+
+
+<body>
+
+    <!-- Wrapper -->
+<div id="wrapper">
+
+<!-- Header -->
+<header id="header"	
+					>
+	<a href="http://localhost:4000/" class="logo"><strong>LiuXin</strong> <span>stay hungry, stay foolish</span></a>
+	<nav>
+		<a href="#menu">Menu</a>
+	</nav>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+	<ul class="links">
+        
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/">Home</a></li>
+	    	
+		
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/1python.html">Python</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/2ai.html">机器学习 Machine Learning</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/3cfd.html">计算流体力学 CFD</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/4cs.html">计算机科学 Computer Science</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/5mns.html">纳米材料与技术 Materials and Nanoscience</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/6course.html">课程 Course</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/7diary.html">生活 Diary</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/%E4%B8%BB%E9%A1%B5/8categories.html">总目录 Categories</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/file/about.html">我的故事 My Stories</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/file/category.html">目录 Category</a></li>
+		    
+		
+		    
+		
+	</ul>
+	<ul class="actions vertical">
+		<li><a href="#" class="button special fit">Get Started</a></li>
+		<li><a href="#" class="button fit">Log In</a></li>
+	</ul>
+</nav> 
+    
+    
+<!-- Main -->
+<div id="main" class="alt">
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+<!-- title -->
+			<h1>遗传算法</h1>
+<!-- 日期 -->		
+		
+		2018-04-25
+		
+		</header>
+<!-- description -->	
+		<h5></h5>
+<!-- 图片 -->		
+		<!-- 
+		 -->
+<!-- 正文 -->
+		<p><div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">random</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">GA</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">popsize</span><span class="p">,</span><span class="n">chrosize</span><span class="p">,</span><span class="n">xrangemin</span><span class="p">,</span><span class="n">xrangemax</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">popsize</span> <span class="o">=</span><span class="n">popsize</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chrosize</span> <span class="o">=</span><span class="n">chrosize</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xrangemin</span> <span class="o">=</span><span class="n">xrangemin</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xrangemax</span> <span class="o">=</span><span class="n">xrangemax</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crossrate</span> <span class="o">=</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutationrate</span> <span class="o">=</span><span class="mf">0.01</span>
+        
+    <span class="k">def</span> <span class="nf">initialpop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">popsize</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">chrosize</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">pop</span>
+
+    <span class="k">def</span> <span class="nf">get_declist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">chroms</span><span class="p">):</span>
+        <span class="n">step</span> <span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xrangemax</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">xrangemin</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">chrosize</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chroms_declist</span> <span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">popsize</span><span class="p">):</span>
+            <span class="n">chrom_dec</span> <span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">xrangemin</span><span class="o">+</span><span class="n">step</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">chromtodec</span><span class="p">(</span><span class="n">chroms</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>  
+            <span class="bp">self</span><span class="o">.</span><span class="n">chroms_declist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chrom_dec</span><span class="p">)</span>      
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">chroms_declist</span>
+
+    <span class="k">def</span> <span class="nf">chromtodec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">chrom</span><span class="p">):</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chrosize</span><span class="p">):</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="n">m</span> <span class="o">*</span> <span class="n">chrom</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="n">m</span> <span class="o">*</span> <span class="mi">2</span>
+        <span class="k">return</span> <span class="n">r</span>
+    
+
+    <span class="k">def</span> <span class="nf">get_fitness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span> 
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="mf">2.0</span>
+        <span class="k">return</span> <span class="n">y</span>  
+    
+    <span class="k">def</span> <span class="nf">selection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">popsel</span><span class="p">,</span><span class="n">fitvalue</span><span class="p">):</span>
+        <span class="n">new_fitvalue</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">totalfit</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">fitvalue</span><span class="p">)</span>
+        <span class="n">accumulator</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">fitvalue</span><span class="p">:</span> 
+            <span class="n">new_val</span> <span class="o">=</span><span class="p">(</span><span class="n">val</span><span class="o">*</span><span class="mf">1.0</span><span class="o">/</span><span class="n">totalfit</span><span class="p">)</span>            
+            <span class="n">accumulator</span> <span class="o">+=</span> <span class="n">new_val</span>
+            <span class="n">new_fitvalue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accumulator</span><span class="p">)</span>            
+        <span class="n">ms</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">popsize</span><span class="p">):</span>
+            <span class="n">ms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span> 
+        <span class="n">ms</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span> 
+        <span class="n">fitin</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">newin</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">newpop</span> <span class="o">=</span> <span class="n">popsel</span>
+        <span class="k">while</span> <span class="n">newin</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">popsize</span><span class="p">:</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">ms</span><span class="p">[</span><span class="n">newin</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">new_fitvalue</span><span class="p">[</span><span class="n">fitin</span><span class="p">]):</span>
+                <span class="n">newpop</span><span class="p">[</span><span class="n">newin</span><span class="p">]</span> <span class="o">=</span> <span class="n">popsel</span><span class="p">[</span><span class="n">fitin</span><span class="p">]</span>
+                <span class="n">newin</span> <span class="o">=</span> <span class="n">newin</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">fitin</span> <span class="o">=</span> <span class="n">fitin</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">pop</span> <span class="o">=</span> <span class="n">newpop</span>
+        <span class="k">return</span> <span class="n">pop</span>
+    
+    <span class="k">def</span> <span class="nf">crossover</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pop</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">popsize</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">&lt;</span><span class="bp">self</span><span class="o">.</span><span class="n">crossrate</span><span class="p">):</span>
+                <span class="n">singpoint</span> <span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">chrosize</span><span class="p">)</span>
+                <span class="n">temp1</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">temp2</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">temp1</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">pop</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="n">singpoint</span><span class="p">])</span>
+                <span class="n">temp1</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">pop</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">singpoint</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">chrosize</span><span class="p">])</span>
+                <span class="n">temp2</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">pop</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="n">singpoint</span><span class="p">])</span>
+                <span class="n">temp2</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">pop</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">singpoint</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">chrosize</span><span class="p">])</span>
+                <span class="n">pop</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">temp1</span>
+                <span class="n">pop</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">temp2</span>
+        <span class="k">return</span> <span class="n">pop</span>
+    
+    <span class="k">def</span> <span class="nf">mutation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pop</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">popsize</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutationrate</span><span class="p">):</span>
+                <span class="n">mpoint</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">chrosize</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">pop</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">mpoint</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+                    <span class="n">pop</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">mpoint</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">pop</span><span class="p">[</span><span class="n">mpoint</span><span class="p">]</span> <span class="o">=</span><span class="mi">1</span>
+        <span class="k">return</span> <span class="n">pop</span>
+    
+    <span class="k">def</span> <span class="nf">elitism</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pop</span><span class="p">,</span><span class="n">popbest</span><span class="p">,</span><span class="n">nextbestfit</span><span class="p">,</span><span class="n">fitbest</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">nextbestfit</span><span class="o">-</span><span class="n">fitbest</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>         
+            <span class="n">pop_worst</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">nextfitvalue</span><span class="p">)</span>
+            <span class="n">pop</span><span class="p">[</span><span class="n">pop_worst</span><span class="p">]</span> <span class="o">=</span> <span class="n">popbest</span>
+        <span class="k">return</span> <span class="n">pop</span> 
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">generation</span> <span class="o">=</span> <span class="mi">100</span> <span class="c"># 遗传代数</span>
+    <span class="c">#引入Gas类，传入参数：种群大小，编码长度，变量范围</span>
+    <span class="n">mainGas</span> <span class="o">=</span><span class="n">GA</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> 
+    <span class="n">pop</span> <span class="o">=</span><span class="n">mainGas</span><span class="o">.</span><span class="n">initialpop</span><span class="p">()</span>  <span class="c">#种群初始化</span>
+    <span class="n">pop_best</span> <span class="o">=</span> <span class="p">[]</span> <span class="c">#每代最优个体</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">generation</span><span class="p">):</span> 
+        <span class="c">#在遗传代数内进行迭代</span>
+        <span class="n">declist</span> <span class="o">=</span><span class="n">mainGas</span><span class="o">.</span><span class="n">get_declist</span><span class="p">(</span><span class="n">pop</span><span class="p">)</span><span class="c">#解码</span>
+        <span class="n">fitvalue</span> <span class="o">=</span><span class="n">mainGas</span><span class="o">.</span><span class="n">get_fitness</span><span class="p">(</span><span class="n">declist</span><span class="p">)</span><span class="c">#适应度函数</span>
+        <span class="c">#选择适应度函数最高个体</span>
+        <span class="n">popbest</span> <span class="o">=</span> <span class="n">pop</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">fitvalue</span><span class="p">)]</span>
+        <span class="c">#对popbest进行深复制，以为后面精英选择做准备</span>
+        <span class="n">popbest</span> <span class="o">=</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">popbest</span><span class="p">)</span>
+        <span class="c">#最高适应度</span>
+        <span class="n">fitbest</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">fitvalue</span><span class="p">)</span>
+        <span class="c">#保存每代最高适应度值</span>
+        <span class="n">pop_best</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fitbest</span><span class="p">)</span>
+        <span class="c">################################进行算子操作，并不断更新pop</span>
+        <span class="n">mainGas</span><span class="o">.</span><span class="n">selection</span><span class="p">(</span><span class="n">pop</span><span class="p">,</span><span class="n">fitvalue</span><span class="p">)</span>  <span class="c">#选择</span>
+        <span class="n">mainGas</span><span class="o">.</span><span class="n">crossover</span><span class="p">(</span><span class="n">pop</span><span class="p">)</span> <span class="c"># 交叉</span>
+        <span class="n">mainGas</span><span class="o">.</span><span class="n">mutation</span><span class="p">(</span><span class="n">pop</span><span class="p">)</span>  <span class="c">#变异</span>
+        <span class="c">################################精英策略前的准备</span>
+        <span class="c">#对变异之后的pop，求解最大适应度</span>
+        <span class="n">nextdeclist</span> <span class="o">=</span> <span class="n">mainGas</span><span class="o">.</span><span class="n">get_declist</span><span class="p">(</span><span class="n">pop</span><span class="p">)</span> 
+        <span class="n">nextfitvalue</span> <span class="o">=</span><span class="n">mainGas</span><span class="o">.</span><span class="n">get_fitness</span><span class="p">(</span><span class="n">nextdeclist</span><span class="p">)</span>        
+        <span class="n">nextbestfit</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">nextfitvalue</span><span class="p">)</span> 
+        <span class="c">################################精英策略Elitism</span>
+        <span class="c">#比较深复制的个体适应度和变异之后的适应度</span>
+        <span class="n">mainGas</span><span class="o">.</span><span class="n">elitism</span><span class="p">(</span><span class="n">pop</span><span class="p">,</span><span class="n">popbest</span><span class="p">,</span><span class="n">nextbestfit</span><span class="p">,</span><span class="n">fitbest</span><span class="p">)</span> 
+        
+    <span class="c">##############################画图</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">generation</span><span class="p">)]</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">pop_best</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="http://wx4.sinaimg.cn/mw690/8db2c8cbly1fqwa0fd1xvj20am0700sm.jpg" alt="" /></p>
+</p>
+	</div>
+
+</section>
+</div>
+
+
+<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<ul class="icons">
+				
+				
+				<li><a href="http://weibo.com/u/2377304267" class="icon alt fa-weibo" target="_blank"><span class="label">weibo</span></a></li>
+				
+				
+				<li><a href="https://www.facebook.com/profile.php?id=100009585159226" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
+				
+				
+				<li><a href="https://www.instagram.com/harryliuxin/" class="icon alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+				
+				
+				
+				
+				
+				<li><a href="http://www.miaopai.com/u/wxsso_p4mslofx14" class="icon alt fa-video-camera" target="_blank"><span class="label">video</span></a></li>
+				
+				
+				<li><a href="https://www.linkedin.com/in/xin-liu-868501134" class="icon alt fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
+				
+			</ul>
+			<ul class="copyright">
+				<li>&copy; LiuXin </li>
+				<li> stay hungry, stay foolish</li>
+				<li>Designed by: <a href="https://liuxin.in/about/" target="_blank">刘鑫</a></li>
+
+			</ul>
+		</div>
+	</footer>
+
+	
+
+</body>
+
+</html>
