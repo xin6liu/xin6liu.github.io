@@ -12,7 +12,7 @@ nav-menu: true
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="file/2ai/assets/css/main.css" />
+		<link rel="stylesheet" href="/file/2ai/assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
@@ -55,7 +55,7 @@ nav-menu: true
 <!-- One -->
 <section id="one" class="wrapper style2 spotlights">
 						<section>
-							<a href="#" class="image"><img src="file/2ai/images/pic01.jpg" alt="" data-position="center center" /></a>
+							<a href="#" class="image"><img src="/file/2ai/images/pic01.jpg" alt="" data-position="center center" /></a>
 							<div class="content">
 								<div class="inner">
 									<h2>理论知识</h2>
@@ -67,7 +67,7 @@ nav-menu: true
 							</div>
 						</section>
 						<section>
-							<a href="#" class="image"><img src="file/2ai/images/pic02.jpg" alt="" data-position="top center" /></a>
+							<a href="#" class="image"><img src="/file/2ai/images/pic02.jpg" alt="" data-position="top center" /></a>
 							<div class="content">
 								<div class="inner">
 									<h2>编程相关</h2>
@@ -79,7 +79,7 @@ nav-menu: true
 							</div>
 						</section>
 						<section>
-							<a href="#" class="image"><img src="file/2ai/images/pic03.jpg" alt="" data-position="25% 25%" /></a>
+							<a href="#" class="image"><img src="/file/2ai/images/pic03.jpg" alt="" data-position="25% 25%" /></a>
 							<div class="content">
 								<div class="inner">
 									<h2>实战</h2>
