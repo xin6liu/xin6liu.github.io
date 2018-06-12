@@ -5,6 +5,7 @@ description: 一些值得记录的小事 Some thing rememberable
 image: assets/images/pic07.jpg
 nav-menu: true
 ---
+
 <ul class="posts">
 	{% for post in site.posts %}
 		{% if post.category == "diary" %}

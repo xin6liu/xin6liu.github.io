@@ -11,17 +11,17 @@ nav-menu: true
 ### 数学部分
 
 <ul class="actions">
-	<a href="/目录catalog/计算流体力学/PDE" class="button">PDE</a>
-	<a href="/目录catalog/计算流体力学/变分法" class="button">变分法</a>
-	<a href="/目录catalog/计算流体力学/有限体积法" class="button">有限体积法</a>
+	<a href="/file/3cfd/计算流体力学/PDE" class="button">PDE</a>
+	<a href="/file/3cfd/计算流体力学/变分法" class="button">变分法</a>
+	<a href="/file/3cfd/计算流体力学/有限体积法" class="button">有限体积法</a>
 </ul>
 
 
 ### 物理部分
 
 <ul class="actions">
-	<a href="/目录catalog/计算流体力学/流体力学" class="button">流体力学</a>
-	<a href="/目录catalog/计算流体力学/变分法" class="button">连续介质力学</a>
+	<a href="/file/3cfd/计算流体力学/流体力学" class="button">流体力学</a>
+	<a href="/file/3cfd/计算流体力学/变分法" class="button">连续介质力学</a>
 </ul>
 
 > 

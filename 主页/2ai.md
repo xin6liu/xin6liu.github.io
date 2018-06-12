@@ -59,7 +59,7 @@ nav-menu: true
 							<div class="content">
 								<div class="inner">
 									<h2>理论知识</h2>
-									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<p>依据吴恩达在Coursera上的机器学习课程.</p>
 									<ul class="actions">
 										<li><a href="#" class="button">Learn more</a></li>
 									</ul>
@@ -71,7 +71,7 @@ nav-menu: true
 							<div class="content">
 								<div class="inner">
 									<h2>编程相关</h2>
-									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<p>主要利用Python结合机器学习.</p>
 									<ul class="actions">
 										<li><a href="#" class="button">Learn more</a></li>
 									</ul>
@@ -83,7 +83,7 @@ nav-menu: true
 							<div class="content">
 								<div class="inner">
 									<h2>实战</h2>
-									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<p>一些开源项目.</p>
 									<ul class="actions">
 										<li><a href="#" class="button">Learn more</a></li>
 									</ul>
@@ -96,38 +96,38 @@ nav-menu: true
 <section id="two" class="wrapper style3 fade-up">
 						<div class="inner">
 							<h2><a href="/index.html">主页</a></h2>
-							<h3>Xin Liu's Blog 刘鑫的博客</h3>
+							<h3><a href="/index.html">Xin Liu's Blog 刘鑫的博客</a></h3>
 							<p>求知若渴 虚怀若愚  STAY HUNGRY, STAY FOOLISH.</p>
 							<div class="features">
 								<section>
 									<span class="icon major fa-code"></span>
 									<h3>python</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<p>人生苦短，我用Python</p>
 								</section>
 								<section>
 									<span class="icon major fa-chain"></span>
 									<h3>机器学习</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<p>TensorFlow, ScikitLeran.</p>
 								</section>
 								<section>
 									<span class="icon major fa-cog"></span>
 									<h3>计算流体力学</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<p>这个专栏的文章分为三类：一类是基础知识方面，主要是参考曾攀先生的有限元分析基础教程写的读书笔记，以及ACE相关的基础数学和物理方面的知识总结；第二类是据comsol官方网站的一些资料、示例、博客等进行的翻译；第三类是自己的一些技巧总结.</p>
 								</section>
 								<section>
 									<span class="icon major fa-desktop"></span>
 									<h3>计算机科学</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<p>分为计算机语言，软件两大类。这个专题主要是我相对擅长的网页语言(html,ruby,css,js等)，数学软件(matlab,R等)，和标记语言(LaTeX,markdown等)的学习心得.</p>
 								</section>
 								<section>
 									<span class="icon major fa-chain"></span>
 									<h3>纳米材料与技术</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<p>纳米材料与技术是我本科的专业，本专题就与它有关.</p>
 								</section>
 								<section>
 									<span class="icon major fa-diamond"></span>
 									<h3>课程</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<p>本专题收录了大学上的课程(数学、物理、化学、生物等)的课堂与课下笔记，但可能不是很全.</p>
 								</section>
 							</div>
 							<ul class="actions">
@@ -140,7 +140,7 @@ nav-menu: true
 <section id="three" class="wrapper style1 fade-up">
 						<div class="inner">
 							<h2>联系我</h2>
-							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
+							<p>因为是静态网页，请利用下面的表格给我发邮件.</p>
 							<div class="split style1">
 								<section>
 									<form method="post" action="#">
@@ -171,7 +171,7 @@ nav-menu: true
 										</li>
 										<li>
 											<h3>Email</h3>
-											<a href="#">x399liu@eud.uwaterloo.ca</a>
+											<a href="#">x399liu@edu.uwaterloo.ca</a>
 										</li>
 										<li>
 											<h3>Phone</h3>
