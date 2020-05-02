@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Hello extends Component {
   render() {
     return (
-      <div>Hey, y’all!! This is a react component.</div>
+      <div>这是一个 react component</div>
     )
   }
 }
