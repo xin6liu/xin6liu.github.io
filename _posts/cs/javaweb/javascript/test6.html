@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test6</title>
+</head>
+<body>
+    <input type="text" id="clock" value="hahaha">
+    <button onclick="f1()">开始</button>
+    <button onclick="int=clearInterval(int)">停止</button>
+
+    <!-- <div id="output">output:</div> -->
+
+    <script>
+
+        // setInterval("f2()",50);  
+        // function f2(){
+        //     output = document.getElementById("output");
+        //     p = document.createElement("p");
+        //     p.innerHTML = int;
+        //     output.appendChild(p);
+        // }
+
+        function f1(){
+            var t = new Date();
+            clock = document.getElementById("clock");
+            clock.value=t
+            var int=setInterval("f1()",50);
+        }
+        // f1();
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{
+    "tasks": [
+        {
+            "taskName": "build",
+            "command": "gcc",
+            "args": [
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}.out"
+            ],
+            "type": "shell",
+            "problemMatcher": []
+            //调试（fn + F5）
+            //下一步（fn + 10）
+            //重启（shift+fn+F5）
+            //继续（fn +F5）
+        }
+        // ,{
+        //     "type": "shell",
+        //     "label": "gcc-7 build active file",
+        //     "command": "/usr/local/bin/gcc-7",
+        //     "args": [
+        //         "-g",
+        //         "${file}",
+        //         "-o",
+        //         "${fileDirname}/${fileBasenameNoExtension}"
+        //     ],
+        //     "options": {
+        //         "cwd": "/usr/local/bin"
+        //     },
+        //     "group": {
+        //         "kind": "build",
+        //         "isDefault": true
+        //     }
+        // }
+    ],
+    "version": "2.0.0"
+}

@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - StringMethod",
+            "request": "launch",
+            "mainClass": "StringMethod",
+            "projectName": "js_20434ca2"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - index",
+            "request": "launch",
+            "mainClass": "index"
+        }
+    ]
+}

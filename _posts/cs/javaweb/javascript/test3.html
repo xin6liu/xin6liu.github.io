@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test3</title>
+</head>
+<body>
+    <!-- <img id = "bulb" src="img/pic_bulboff.gif" alt="bulb" onclick="f1()">
+    <script>
+        function byId(id){
+            return document.getElementById(id)
+        }
+        function f1(){
+            x = byId("bulb");
+            if (x.src.match=("bulbon")){
+                x.src = "img/pic_bulboff.gif";
+            }else{
+                x.src = "img/pic_bulbon.gif";
+            }
+        }
+    </script> -->
+
+    <script>
+        function byId(id){
+            return document.getElementById(id)
+        }
+        // function f1(){
+        //     x = byId("bulb");
+        //
+        //     if (x.src.match("bulbon")){
+        //         x.src = "img/pic_bulboff.gif";
+        //     }else{
+        //         x.src = "img/pic_bulbon.gif";
+        //     }
+        // }
+
+            function f1()
+            {
+                x = byId("bulb");
+                //注意match后面没=
+                if (x.src.match("bulbon")){
+                    x.src="img/pic_bulboff.gif";
+                }else{
+                    x.src="img/pic_bulbon.gif";
+                }
+            }
+            </script>
+        <!-- <img id="bulb" onclick="changeImage()" src="img/pic_bulboff.gif" width="100" height="180"> -->
+        <img id = "bulb" src="img/pic_bulboff.gif" alt="bulb" onclick="f1()"
+        <p>点击灯泡就可以打开或关闭这盏灯</p>
+</body>
+</html>

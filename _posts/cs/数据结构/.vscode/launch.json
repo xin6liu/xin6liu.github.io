@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Array4",
+            "request": "launch",
+            "mainClass": "Array4"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Array3",
+            "request": "launch",
+            "mainClass": "Array3"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Array2",
+            "request": "launch",
+            "mainClass": "Array2"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Array1",
+            "request": "launch",
+            "mainClass": "Array1"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test1</title>
+</head>
+<body>
+    <p id="main">abc</p>
+    <script>
+        function byId(id){
+            return document.getElementById(id)
+        }
+        function f1(){
+            x = byId("main");
+            x.innerHTML = "hahaha"
+        }
+    </script>
+    <button onclick="f1()">点击</button>
+</body>
+</html>

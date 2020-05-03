@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test5</title>
+</head>
+<body>
+    <div id="main"></div>
+    <input type="text" id="clock">
+    <button onclick="int=clearInterval(int)">Stop interval</button>
+
+    <button onclick="f2()"></button>
+
+    <script>
+        main = document.getElementById("main");
+        p = document.createElement("p");
+        p.innerHTML = "this is innerHTML";
+        main.appendChild(p);
+
+        var int=self.setInterval("clock()",50)
+        function clock(){
+            var t = new Date();
+            document.getElementById("clock").value=t
+        }
+
+
+        // f2  = function(){
+        //     console.log("haha");
+        // }
+        // setInterval("f2()",1000);
+        setInterval(function(){console.log("haha")},1000);
+
+
+    </script>
+</body>
+</html>

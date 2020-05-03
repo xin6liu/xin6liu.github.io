@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test4</title>
+</head>
+<body>
+    <div id="main"></div>
+    <script>      
+        main = document.getElementById("main");  
+
+        p = document.createElement('p');
+        p.id = 'test';
+        p.innerText = '测试';
+        main.appendChild(p);
+
+        // 方法1 函数声明
+        function f1(a,b){
+            return a*b
+        }    
+        p = document.createElement("p");
+        p.innerHTML = f1(2,3);
+        main.appendChild(p);
+
+        // 方法2 函数表达式
+        var f2 = function(a,b){
+            return a*b
+        };
+        p = document.createElement("p");
+        p.innerHTML = f2(2,3);
+        main.appendChild(p);
+
+        // 方法3 自调用函数
+        // (function(){...})();
+        (function () {
+            var x = "Hello!!";
+            p = document.createElement("p");
+            p.innerHTML = x;
+            main.appendChild(p);
+        })();
+
+        // 方法4 函数作为一个值使用
+        var x = f1(2,3);
+        p = document.createElement("p");
+        p.innerHTML = x;
+        main.appendChild(p);
+
+
+
+
+
+
+    </script>
+</body>
+</html>

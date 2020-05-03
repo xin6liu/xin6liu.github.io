@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+.header{
+    height:100px;
+    background-color: lightblue;
+    padding:20px;
+}
+.header .logo{
+    float: left;
+}
+.header .logo img{
+    display: block;
+    height:100px;
+}
+.header .nav{
+    float: right;
+}
+.header li{
+    float: left;
+    line-height:100px;
+    padding:0px 30px;
+    display: block;
+}
+
+
+
+
+
+.main{
+    background-color: lightcoral;
+}
+.footer{
+    background-color: lightgreen;
+}
