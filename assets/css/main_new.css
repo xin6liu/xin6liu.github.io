@@ -3551,6 +3551,13 @@
 		width: 60%;
 		margin: 0 auto;
 	}
+	@media screen and (max-width: 736px) {
+
+		#main {
+			width: 100%;
+		}
+
+	}
 
 		#main > * {
 			border-top: solid 1px rgba(212, 212, 255, 0.1);
