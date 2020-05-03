@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Python
-description: 人生苦短，我用Python
+title: Full Stack Web
+description: 前端+后端
 image: assets/images/pic01.jpg
 nav-menu: true
 ---
