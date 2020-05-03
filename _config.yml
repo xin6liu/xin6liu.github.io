@@ -1,15 +1,33 @@
-title: Jekyll-Webpack Boilerplate
-email: hi@allizad.com
-description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://allizad.com" # the base hostname & protocol for your site
-twitter_username: allizad
-github_username:  allizad
+# Site settings
+title: LiuXin
+subtitle: stay hungry, stay foolish 
+email: 15514657777@163.com
+description: 求知若渴 虚怀若愚 <br /> stay hungry, stay foolish.
+baseurl:  # the subpath of your site, e.g. /blog
+url: # the base hostname & protocol for your site
+author: liuxin
+street_address: 201 Lester St.
+city: Waterloo
+state: Ontario
+zip_code: N2L3W3
+country: Canada
+phone: (1)-226-505-6868
+
+
+# Social settings
+facebook_url: https://www.facebook.com/profile.php?id=100009585159226
+github_url:
+gitlab_url: 
+googleplus_url: 
+instagram_url: https://www.instagram.com/harryliuxin/
+linkedin_url: https://www.linkedin.com/in/xin-liu-868501134
+pinterest_url:
+video_url: http://www.miaopai.com/u/wxsso_p4mslofx14
+twitter_url: 
+weibo_url: http://weibo.com/u/2377304267
 
 # Build settings
 markdown: kramdown
 
-exclude: ['node_modules']
+sass:
+  style: compressed
