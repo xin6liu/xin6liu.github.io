@@ -13,19 +13,32 @@
 <!-- Menu -->
 <nav id="menu">
 	<ul class="links">
-        {% for page in site.pages %}
+		<!-- {% for page in site.pages %}
+			{% if page.nav-menu == "true" %}
+				<li><a href="{{ "" | absolute_url }}">{{ page.title }}</a></li>
+			{% endif %}
+		{% endfor %} -->
+        <!-- {% for page in site.pages %}
 		    {% if page.layout == "home" %}
 		        <li><a href="{{ "" | absolute_url }}">{{ page.title }}</a></li>
 	    	{% endif %}
+		{% endfor %} -->
+		{% assign pages = site.pages | sort: "name" %}
+		{% for page in pages limit:8 %}
+        {% if page.nav-menu == true %}
+		<li><a href="{{ "" | absolute_url }}">{{ page.title }}</a></li>
+        {% endif %}
 		{% endfor %}
-		{% for page in site.pages %}
+		
+
+		<!-- {% for page in site.pages %}
 		    {% if page.layout != "home" %}
 		        <li><a href="{{ page.url | absolute_url }}">{{ page.title }}</a></li>
 		    {% endif %}
-		{% endfor %}
+		{% endfor %} -->
 	</ul>
-	<ul class="actions vertical">
+	<!-- <ul class="actions vertical">
 		<li><a href="#" class="button special fit">Get Started</a></li>
 		<li><a href="#" class="button fit">Log In</a></li>
-	</ul>
+	</ul> -->
 </nav>

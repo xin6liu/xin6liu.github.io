@@ -6,10 +6,10 @@ description: 求知若渴 虚怀若愚 <br /> stay hungry, stay foolish.
 baseurl:  # the subpath of your site, e.g. /blog
 url: # the base hostname & protocol for your site
 author: liuxin
-street_address: 201 Lester St.
+street_address: 
 city: Waterloo
 state: Ontario
-zip_code: N2L3W3
+zip_code: 
 country: Canada
 phone: (1)-226-505-6868
 
