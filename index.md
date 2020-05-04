@@ -1,7 +1,7 @@
 ---
 layout: home
 title: Home
-landing-title: "LiuXin's Blog 刘鑫の博客"
+landing-title: "LiuXin's Blog 刘鑫博客"
 description: null
 image: null
 author: null
