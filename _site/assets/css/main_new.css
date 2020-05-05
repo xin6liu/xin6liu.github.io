@@ -1779,7 +1779,7 @@
 		background: rgba(212, 212, 255, 0.035);
 		font-family: "Courier New", monospace;
 		font-size: 0.9em;
-		margin: 0 0.25em;
+		/* margin: 0 0.25em; */
 		padding: 0.25em 0.65em;
 	}
 
