@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -267,10 +268,10 @@
 
 <h3 id="2-在resources里建立mybatis-configxml">2. 在resources里建立[mybatis-config.xml]</h3>
 <p>mybatis-config.xml由configuration包裹，里面包括三部分：properties, environments, mappers</p>
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;properties</span> <span class="na">resource=</span><span class="s">"db.properties"</span><span class="nt">&gt;&lt;/properties&gt;</span>
-<span class="nt">&lt;environments&gt;</span>...<span class="nt">&lt;/environments&gt;</span>
-<span class="nt">&lt;mappers&gt;&lt;mapper</span> <span class="na">resource=</span><span class="s">"mapper/userMapper.xml"</span><span class="nt">&gt;&lt;/mappers&gt;</span>
-</code></pre></div></div>
+<pre><code class="language-xml">&lt;properties resource="db.properties"&gt;&lt;/properties&gt;
+&lt;environments&gt;...&lt;/environments&gt;
+&lt;mappers&gt;&lt;mapper resource="mapper/userMapper.xml"&gt;&lt;/mappers&gt;
+</code></pre>
 <p>可以看出我们接下来要在resources里建立[db.properties]和[mapper/userMapper.xml]</p>
 
 <h3 id="3-dbproperties">3. [db.properties]:</h3>
@@ -281,32 +282,32 @@ password=307715</p>
 
 <h3 id="4-mapperusermapperxml和userjava">4. [mapper/userMapper.xml]和[User.java]:</h3>
 <p>User是等会儿要建立的entity实体类名字, 也是mysql里面表的名字</p>
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">"com.liuxin.entity.User"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"findAll"</span> <span class="na">resultType=</span><span class="s">"com.liuxin.entity.User"</span><span class="nt">&gt;</span>
+<pre><code class="language-xml">&lt;mapper namespace="com.liuxin.entity.User"&gt;
+    &lt;select id="findAll" resultType="com.liuxin.entity.User"&gt;
         select * from user
-    <span class="nt">&lt;/select&gt;</span>
-<span class="nt">&lt;/mapper&gt;</span>
-</code></pre></div></div>
+    &lt;/select&gt;
+&lt;/mapper&gt;
+</code></pre>
 <p>com.liuxin.entity.User.java里：</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="n">Integer</span> <span class="n">uid</span><span class="o">;</span>
-<span class="kd">private</span> <span class="n">String</span> <span class="n">username</span><span class="o">;</span>
-<span class="kd">private</span> <span class="n">String</span> <span class="n">password</span><span class="o">;</span>
-<span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-</code></pre></div></div>
+<pre><code class="language-java">private Integer uid;
+private String username;
+private String password;
+private String name;
+</code></pre>
 
 <h3 id="test文件">Test文件</h3>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SqlSessionFactory</span> <span class="n">factory</span> <span class="o">=</span>
-    <span class="k">new</span> <span class="nf">SqlSessionFactoryBuilder</span><span class="o">().</span><span class="na">build</span>
-    <span class="o">(</span><span class="n">Resources</span><span class="o">.</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="s">"mybatis.xml"</span><span class="o">));</span>
-<span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+<pre><code class="language-java">SqlSessionFactory factory =
+    new SqlSessionFactoryBuilder().build
+    (Resources.getResourceAsStream("mybatis.xml"));
+SqlSession session = factory.openSession();
 
-<span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">userList</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">selectList</span><span class="o">(</span><span class="s">"findAll"</span><span class="o">);</span>
-<span class="k">for</span><span class="o">(</span><span class="n">User</span> <span class="nl">u:</span><span class="n">userList</span><span class="o">){</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">u</span><span class="o">);</span>
-<span class="o">}</span>
+List&lt;User&gt; userList = session.selectList("findAll");
+for(User u:userList){
+    System.out.println(u);
+}
 
-<span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-</code></pre></div></div>
+session.close();
+</code></pre>
 
 <h1 id="mybatis--web">mybatis + web</h1>
 <p>前四步都一样，最后一步测试可以拆开到几个文件里：

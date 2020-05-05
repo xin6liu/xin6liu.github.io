@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -262,44 +263,44 @@
 <!-- 正文 -->
 		<p><p>根据上一节对于泊松方程的基本解法熟悉之后，我们得出一个基本套路：</p>
 
-<p>第一句永远先是<code class="highlighter-rouge">from fenics import *</code>, 之后是bc，然后是a和L, 最后求解。</p>
+<p>第一句永远先是<code>from fenics import *</code>, 之后是bc，然后是a和L, 最后求解。</p>
 
 <p>一般形式如下：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">fenics</span> <span class="kn">import</span> <span class="o">*</span>
-</code></pre></div></div>
+<pre><code class="language-python">from fenics import *
+</code></pre>
 
 <h2 id="bc">bc</h2>
 <p>mesh, FunctionSpace, u_D, boundary, bc</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mesh</span> <span class="o">=</span> <span class="n">UnitSquareMesh</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
-<span class="n">V</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span><span class="s">'P'</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">u_D</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s">''</span><span class="p">,</span> <span class="n">degree</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">boundary</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">on_boundary</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">on_boundary</span>
-<span class="n">bc</span> <span class="o">=</span> <span class="n">Dirichlet</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">u_D</span><span class="p">,</span> <span class="n">boundary</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">mesh = UnitSquareMesh(8,8)
+V = FunctionSpace(mesh,'P',1)
+u_D = Expression('', degree = 1)
+def boundary(x, on_boundary):
+    return on_boundary
+bc = Dirichlet(V, u_D, boundary)
+</code></pre>
 
 <h2 id="al">a&amp;L</h2>
 <p>f, u, v, a(u,v), L(v)</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">f</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s">''</span><span class="p">,</span> <span class="n">degree</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span>
-<span class="n">L</span> <span class="o">=</span> <span class="n">f</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span>
-</code></pre></div></div>
+<pre><code class="language-python">f = Expression('', degree = 1)
+u = TrialFunction(V)
+v = TestFunction(V)
+a = dot(grad(u), grad(v))*dx
+L = f*v*dx
+</code></pre>
 
 <h2 id="solve">solve</h2>
 <p>u, solve, plot, vtkfile</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">u</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
-<span class="n">solve</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">L</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">bc</span><span class="p">)</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
-<span class="n">vtkfile</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s">'xxx.pvd'</span><span class="p">)</span>
-<span class="n">vtkfile</span> <span class="o">&lt;&lt;</span> <span class="n">u</span>
-</code></pre></div></div>
+<pre><code class="language-python">u = Function(V)
+solve(a == L, u, bc)
+%matplotlib inline
+plot(u)
+vtkfile = File('xxx.pvd')
+vtkfile &lt;&lt; u
+</code></pre>
 </p>
 	</div>
 

@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -266,19 +267,19 @@
 
 <p>两者的结合可以从两个方面确定：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  第一种，辅助结合方式：用GA对数据进行预处理，然后用NN解决问题，例如模式识别用GA进行特征提取，再用nn进行分类
+<pre><code>  第一种，辅助结合方式：用GA对数据进行预处理，然后用NN解决问题，例如模式识别用GA进行特征提取，再用nn进行分类
 
   第二种，合作，GA和NN共同处理问题，在NN固定的网络拓扑下，利用GA确定链接权重，或者直接利用GA优选网络结构再用，bp训练网络。
-</code></pre></div></div>
+</code></pre>
 
 <p>首先，NN和GA辅助结合方式：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  按照GA在配合NN 处理可题过程中出现的不同阶段，分为以下三种方式：
+<pre><code>  按照GA在配合NN 处理可题过程中出现的不同阶段，分为以下三种方式：
 
   1. 在模式分类应用中进行数据预处理，利用GA进行特征提取，其后用NN进行分类；
   2. 在训练网络方面，利用GA选择网络学习参数或学习规则；
   3. 利用GA解释或分析神经网络．
-</code></pre></div></div>
+</code></pre>
 
 <h2 id="1在模式分类应用中进行数据预处理">1.在模式分类应用中进行数据预处理</h2>
 <p>一般地讲，特征提取的成功与否对模式分类结果起关键作用．利用GA为NN选择训练数据是一门新的技术．Kelly和Davisll 利用GA 选择数据集的参数和每一特征的尺度因子，藉此来缩小数据间类内的差别，加大类间的差别，从而大大改进了网络对模式分类性能．Chang和Lippmannll 在一个复杂的语音识别事例中不仅把原来153个特征利用GA压缩到33个特征，而且利用GA合成新的特征．这样，通过特征压缩不仅改进了神经网络分类的性能，而且计算量也大大减少．类似地，Guo和Uhrlg也利用GA提取特征的办法训练NN来监控棱电厂的意外事故，模拟实验证实了这种方法的有效性。所不同的是，他们的适合度函数除了考虑训练误差之外，还考虑了所选择的输入个数．</p>

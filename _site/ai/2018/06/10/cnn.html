@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -268,10 +269,10 @@
 
 <h2 id="conv_forward">conv_forward</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># GRADED FUNCTION: conv_forward</span>
+<pre><code class="language-python"># GRADED FUNCTION: conv_forward
 
-<span class="k">def</span> <span class="nf">conv_forward</span><span class="p">(</span><span class="n">A_prev</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">hparameters</span><span class="p">):</span>
-    <span class="s">"""
+def conv_forward(A_prev, W, b, hparameters):
+    """
     Implements the forward propagation for a convolution function
     
     Arguments:
@@ -283,63 +284,63 @@
     Returns:
     Z -- conv output, numpy array of shape (m, n_H, n_W, n_C)
     cache -- cache of values needed for the conv_backward() function
-    """</span>
+    """
     
-    <span class="c">### START CODE HERE ###</span>
-    <span class="c"># Retrieve dimensions from A_prev's shape (≈1 line)  </span>
-    <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n_H_prev</span><span class="p">,</span> <span class="n">n_W_prev</span><span class="p">,</span> <span class="n">n_C_prev</span><span class="p">)</span> <span class="o">=</span> <span class="n">A_prev</span><span class="o">.</span><span class="n">shape</span>
+    ### START CODE HERE ###
+    # Retrieve dimensions from A_prev's shape (≈1 line)  
+    (m, n_H_prev, n_W_prev, n_C_prev) = A_prev.shape
     
-    <span class="c"># Retrieve dimensions from W's shape (≈1 line)</span>
-    <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">n_C_prev</span><span class="p">,</span> <span class="n">n_C</span><span class="p">)</span> <span class="o">=</span> <span class="n">W</span><span class="o">.</span><span class="n">shape</span>
+    # Retrieve dimensions from W's shape (≈1 line)
+    (f, f, n_C_prev, n_C) = W.shape
     
-    <span class="c"># Retrieve information from "hparameters" (≈2 lines)</span>
-    <span class="n">stride</span> <span class="o">=</span> <span class="n">hparameters</span><span class="p">[</span><span class="s">"stride"</span><span class="p">]</span>
-    <span class="n">pad</span> <span class="o">=</span> <span class="n">hparameters</span><span class="p">[</span><span class="s">"pad"</span><span class="p">]</span>
+    # Retrieve information from "hparameters" (≈2 lines)
+    stride = hparameters["stride"]
+    pad = hparameters["pad"]
     
-    <span class="c"># Compute the dimensions of the CONV output volume using the formula given above. Hint: use int() to floor. (≈2 lines)</span>
-    <span class="n">n_H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">int</span><span class="p">((</span><span class="n">n_H_prev</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">pad</span><span class="o">-</span><span class="n">f</span><span class="p">)</span><span class="o">/</span><span class="n">stride</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">n_W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">int</span><span class="p">((</span><span class="n">n_W_prev</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">pad</span><span class="o">-</span><span class="n">f</span><span class="p">)</span><span class="o">/</span><span class="n">stride</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    # Compute the dimensions of the CONV output volume using the formula given above. Hint: use int() to floor. (≈2 lines)
+    n_H = np.int((n_H_prev+2*pad-f)/stride + 1)
+    n_W = np.int((n_W_prev+2*pad-f)/stride + 1)
     
-    <span class="c"># Initialize the output volume Z with zeros. (≈1 line)</span>
-    <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">m</span><span class="p">,</span><span class="n">n_H</span><span class="p">,</span><span class="n">n_W</span><span class="p">,</span><span class="n">n_C</span><span class="p">))</span>
+    # Initialize the output volume Z with zeros. (≈1 line)
+    Z = np.zeros((m,n_H,n_W,n_C))
     
-    <span class="c"># Create A_prev_pad by padding A_prev</span>
-    <span class="n">A_prev_pad</span> <span class="o">=</span> <span class="n">zero_pad</span><span class="p">(</span><span class="n">A_prev</span><span class="p">,</span> <span class="n">pad</span><span class="p">)</span>
+    # Create A_prev_pad by padding A_prev
+    A_prev_pad = zero_pad(A_prev, pad)
     
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>                               <span class="c"># loop over the batch of training examples</span>
-        <span class="n">a_prev_pad</span> <span class="o">=</span> <span class="n">A_prev_pad</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:,:]</span>                              <span class="c"># Select ith training example's padded activation</span>
-        <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_H</span><span class="p">):</span>                           <span class="c"># loop over vertical axis of the output volume</span>
-            <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_W</span><span class="p">):</span>                       <span class="c"># loop over horizontal axis of the output volume</span>
-                <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_C</span><span class="p">):</span>                   <span class="c"># loop over channels (= #filters) of the output volume</span>
+    for i in range(m):                               # loop over the batch of training examples
+        a_prev_pad = A_prev_pad[i,:,:,:]                              # Select ith training example's padded activation
+        for h in range(n_H):                           # loop over vertical axis of the output volume
+            for w in range(n_W):                       # loop over horizontal axis of the output volume
+                for c in range(n_C):                   # loop over channels (= #filters) of the output volume
                     
-                    <span class="c"># Find the corners of the current "slice" (≈4 lines)</span>
-                    <span class="n">vert_start</span> <span class="o">=</span> <span class="n">h</span><span class="o">*</span><span class="n">stride</span>
-                    <span class="n">vert_end</span> <span class="o">=</span> <span class="n">vert_start</span> <span class="o">+</span> <span class="n">f</span>
-                    <span class="n">horiz_start</span> <span class="o">=</span> <span class="n">w</span><span class="o">*</span><span class="n">stride</span>
-                    <span class="n">horiz_end</span> <span class="o">=</span> <span class="n">horiz_start</span> <span class="o">+</span> <span class="n">f</span>
+                    # Find the corners of the current "slice" (≈4 lines)
+                    vert_start = h*stride
+                    vert_end = vert_start + f
+                    horiz_start = w*stride
+                    horiz_end = horiz_start + f
                     
-                    <span class="c"># Use the corners to define the (3D) slice of a_prev_pad (See Hint above the cell). (≈1 line)</span>
-                    <span class="n">a_slice_prev</span> <span class="o">=</span> <span class="n">a_prev_pad</span><span class="p">[</span><span class="n">vert_start</span><span class="p">:</span><span class="n">vert_end</span><span class="p">,</span><span class="n">horiz_start</span><span class="p">:</span><span class="n">horiz_end</span><span class="p">,:]</span>
+                    # Use the corners to define the (3D) slice of a_prev_pad (See Hint above the cell). (≈1 line)
+                    a_slice_prev = a_prev_pad[vert_start:vert_end,horiz_start:horiz_end,:]
                     
-                    <span class="c"># Convolve the (3D) slice with the correct filter W and bias b, to get back one output neuron. (≈1 line)</span>
-                    <span class="n">Z</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">conv_single_step</span><span class="p">(</span><span class="n">a_slice_prev</span><span class="p">,</span> <span class="n">W</span><span class="p">[:,:,:,</span><span class="n">c</span><span class="p">],</span> <span class="n">b</span><span class="p">[:,:,:,</span><span class="n">c</span><span class="p">])</span>
-                    <span class="c"># 这一步很容易写错成Z[i, h, w, c] = conv_single_step(a_slice_prev, W, b)</span>
+                    # Convolve the (3D) slice with the correct filter W and bias b, to get back one output neuron. (≈1 line)
+                    Z[i, h, w, c] = conv_single_step(a_slice_prev, W[:,:,:,c], b[:,:,:,c])
+                    # 这一步很容易写错成Z[i, h, w, c] = conv_single_step(a_slice_prev, W, b)
                                         
-    <span class="c">### END CODE HERE ###</span>
+    ### END CODE HERE ###
     
-    <span class="c"># Making sure your output shape is correct</span>
-    <span class="k">assert</span><span class="p">(</span><span class="n">Z</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n_H</span><span class="p">,</span> <span class="n">n_W</span><span class="p">,</span> <span class="n">n_C</span><span class="p">))</span>
+    # Making sure your output shape is correct
+    assert(Z.shape == (m, n_H, n_W, n_C))
     
-    <span class="c"># Save information in "cache" for the backprop</span>
-    <span class="n">cache</span> <span class="o">=</span> <span class="p">(</span><span class="n">A_prev</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">hparameters</span><span class="p">)</span>
+    # Save information in "cache" for the backprop
+    cache = (A_prev, W, b, hparameters)
     
-    <span class="k">return</span> <span class="n">Z</span><span class="p">,</span> <span class="n">cache</span>
-</code></pre></div></div>
+    return Z, cache
+</code></pre>
 
 <h1 id="graded-function-pool_forward">GRADED FUNCTION: pool_forward</h1>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">pool_forward</span><span class="p">(</span><span class="n">A_prev</span><span class="p">,</span> <span class="n">hparameters</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="s">"max"</span><span class="p">):</span>
-    <span class="s">"""
+<pre><code class="language-python">def pool_forward(A_prev, hparameters, mode = "max"):
+    """
     Implements the forward pass of the pooling layer
     
     Arguments:
@@ -350,71 +351,71 @@
     Returns:
     A -- output of the pool layer, a numpy array of shape (m, n_H, n_W, n_C)
     cache -- cache used in the backward pass of the pooling layer, contains the input and hparameters 
-    """</span>
+    """
     
-    <span class="c"># Retrieve dimensions from the input shape</span>
-    <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n_H_prev</span><span class="p">,</span> <span class="n">n_W_prev</span><span class="p">,</span> <span class="n">n_C_prev</span><span class="p">)</span> <span class="o">=</span> <span class="n">A_prev</span><span class="o">.</span><span class="n">shape</span>
+    # Retrieve dimensions from the input shape
+    (m, n_H_prev, n_W_prev, n_C_prev) = A_prev.shape
     
-    <span class="c"># Retrieve hyperparameters from "hparameters"</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">hparameters</span><span class="p">[</span><span class="s">"f"</span><span class="p">]</span>
-    <span class="n">stride</span> <span class="o">=</span> <span class="n">hparameters</span><span class="p">[</span><span class="s">"stride"</span><span class="p">]</span>
+    # Retrieve hyperparameters from "hparameters"
+    f = hparameters["f"]
+    stride = hparameters["stride"]
     
-    <span class="c"># Define the dimensions of the output</span>
-    <span class="n">n_H</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">n_H_prev</span> <span class="o">-</span> <span class="n">f</span><span class="p">)</span> <span class="o">/</span> <span class="n">stride</span><span class="p">)</span>
-    <span class="n">n_W</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">n_W_prev</span> <span class="o">-</span> <span class="n">f</span><span class="p">)</span> <span class="o">/</span> <span class="n">stride</span><span class="p">)</span>
-    <span class="n">n_C</span> <span class="o">=</span> <span class="n">n_C_prev</span>
+    # Define the dimensions of the output
+    n_H = int(1 + (n_H_prev - f) / stride)
+    n_W = int(1 + (n_W_prev - f) / stride)
+    n_C = n_C_prev
     
-    <span class="c"># Initialize output matrix A</span>
-    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">m</span><span class="p">,</span> <span class="n">n_H</span><span class="p">,</span> <span class="n">n_W</span><span class="p">,</span> <span class="n">n_C</span><span class="p">))</span>              
-    <span class="c">### START CODE HERE ###</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>                         <span class="c"># loop over the training examples</span>
-        <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_H</span><span class="p">):</span>                     <span class="c"># loop on the vertical axis of the output volume</span>
-            <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_W</span><span class="p">):</span>                 <span class="c"># loop on the horizontal axis of the output volume</span>
-                <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="n">n_C</span><span class="p">):</span>            <span class="c"># loop over the channels of the output volume</span>
+    # Initialize output matrix A
+    A = np.zeros((m, n_H, n_W, n_C))              
+    ### START CODE HERE ###
+    for i in range(m):                         # loop over the training examples
+        for h in range(n_H):                     # loop on the vertical axis of the output volume
+            for w in range(n_W):                 # loop on the horizontal axis of the output volume
+                for c in range (n_C):            # loop over the channels of the output volume
                     
-                    <span class="c"># Find the corners of the current "slice" (≈4 lines)</span>
-                    <span class="n">vert_start</span> <span class="o">=</span> <span class="n">h</span><span class="o">*</span><span class="n">stride</span> 
-                    <span class="n">vert_end</span> <span class="o">=</span> <span class="n">h</span><span class="o">*</span><span class="n">stride</span> <span class="o">+</span> <span class="n">f</span>
-                    <span class="n">horiz_start</span> <span class="o">=</span> <span class="n">w</span><span class="o">*</span><span class="n">stride</span>
-                    <span class="n">horiz_end</span> <span class="o">=</span> <span class="n">w</span><span class="o">*</span><span class="n">stride</span> <span class="o">+</span> <span class="n">f</span>
+                    # Find the corners of the current "slice" (≈4 lines)
+                    vert_start = h*stride 
+                    vert_end = h*stride + f
+                    horiz_start = w*stride
+                    horiz_end = w*stride + f
                     
-                    <span class="c"># Use the corners to define the current slice on the ith training example of A_prev, channel c. (≈1 line)</span>
-                    <span class="n">a_prev_slice</span> <span class="o">=</span> <span class="n">A_prev</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">vert_start</span><span class="p">:</span><span class="n">vert_end</span><span class="p">,</span><span class="n">horiz_start</span><span class="p">:</span><span class="n">horiz_end</span><span class="p">,</span><span class="n">c</span><span class="p">]</span>
-                    <span class="c"># 这里容易写错为a_prev_slice = a_prev[vert_start:vert_end,horiz_start:horiz_end,:]</span>
+                    # Use the corners to define the current slice on the ith training example of A_prev, channel c. (≈1 line)
+                    a_prev_slice = A_prev[i,vert_start:vert_end,horiz_start:horiz_end,c]
+                    # 这里容易写错为a_prev_slice = a_prev[vert_start:vert_end,horiz_start:horiz_end,:]
 
-                    <span class="c"># Compute the pooling operation on the slice. Use an if statment to differentiate the modes. Use np.max/np.mean.</span>
-                    <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s">"max"</span><span class="p">:</span>
-                        <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">max</span><span class="p">(</span><span class="n">a_prev_slice</span><span class="p">)</span>
-                    <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s">"average"</span><span class="p">:</span>
-                        <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">a_prev_slice</span><span class="p">)</span>
+                    # Compute the pooling operation on the slice. Use an if statment to differentiate the modes. Use np.max/np.mean.
+                    if mode == "max":
+                        A[i, h, w, c] = np.max(a_prev_slice)
+                    elif mode == "average":
+                        A[i, h, w, c] = np.mean(a_prev_slice)
     
-    <span class="c">### END CODE HERE ###</span>
+    ### END CODE HERE ###
     
-    <span class="c"># Store the input and hparameters in "cache" for pool_backward()</span>
-    <span class="n">cache</span> <span class="o">=</span> <span class="p">(</span><span class="n">A_prev</span><span class="p">,</span> <span class="n">hparameters</span><span class="p">)</span>
+    # Store the input and hparameters in "cache" for pool_backward()
+    cache = (A_prev, hparameters)
     
-    <span class="c"># Making sure your output shape is correct</span>
-    <span class="k">assert</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n_H</span><span class="p">,</span> <span class="n">n_W</span><span class="p">,</span> <span class="n">n_C</span><span class="p">))</span>
+    # Making sure your output shape is correct
+    assert(A.shape == (m, n_H, n_W, n_C))
     
-    <span class="k">return</span> <span class="n">A</span><span class="p">,</span> <span class="n">cache</span>
-</code></pre></div></div>
+    return A, cache
+</code></pre>
 
 <h2 id="aplication-on-tensorflow">Aplication on Tensorflow</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c">### START CODE HERE ### (≈2 lines)</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">n_H0</span><span class="p">,</span> <span class="n">n_W0</span><span class="p">,</span> <span class="n">n_C0</span><span class="p">))</span>
-    <span class="n">Y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">n_y</span><span class="p">))</span>
-    <span class="c">### END CODE HERE ###</span>
+<pre><code class="language-python">    ### START CODE HERE ### (≈2 lines)
+    X = tf.placeholder(tf.float32, shape=(None, n_H0, n_W0, n_C0))
+    Y = tf.placeholder(tf.float32, shape=(None, n_y))
+    ### END CODE HERE ###
 
-    <span class="c">### START CODE HERE ### (approx. 2 lines of code)</span>
-    <span class="n">W1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s">"W1"</span><span class="p">,</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="n">initializer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">xavier_initializer</span><span class="p">(</span><span class="n">seed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">))</span>
-    <span class="n">W2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s">"W2"</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">16</span><span class="p">],</span> <span class="n">initializer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">xavier_initializer</span><span class="p">(</span><span class="n">seed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">))</span>
-    <span class="c">### END CODE HERE ###</span>
+    ### START CODE HERE ### (approx. 2 lines of code)
+    W1 = tf.get_variable("W1", [4,4,3,8], initializer = tf.contrib.layers.xavier_initializer(seed = 0))
+    W2 = tf.get_variable("W2", [2,2,8,16], initializer = tf.contrib.layers.xavier_initializer(seed = 0))
+    ### END CODE HERE ###
 
-<span class="c"># GRADED FUNCTION: forward_propagation</span>
+# GRADED FUNCTION: forward_propagation
 
-<span class="k">def</span> <span class="nf">forward_propagation</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
-    <span class="s">"""
+def forward_propagation(X, parameters):
+    """
     Implements the forward propagation for the model:
     CONV2D -&gt; RELU -&gt; MAXPOOL -&gt; CONV2D -&gt; RELU -&gt; MAXPOOL -&gt; FLATTEN -&gt; FULLYCONNECTED
     
@@ -425,37 +426,37 @@
 
     Returns:
     Z3 -- the output of the last LINEAR unit
-    """</span>
+    """
     
-    <span class="c"># Retrieve the parameters from the dictionary "parameters" </span>
-    <span class="n">W1</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">[</span><span class="s">'W1'</span><span class="p">]</span>
-    <span class="n">W2</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">[</span><span class="s">'W2'</span><span class="p">]</span>
+    # Retrieve the parameters from the dictionary "parameters" 
+    W1 = parameters['W1']
+    W2 = parameters['W2']
     
-    <span class="c">### START CODE HERE ###</span>
-    <span class="c"># CONV2D: stride of 1, padding 'SAME'</span>
-    <span class="n">Z1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">W1</span><span class="p">,</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">padding</span> <span class="o">=</span> <span class="s">'SAME'</span><span class="p">)</span>
-    <span class="c"># RELU</span>
-    <span class="n">A1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">Z1</span><span class="p">)</span>
-    <span class="c"># MAXPOOL: window 8x8, sride 8, padding 'SAME'</span>
-    <span class="n">P1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">max_pool</span><span class="p">(</span><span class="n">A1</span><span class="p">,</span> <span class="n">ksize</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">padding</span> <span class="o">=</span> <span class="s">'SAME'</span><span class="p">)</span>
-    <span class="c"># CONV2D: filters W2, stride 1, padding 'SAME'</span>
-    <span class="n">Z2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">P1</span><span class="p">,</span><span class="n">W2</span><span class="p">,</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">padding</span> <span class="o">=</span> <span class="s">'SAME'</span><span class="p">)</span>
-    <span class="c"># RELU</span>
-    <span class="n">A2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">Z2</span><span class="p">)</span>
-    <span class="c"># MAXPOOL: window 4x4, stride 4, padding 'SAME'</span>
-    <span class="n">P2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">max_pool</span><span class="p">(</span><span class="n">A2</span><span class="p">,</span> <span class="n">ksize</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">strides</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">padding</span> <span class="o">=</span> <span class="s">'SAME'</span><span class="p">)</span>
-    <span class="c"># FLATTEN</span>
-    <span class="n">P2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">P2</span><span class="p">)</span>
-    <span class="c"># FULLY-CONNECTED without non-linear activation function (not not call softmax).</span>
-    <span class="c"># 6 neurons in output layer. Hint: one of the arguments should be "activation_fn=None" </span>
-    <span class="n">Z3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">fully_connected</span><span class="p">(</span><span class="n">P2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">activation_fn</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
-    <span class="c">### END CODE HERE ###</span>
+    ### START CODE HERE ###
+    # CONV2D: stride of 1, padding 'SAME'
+    Z1 = tf.nn.conv2d(X,W1, strides = [1,1,1,1], padding = 'SAME')
+    # RELU
+    A1 = tf.nn.relu(Z1)
+    # MAXPOOL: window 8x8, sride 8, padding 'SAME'
+    P1 = tf.nn.max_pool(A1, ksize = [1,8,8,1], strides = [1,8,8,1], padding = 'SAME')
+    # CONV2D: filters W2, stride 1, padding 'SAME'
+    Z2 = tf.nn.conv2d(P1,W2, strides = [1,1,1,1], padding = 'SAME')
+    # RELU
+    A2 = tf.nn.relu(Z2)
+    # MAXPOOL: window 4x4, stride 4, padding 'SAME'
+    P2 = tf.nn.max_pool(A2, ksize = [1,4,4,1], strides = [1,4,4,1], padding = 'SAME')
+    # FLATTEN
+    P2 = tf.contrib.layers.flatten(P2)
+    # FULLY-CONNECTED without non-linear activation function (not not call softmax).
+    # 6 neurons in output layer. Hint: one of the arguments should be "activation_fn=None" 
+    Z3 = tf.contrib.layers.fully_connected(P2, 6, activation_fn=None)
+    ### END CODE HERE ###
 
-    <span class="k">return</span> <span class="n">Z3</span>
+    return Z3
 
 
 
-</code></pre></div></div>
+</code></pre>
 
 </p>
 	</div>

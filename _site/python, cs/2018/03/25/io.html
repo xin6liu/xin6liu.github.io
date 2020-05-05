@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -260,140 +261,140 @@
 		<!-- 
 		 -->
 <!-- 正文 -->
-		<p><div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">str</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"input"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"output"</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
-</code></pre></div></div>
+		<p><pre><code class="language-python">str = input("input")
+print("output", str)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>inputliuxin
+<pre><code>inputliuxin
 output liuxin
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span> <span class="n">touch</span> <span class="n">io</span><span class="o">.</span><span class="n">txt</span>
-</code></pre></div></div>
+<pre><code class="language-python">! touch io.txt
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fo</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"io.txt"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"文件名: "</span><span class="p">,</span> <span class="n">fo</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"是否已关闭 : "</span><span class="p">,</span> <span class="n">fo</span><span class="o">.</span><span class="n">closed</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"访问模式 : "</span><span class="p">,</span> <span class="n">fo</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">fo = open("io.txt", "w")
+print("文件名: ", fo.name)
+print("是否已关闭 : ", fo.closed)
+print("访问模式 : ", fo.mode)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>文件名:  io.txt
+<pre><code>文件名:  io.txt
 是否已关闭 :  False
 访问模式 :  w
-</code></pre></div></div>
+</code></pre>
 
 <p>访问模式参数：</p>
 
 <p><img src="http://www.runoob.com/wp-content/uploads/2013/11/2112205-861c05b2bdbc9c28.png" alt="" /></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fo</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"io.txt"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"文件名: "</span><span class="p">,</span> <span class="n">fo</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-<span class="n">fo</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"是否已关闭 : "</span><span class="p">,</span> <span class="n">fo</span><span class="o">.</span><span class="n">closed</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">fo = open("io.txt", "w")
+print("文件名: ", fo.name)
+fo.close()
+print("是否已关闭 : ", fo.closed)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>文件名:  io.txt
+<pre><code>文件名:  io.txt
 是否已关闭 :  True
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fo</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"io.txt"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">)</span>
-<span class="n">fo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="s">"liuxin21.com</span><span class="se">\n</span><span class="s">Very good site!</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
-<span class="n">fo</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></div></div>
+<pre><code class="language-python">fo = open("io.txt", "w")
+fo.write( "liuxin21.com\nVery good site!\n")
+fo.close()
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span> <span class="n">cat</span> <span class="n">io</span><span class="o">.</span><span class="n">txt</span>
-</code></pre></div></div>
+<pre><code class="language-python">! cat io.txt
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>liuxin21.com
+<pre><code>liuxin21.com
 Very good site!
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fo</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"io.txt"</span><span class="p">,</span> <span class="s">"r+"</span><span class="p">)</span>
-<span class="nb">str</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
-<span class="n">fo</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></div></div>
+<pre><code class="language-python">fo = open("io.txt", "r+")
+str = fo.read(10)
+print(str)
+fo.close()
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>liuxin21.c
-</code></pre></div></div>
+<pre><code>liuxin21.c
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fo</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"io.txt"</span><span class="p">,</span> <span class="s">"r+"</span><span class="p">)</span>
-<span class="nb">str</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<pre><code class="language-python">fo = open("io.txt", "r+")
+str = fo.read(10)
+print(str)
  
-<span class="c"># 查找当前位置</span>
-<span class="n">position</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"当前文件位置 : "</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+# 查找当前位置
+position = fo.tell()
+print("当前文件位置 : ", position)
  
-<span class="c"># 把指针再次重新定位到文件开头</span>
-<span class="n">position</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="nb">str</span> <span class="o">=</span> <span class="n">fo</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"重新读取字符串 : "</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+# 把指针再次重新定位到文件开头
+position = fo.seek(0, 0)
+str = fo.read(12)
+print("重新读取字符串 : ", str)
 
-<span class="n">fo</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></div></div>
+fo.close()
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>liuxin21.c
+<pre><code>liuxin21.c
 当前文件位置 :  10
 重新读取字符串 :  liuxin21.com
-</code></pre></div></div>
+</code></pre>
 
 <p>在 write 内容后，直接 read 文件输出会为空，是因为指针已经在内容末尾。</p>
 
 <p>两种解决方式: 其一，先 close 文件，open 后再读取，其二，可以设置指针回到文件最初后再 read:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">document</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"new.txt"</span><span class="p">,</span> <span class="s">"w+"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"文件名: "</span><span class="p">,</span> <span class="n">document</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-<span class="n">document</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"这是我新创建的一个测试文件！</span><span class="se">\n</span><span class="s">welcome!"</span><span class="p">)</span>
+<pre><code class="language-python">document = open("new.txt", "w+")
+print("文件名: ", document.name)
+document.write("这是我新创建的一个测试文件！\nwelcome!")
 
-<span class="c"># 查找当前位置</span>
-<span class="n">position</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"当前文件位置: "</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+# 查找当前位置
+position = document.tell()
+print("当前文件位置: ", position)
 
-<span class="n">context</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"第一次读取: "</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+context = document.read()
+print("第一次读取: ", context)
 
-<span class="c"># 把指针再次重新定位到文件开头</span>
-<span class="n">position</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">context</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"第二次读取:</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">context</span><span class="p">)</span>
+# 把指针再次重新定位到文件开头
+position = document.seek(0, 0)
+context = document.read()
+print("第二次读取:\n",context)
 
-<span class="n">document</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></div></div>
+document.close()
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>文件名:  new.txt
+<pre><code>文件名:  new.txt
 当前文件位置:  51
 第一次读取:  
 第二次读取:
  这是我新创建的一个测试文件！
 welcome!
-</code></pre></div></div>
+</code></pre>
 
-<p>为了保证无论是否出错都能正确地关闭文件，我们可以使用 <code class="highlighter-rouge">try ... finally</code> 来实现：</p>
+<p>为了保证无论是否出错都能正确地关闭文件，我们可以使用 <code>try ... finally</code> 来实现：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'new.txt'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-<span class="k">finally</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></div></div>
+<pre><code class="language-python">try:
+    f = open('new.txt', 'r')
+    print(f.read())
+finally:
+    if f:
+        f.close()
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>这是我新创建的一个测试文件！
+<pre><code>这是我新创建的一个测试文件！
 welcome!
-</code></pre></div></div>
+</code></pre>
 
-<p>但是每次都这么写实在太繁琐，所以，Python 引入了 <code class="highlighter-rouge">with</code> 语句来自动帮我们调用 <code class="highlighter-rouge">close()</code> 方法：</p>
+<p>但是每次都这么写实在太繁琐，所以，Python 引入了 <code>with</code> 语句来自动帮我们调用 <code>close()</code> 方法：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'new.txt'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-</code></pre></div></div>
+<pre><code class="language-python">with open('new.txt', 'r') as f:
+    print(f.read())
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>这是我新创建的一个测试文件！
+<pre><code>这是我新创建的一个测试文件！
 welcome!
-</code></pre></div></div>
+</code></pre>
 
-<p>这和前面的 <code class="highlighter-rouge">try ... finally</code> 是一样的，但是代码更佳简洁，并且不必调用 <code class="highlighter-rouge">f.close()</code> 方法。</p>
+<p>这和前面的 <code>try ... finally</code> 是一样的，但是代码更佳简洁，并且不必调用 <code>f.close()</code> 方法。</p>
 </p>
 	</div>
 

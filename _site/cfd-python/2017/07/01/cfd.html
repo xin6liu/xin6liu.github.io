@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -266,9 +267,9 @@
 
 <p>现在我们从导入一些 libraries 开始。First: our favorite library is <strong>NumPy</strong>, providing a bunch of useful array operations (similar to MATLAB). We will use it a lot! The second library we need is <strong>Matplotlib</strong>, a 2D plotting library which we will use to plot our results. The following code will be at the top of most of your programs, so execute this cell first:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
-</code></pre></div></div>
+<pre><code class="language-python">import numpy
+from matplotlib import pyplot
+</code></pre>
 
 <p>第一行：我们导入了一个叫做<em>numpy</em>的<strong>library</strong></p>
 
@@ -277,21 +278,21 @@
 <blockquote>
 
   <ol>
-    <li><code class="highlighter-rouge">import numpy</code> = <code class="highlighter-rouge">from numpy import *</code>, 为了便于理解，我们以后都写成：<code class="highlighter-rouge">from library import module</code> 的形式。</li>
-    <li>我们会经常看到类似于<code class="highlighter-rouge">import numpy as np</code>和<code class="highlighter-rouge">import matplotlib.pyplot as plt</code>的句子，相当于简写，之后就可以用简写来引用它了</li>
+    <li><code>import numpy</code> = <code>from numpy import *</code>, 为了便于理解，我们以后都写成：<code>from library import module</code> 的形式。</li>
+    <li>我们会经常看到类似于<code>import numpy as np</code>和<code>import matplotlib.pyplot as plt</code>的句子，相当于简写，之后就可以用简写来引用它了</li>
     <li>几个不错的参考资料: <a href="https://docs.scipy.org/doc/numpy/reference/">NumPy Reference</a>, <a href="http://scipy.github.io/old-wiki/pages/NumPy_for_Matlab_Users">NumPy for Matlab Users</a>, <a href="http://reverland.org/python/2012/09/07/matplotlib-tutorial/">Matplotlib Tutorial 中文译</a></li>
   </ol>
 </blockquote>
 
 <p>为了使用这些libraries中的function，每一个function的名字必须跟在library名字后面，用点隔开。例如，如果我们想要使用NumPy的一个function：linspace(), 我们可以这么写：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">myarray</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="n">myarray</span>
-</code></pre></div></div>
+<pre><code class="language-python">myarray = numpy.linspace(0, 5, 10)
+myarray
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([ 0.        ,  0.55555556,  1.11111111,  1.66666667,  2.22222222,
+<pre><code>array([ 0.        ,  0.55555556,  1.11111111,  1.66666667,  2.22222222,
         2.77777778,  3.33333333,  3.88888889,  4.44444444,  5.        ])
-</code></pre></div></div>
+</code></pre>
 
 <blockquote>
   <p>NOTE: linspace(起点，终点，数量)可以生成一个等间距的array</p>
@@ -299,49 +300,49 @@
 
 <h1 id="variables">Variables</h1>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">b</span> <span class="o">=</span> <span class="s">'5'</span>
-<span class="n">c</span> <span class="o">=</span> <span class="mf">5.0</span>
-</code></pre></div></div>
+<pre><code class="language-python">a = 5
+b = '5'
+c = 5.0
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">type(a)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int
-</code></pre></div></div>
+<pre><code>int
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">type(b)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>str
-</code></pre></div></div>
+<pre><code>str
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">type(c)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>float
-</code></pre></div></div>
+<pre><code>float
+</code></pre>
 
 <h1 id="for-loops">for-loops</h1>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"Hi"</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">for i in range(5):
+    print("Hi")
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hi
+<pre><code>Hi
 Hi
 Hi
 Hi
 Hi
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'this is in J'</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">for i in range(2):
+    for j in range(3):
+        print(i, j)
+    print('this is in J')
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(0, 0)
+<pre><code>(0, 0)
 (0, 1)
 (0, 2)
 this is in J
@@ -349,73 +350,73 @@ this is in J
 (1, 1)
 (1, 2)
 this is in J
-</code></pre></div></div>
+</code></pre>
 
 <h1 id="slicing-arrays">Slicing Arrays</h1>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
-<span class="n">a</span>
-</code></pre></div></div>
+<pre><code class="language-python">a = numpy.array([1,2,3,4,5])
+a
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([1, 2, 3, 4, 5])
-</code></pre></div></div>
+<pre><code>array([1, 2, 3, 4, 5])
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
-</code></pre></div></div>
+<pre><code class="language-python">print(a[0],a[4])
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(1, 5)
-</code></pre></div></div>
+<pre><code>(1, 5)
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
-</code></pre></div></div>
+<pre><code class="language-python">a[0:3]
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([1, 2, 3])
-</code></pre></div></div>
+<pre><code>array([1, 2, 3])
+</code></pre>
 
 <h1 id="assigning-array-variables">Assigning Array Variables</h1>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">a</span>
-</code></pre></div></div>
+<pre><code class="language-python">a = numpy.linspace(1,5,5)
+a
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([ 1.,  2.,  3.,  4.,  5.])
-</code></pre></div></div>
+<pre><code>array([ 1.,  2.,  3.,  4.,  5.])
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
-<span class="n">b</span>
-</code></pre></div></div>
+<pre><code class="language-python">b = a
+b
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([ 1.,  2.,  3.,  4.,  5.])
-</code></pre></div></div>
+<pre><code>array([ 1.,  2.,  3.,  4.,  5.])
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span>
-<span class="n">a</span>
-</code></pre></div></div>
+<pre><code class="language-python">a[0] = 6
+a
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([ 6.,  2.,  3.,  4.,  5.])
-</code></pre></div></div>
+<pre><code>array([ 6.,  2.,  3.,  4.,  5.])
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">b</span>
-</code></pre></div></div>
+<pre><code class="language-python">b
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([ 6.,  2.,  3.,  4.,  5.])
-</code></pre></div></div>
+<pre><code>array([ 6.,  2.,  3.,  4.,  5.])
+</code></pre>
 
 <p>可以看出b=a之后，若a发生改变，b也会变化，解决方法是：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span>
-<span class="n">a</span>
-</code></pre></div></div>
+<pre><code class="language-python">c = a.copy()
+a[0] = 7
+a
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([ 7.,  2.,  3.,  4.,  5.])
-</code></pre></div></div>
+<pre><code>array([ 7.,  2.,  3.,  4.,  5.])
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c</span>
-</code></pre></div></div>
+<pre><code class="language-python">c
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([ 6.,  2.,  3.,  4.,  5.])
-</code></pre></div></div>
+<pre><code>array([ 6.,  2.,  3.,  4.,  5.])
+</code></pre>
 </p>
 	</div>
 

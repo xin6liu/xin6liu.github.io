@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -264,49 +265,49 @@
 
 <p>怎么来实现呢？fenics有自带的on_boundary，表示mesh的边界，如果x在mesh边界上为true，不在为false。所以我们直接让on_boundary成为第二个argument，然后return argument：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">boundary</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">on_boundary</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">on_boundary</span>
-</code></pre></div></div>
+<pre><code class="language-python">def boundary(x, on_boundary):
+    return on_boundary
+</code></pre>
 
 <p>但是，如果在mesh边界上(on_boundary)，并不是所有的点都是我边界条件里的边界, 该怎么办呢？这里我们只好一个一个判断了。比如我的边界为：x=0 和 x=1：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">boundary</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">x</span><span class="p">[</span><span class="n">o</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
-</code></pre></div></div>
+<pre><code class="language-python">def boundary(x):
+    return x[0] == 0 or x[o] == 1
+</code></pre>
 
 <p>但是，这对于程序来说并不友好，因为会有误差。不要直接用上面的代码，比如 x[0] =＝ 1 之类的，理由如下：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">==</span> <span class="mf">0.3</span>
-</code></pre></div></div>
+<pre><code class="language-python">0.1 + 0.2 == 0.3
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>False
-</code></pre></div></div>
+<pre><code>False
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span>
-</code></pre></div></div>
+<pre><code class="language-python">0.1 + 0.2
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0.30000000000000004
-</code></pre></div></div>
+<pre><code>0.30000000000000004
+</code></pre>
 
 <p>所以我们必须<strong>check for equality with a Tolerance</strong></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tol</span> <span class="o">=</span> <span class="mf">1E-14</span>
-<span class="k">def</span> <span class="nf">boundary</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">near</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tol</span><span class="p">)</span> <span class="ow">or</span> <span class="n">near</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">tol</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">tol = 1E-14
+def boundary(x):
+    return near(x[0], 0, tol) or near(x[0], 1, tol)
+</code></pre>
 
 <h2 id="简写">简写</h2>
 
 <p>把tol省略，系统默认：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">boundary</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">near</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="n">near</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">def boundary(x):
+    return near(x[0], 0) or near(x[0], 1)
+</code></pre>
 
 <p>还可以更简，直接用c++语句, 写一个string：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">boundary</span> <span class="o">=</span> <span class="s">'near(x[0], 0) || near(x[0], 1)'</span>
-</code></pre></div></div>
+<pre><code class="language-python">boundary = 'near(x[0], 0) || near(x[0], 1)'
+</code></pre>
 </p>
 	</div>
 

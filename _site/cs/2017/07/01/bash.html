@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -265,61 +266,61 @@
 <p><strong>Shell</strong> is the direct interface between the user and the system kernel.</p>
 
 <h2 id="最基本-shell-commands">最基本 shell commands</h2>
-<p><code class="highlighter-rouge">whoami</code>
+<p><code>whoami</code>
 kdo jsem?</p>
 
-<p><code class="highlighter-rouge">pwd</code>
+<p><code>pwd</code>
 print working directory</p>
 
-<p><code class="highlighter-rouge">ls</code>
+<p><code>ls</code>
 list working directory</p>
 
-<p><code class="highlighter-rouge">ls -l</code>
+<p><code>ls -l</code>
 detailed list of working directory</p>
 
-<p><code class="highlighter-rouge">cd</code>
+<p><code>cd</code>
 change directory</p>
 
-<p><code class="highlighter-rouge">cp</code>
+<p><code>cp</code>
 copy files</p>
 
-<p><code class="highlighter-rouge">mv</code>
+<p><code>mv</code>
 move files</p>
 
-<p><code class="highlighter-rouge">rm</code>
+<p><code>rm</code>
 delete file</p>
 
 <h2 id="sending-signals-and-process-management">Sending signals and process management</h2>
 <p>Every running program can be in the state running or suspended. With respect to a shell it can be in the foreground or background.</p>
 
-<p><code class="highlighter-rouge">jobs</code>
+<p><code>jobs</code>
 list jobs started from given shell with their shell ids</p>
 
-<p><code class="highlighter-rouge">fg</code>
+<p><code>fg</code>
 send job to foreground</p>
 
-<p><code class="highlighter-rouge">bg</code>
-send job to background, this is equivalent to starting the job by job<code class="highlighter-rouge">\_command &amp;</code></p>
+<p><code>bg</code>
+send job to background, this is equivalent to starting the job by job<code>\_command &amp;</code></p>
 
 <p>Every well behaved job listens to signals.</p>
 
-<p><code class="highlighter-rouge">ps</code>
+<p><code>ps</code>
 list all your jobs with their process ids</p>
 
-<p><code class="highlighter-rouge">kill jobid</code>
+<p><code>kill jobid</code>
 send terminate signal to a job, job id can be its process id or its shell id (including %)</p>
 
-<p><code class="highlighter-rouge">kill -9 jobid</code>
+<p><code>kill -9 jobid</code>
 change directory</p>
 
 <p>Pressing following control keys will send signal to the foreground job
-<code class="highlighter-rouge">^C</code>
+<code>^C</code>
 terminate signal</p>
 
-<p><code class="highlighter-rouge">^Z</code>
+<p><code>^Z</code>
 suspend signal</p>
 
-<p><code class="highlighter-rouge">^D</code>
+<p><code>^D</code>
 end of input signal</p>
 </p>
 	</div>

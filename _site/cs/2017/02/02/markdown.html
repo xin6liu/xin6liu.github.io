@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -277,16 +278,16 @@
 <p>Ulysses 是支持 HTML 预览的，所以我们在 Markdown 文档里插入一些 HTML 语言也没有关系。
 只需要在文档开头加入这四行 Raw Source Block 即可</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;script type="text/x-mathjax-config"&gt;MathJax.Hub.Config({tex2jax: {inlineMath:[['$','$']]}});&lt;/script&gt;
+<pre><code>&lt;script type="text/x-mathjax-config"&gt;MathJax.Hub.Config({tex2jax: {inlineMath:[['$','$']]}});&lt;/script&gt;
 &lt;script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"&gt;&lt;/script&gt;
-</code></pre></div></div>
+</code></pre>
 
 <p>其实这就是 HTML 下的 MathJax 相关设置。不用担心那些小波浪号，它们是 Ulysses 用来标记 Raw Source 的符号，无论是导出还是发布到你的的静态博客上都不会影响。
 之后只要将正常 LaTeX 语法包裹进 Raw Source 格式中即可，比如</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $$\left(iD\!\!\!/+m\right)\psi = 0$$
+<pre><code> $$\left(iD\!\!\!/+m\right)\psi = 0$$
 1/2表示为：$\dfrac{1}{2}$
-</code></pre></div></div>
+</code></pre>
 
 <p><script type="math/tex">\left(iD\!\!\!/+m\right)\psi = 0</script>
 1/2表示为：$\dfrac{1}{2}$</p>

@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -263,7 +264,7 @@
 		<p><h2 id="in-unsteady-dpm">In Unsteady DPM:</h2>
 <p>It is very expensive to track each individual particle in a particle flow system. Instead of tracking each particle, FLUENT tracks Parcel. Parcel contains <strong>particles with same properties including diameter, velocity and position.</strong> The behavior of each parcel is determined by the behavior of the particles inside. Fluent tracks parcels and number of particles in a parcel can be obtained using macro p-&gt;number_in_parcel. The number of particles in each parcel can be a fractional number.</p>
 
-<p>Streams are defined for injecting the parcels in the computational domain. <code class="highlighter-rouge">N</code> streams means <code class="highlighter-rouge">N</code> locations of parcel injection</p>
+<p>Streams are defined for injecting the parcels in the computational domain. <code>N</code> streams means <code>N</code> locations of parcel injection</p>
 
 <p>每个stream代表一个parcel发射的位置。</p>
 

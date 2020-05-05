@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -260,115 +261,115 @@
 		<!-- 
 		 -->
 <!-- 正文 -->
-		<p><p><code class="highlighter-rouge">tf.Graph</code>: 建立图</p>
+		<p><p><code>tf.Graph</code>: 建立图</p>
 
-<p><code class="highlighter-rouge">tf.get_default_graph</code>: 获得图</p>
+<p><code>tf.get_default_graph</code>: 获得图</p>
 
-<p><code class="highlighter-rouge">tf.reset_default_graph</code>: 重置图</p>
+<p><code>tf.reset_default_graph</code>: 重置图</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-</code></pre></div></div>
+<pre><code class="language-python">import tensorflow as tf
+import numpy as np
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/xinliu/anaconda/lib/python3.6/site-packages/h5py/__init__.py:34: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+<pre><code>/Users/xinliu/anaconda/lib/python3.6/site-packages/h5py/__init__.py:34: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
   from ._conv import register_converters as _register_converters
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">c = tf.constant(0.0)
+print(c.graph)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tensorflow.python.framework.ops.Graph object at 0x11e3ee470&gt;
-</code></pre></div></div>
+<pre><code>&lt;tensorflow.python.framework.ops.Graph object at 0x11e3ee470&gt;
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">g</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
-<span class="k">with</span> <span class="n">g</span><span class="o">.</span><span class="n">as_default</span><span class="p">():</span>
-    <span class="n">c1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">g = tf.Graph()
+with g.as_default():
+    c1 = tf.constant(0.0)
+    print(c1.graph)
+    print(g)
+    print(c.graph)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tensorflow.python.framework.ops.Graph object at 0x11e419278&gt;
+<pre><code>&lt;tensorflow.python.framework.ops.Graph object at 0x11e419278&gt;
 &lt;tensorflow.python.framework.ops.Graph object at 0x11e419278&gt;
 &lt;tensorflow.python.framework.ops.Graph object at 0x11e3ee470&gt;
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">g2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_default_graph</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">g2</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">g2 = tf.get_default_graph()
+print(g2)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tensorflow.python.framework.ops.Graph object at 0x11e3ee470&gt;
-</code></pre></div></div>
+<pre><code>&lt;tensorflow.python.framework.ops.Graph object at 0x11e3ee470&gt;
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tf</span><span class="o">.</span><span class="n">reset_default_graph</span><span class="p">()</span>
-<span class="n">g3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_default_graph</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">g3</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">tf.reset_default_graph()
+g3 = tf.get_default_graph()
+print(g3)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tensorflow.python.framework.ops.Graph object at 0x11e419978&gt;
-</code></pre></div></div>
+<pre><code>&lt;tensorflow.python.framework.ops.Graph object at 0x11e419978&gt;
+</code></pre>
 
 <h2 id="获取张量">获取张量</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 回顾c1</span>
-<span class="c"># g = tf.Graph()</span>
-<span class="c"># with g.as_default():</span>
-<span class="c">#     c1 = tf.constant(0.0)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python"># 回顾c1
+# g = tf.Graph()
+# with g.as_default():
+#     c1 = tf.constant(0.0)
+print(c1)
+print(c1.name)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Tensor("Const:0", shape=(), dtype=float32)
+<pre><code>Tensor("Const:0", shape=(), dtype=float32)
 Const:0
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">t</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">get_tensor_by_name</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">"Const:0"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">t = g.get_tensor_by_name(name="Const:0")
+print(t)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Tensor("Const:0", shape=(), dtype=float32)
-</code></pre></div></div>
+<pre><code>Tensor("Const:0", shape=(), dtype=float32)
+</code></pre>
 
 <h2 id="获取节点">获取节点</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mf">1.0</span> <span class="p">,</span><span class="mf">2.0</span><span class="p">]])</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">],[</span><span class="mf">3.0</span><span class="p">]])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">a = tf.constant([[1.0 ,2.0]])
+b = tf.constant([[1.0],[3.0]])
+print(a)
+print(b)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Tensor("Const:0", shape=(1, 2), dtype=float32)
+<pre><code>Tensor("Const:0", shape=(1, 2), dtype=float32)
 Tensor("Const_1:0", shape=(2, 1), dtype=float32)
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tensor1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">"t1"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">tensor1</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">tensor1 = tf.matmul(a, b, name="t1")
+print(tensor1)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Tensor("t1:0", shape=(1, 1), dtype=float32)
-</code></pre></div></div>
+<pre><code>Tensor("t1:0", shape=(1, 1), dtype=float32)
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">test</span> <span class="o">=</span> <span class="n">g3</span><span class="o">.</span><span class="n">get_tensor_by_name</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">"t1:0"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">test = g3.get_tensor_by_name(name="t1:0")
+print(test)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Tensor("t1:0", shape=(1, 1), dtype=float32)
-</code></pre></div></div>
+<pre><code>Tensor("t1:0", shape=(1, 1), dtype=float32)
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">tensor1</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">tensor1</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">print(tensor1.name)
+print(tensor1.op.name)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>t1:0
+<pre><code>t1:0
 t1
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">testop</span> <span class="o">=</span> <span class="n">g3</span><span class="o">.</span><span class="n">get_operation_by_name</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">"t1"</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">testop</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">testop = g3.get_operation_by_name(name="t1")
+print(testop)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>name: "t1"
+<pre><code>name: "t1"
 op: "MatMul"
 input: "Const"
 input: "Const_1"
@@ -390,56 +391,56 @@ attr {
     b: false
   }
 }
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
-    <span class="n">test</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
-    <span class="n">test</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_default_graph</span><span class="p">()</span><span class="o">.</span><span class="n">get_tensor_by_name</span><span class="p">(</span><span class="s">"t1:0"</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">with tf.Session() as sess:
+    test = sess.run(test)
+    print(test)
+    test = tf.get_default_graph().get_tensor_by_name("t1:0")
+    print(test)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[[7.]]
+<pre><code>[[7.]]
 Tensor("t1:0", shape=(1, 1), dtype=float32)
-</code></pre></div></div>
+</code></pre>
 
 <p>tensor1 = tf.matmul(a, b, name=”t1”) 并不是OP而是张量。OP是张量的运算关系，是通过访问张量的属性找到的。</p>
 
 <h2 id="获取元素列表">获取元素列表</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tt</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">get_operations</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">tt = g.get_operations()
+print(tt)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;tf.Operation 'Const' type=Const&gt;]
-</code></pre></div></div>
+<pre><code>[&lt;tf.Operation 'Const' type=Const&gt;]
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tt2</span> <span class="o">=</span> <span class="n">g3</span><span class="o">.</span><span class="n">get_operations</span><span class="p">()</span>
-<span class="k">print</span><span class="p">(</span><span class="n">tt2</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">tt2 = g3.get_operations()
+print(tt2)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;tf.Operation 'Const' type=Const&gt;, &lt;tf.Operation 'Const_1' type=Const&gt;, &lt;tf.Operation 't1' type=MatMul&gt;]
-</code></pre></div></div>
+<pre><code>[&lt;tf.Operation 'Const' type=Const&gt;, &lt;tf.Operation 'Const_1' type=Const&gt;, &lt;tf.Operation 't1' type=MatMul&gt;]
+</code></pre>
 
 <p>get_operations() 可以获取图中所有元素。</p>
 
 <h2 id="获取对象">获取对象</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 回顾c1</span>
-<span class="c"># g = tf.Graph()</span>
-<span class="c"># with g.as_default():</span>
-<span class="c">#     c1 = tf.constant(0.0)</span>
-<span class="c"># c1返回：Tensor("Const:0", shape=(), dtype=float32)</span>
-<span class="n">tt3</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">as_graph_element</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">tt3</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python"># 回顾c1
+# g = tf.Graph()
+# with g.as_default():
+#     c1 = tf.constant(0.0)
+# c1返回：Tensor("Const:0", shape=(), dtype=float32)
+tt3 = g.as_graph_element(c1)
+print(tt3)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Tensor("Const:0", shape=(), dtype=float32)
-</code></pre></div></div>
+<pre><code>Tensor("Const:0", shape=(), dtype=float32)
+</code></pre>
 
-<p><code class="highlighter-rouge">as_graph_element</code>获得了c1的真实张量对象，并赋值给了tt3.</p>
+<p><code>as_graph_element</code>获得了c1的真实张量对象，并赋值给了tt3.</p>
 
-<p>这和<code class="highlighter-rouge">get_tensor_by_name(name="Const:0")</code>效果一样</p>
+<p>这和<code>get_tensor_by_name(name="Const:0")</code>效果一样</p>
 </p>
 	</div>
 

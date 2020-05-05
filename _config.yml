@@ -28,6 +28,7 @@ weibo_url: http://weibo.com/u/2377304267
 
 # Build settings
 markdown: kramdown
+highlighter: rough
 
 sass:
   style: compressed

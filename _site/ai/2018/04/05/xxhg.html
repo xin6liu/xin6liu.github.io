@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -260,93 +261,93 @@
 		<!-- 
 		 -->
 <!-- 正文 -->
-		<p><div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-</code></pre></div></div>
+		<p><pre><code class="language-python">import tensorflow as tf
+import numpy as np
+import matplotlib.pyplot as plt
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/xinliu/anaconda/lib/python3.6/site-packages/h5py/__init__.py:34: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+<pre><code>/Users/xinliu/anaconda/lib/python3.6/site-packages/h5py/__init__.py:34: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
   from ._conv import register_converters as _register_converters
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">train_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">train_Y</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">train_X</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">train_X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">*</span><span class="mf">0.3</span>
-</code></pre></div></div>
+<pre><code class="language-python">train_X = np.linspace(-1,1,100)
+train_Y = 2*train_X + np.random.randn(*train_X.shape)*0.3
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 等效：</span>
-<span class="c"># np.random.randn(100)</span>
-<span class="c"># np.random.randn(train_X.shape[0])</span>
-<span class="c"># np.random.randn(*train_X.shape)</span>
-</code></pre></div></div>
+<pre><code class="language-python"># 等效：
+# np.random.randn(100)
+# np.random.randn(train_X.shape[0])
+# np.random.randn(*train_X.shape)
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">,</span> <span class="s">'ro'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'Original Data'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div></div>
+<pre><code class="language-python">plt.plot(train_X, train_Y, 'ro', label='Original Data')
+plt.legend()
+plt.show()
+</code></pre>
 
 <p><img src="https://github.com/liuxin21/pic/blob/master/output_3_0.png" alt="png" /></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">'float'</span><span class="p">)</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s">'float'</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">X = tf.placeholder('float')
+Y = tf.placeholder('float')
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">W</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">([</span><span class="mi">1</span><span class="p">]),</span> <span class="n">name</span><span class="o">=</span><span class="s">"weight"</span><span class="p">)</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">1</span><span class="p">]),</span> <span class="n">name</span><span class="o">=</span><span class="s">"bias"</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">W = tf.Variable(tf.random_normal([1]), name="weight")
+b = tf.Variable(tf.zeros([1]), name="bias")
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">z</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
-</code></pre></div></div>
+<pre><code class="language-python">z = tf.multiply(X, W) + b
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cost</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">Y</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
-<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.001</span>
-<span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">cost = tf.reduce_mean(tf.square(Y-z))
+learning_rate = 0.001
+optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">init</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">()</span>
-<span class="n">training_epochs</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="n">display_step</span> <span class="o">=</span> <span class="mi">2</span>
-</code></pre></div></div>
+<pre><code class="language-python">init = tf.global_variables_initializer()
+training_epochs = 20
+display_step = 2
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">X</span><span class="p">),</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">W</span><span class="p">),</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span>
-      <span class="nb">type</span><span class="p">(</span><span class="n">z</span><span class="p">),</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">cost</span><span class="p">),</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span>
-      <span class="nb">type</span><span class="p">(</span><span class="n">optimizer</span><span class="p">),</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">init</span><span class="p">))</span>
-</code></pre></div></div>
+<pre><code class="language-python">print(type(X),'\n',type(W),'\n',
+      type(z),'\n',type(cost),'\n',
+      type(optimizer),'\n',type(init))
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'tensorflow.python.framework.ops.Tensor'&gt; 
+<pre><code>&lt;class 'tensorflow.python.framework.ops.Tensor'&gt; 
  &lt;class 'tensorflow.python.ops.variables.Variable'&gt; 
  &lt;class 'tensorflow.python.framework.ops.Tensor'&gt; 
  &lt;class 'tensorflow.python.framework.ops.Tensor'&gt; 
  &lt;class 'tensorflow.python.framework.ops.Operation'&gt; 
  &lt;class 'tensorflow.python.framework.ops.Operation'&gt;
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
-    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
-    <span class="n">plotdata</span> <span class="o">=</span> <span class="p">{</span><span class="s">"batchsize"</span><span class="p">:[],</span> <span class="s">"loss"</span><span class="p">:[]}</span>
-    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">training_epochs</span><span class="p">):</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">):</span>
-            <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">X</span><span class="p">:</span><span class="n">x</span><span class="p">,</span> <span class="n">Y</span><span class="p">:</span><span class="n">y</span><span class="p">})</span>
-        <span class="k">if</span> <span class="n">epoch</span> <span class="o">%</span> <span class="n">display_step</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">loss</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">X</span><span class="p">:</span><span class="n">train_X</span><span class="p">,</span> <span class="n">Y</span><span class="p">:</span><span class="n">train_Y</span><span class="p">})</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">"Epoch:"</span><span class="p">,</span> <span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="s">"cost:"</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span>
-                 <span class="s">"W:"</span><span class="p">,</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">W</span><span class="p">),</span> <span class="s">"b:"</span><span class="p">,</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">loss</span> <span class="o">==</span> <span class="s">"NA"</span><span class="p">):</span>
-                <span class="n">plotdata</span><span class="p">[</span><span class="s">"batchsize"</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span>
-                <span class="n">plotdata</span><span class="p">[</span><span class="s">"loss"</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"finished"</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">"cost:"</span><span class="p">,</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">X</span><span class="p">:</span><span class="n">train_X</span><span class="p">,</span> <span class="n">Y</span><span class="p">:</span><span class="n">train_Y</span><span class="p">})</span>
-          <span class="p">,</span><span class="s">"W:"</span><span class="p">,</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">W</span><span class="p">),</span> <span class="s">"b:"</span><span class="p">,</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+<pre><code class="language-python">with tf.Session() as sess:
+    sess.run(init)
+    plotdata = {"batchsize":[], "loss":[]}
+    for epoch in range(training_epochs):
+        for (x,y) in zip(train_X, train_Y):
+            sess.run(optimizer, feed_dict={X:x, Y:y})
+        if epoch % display_step == 0:
+            loss = sess.run(cost, feed_dict={X:train_X, Y:train_Y})
+            print("Epoch:", epoch+1, "cost:", loss,
+                 "W:", sess.run(W), "b:", sess.run(b))
+            if not (loss == "NA"):
+                plotdata["batchsize"].append(epoch)
+                plotdata["loss"].append(loss)
+    print("finished")
+    print("cost:", sess.run(cost, feed_dict={X:train_X, Y:train_Y})
+          ,"W:", sess.run(W), "b:", sess.run(b))
     
-    <span class="c">#图形显示</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_Y</span><span class="p">,</span> <span class="s">'ro'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'Original data'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">W</span><span class="p">)</span> <span class="o">*</span> <span class="n">train_X</span> <span class="o">+</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s">'Fitted line'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    #图形显示
+    plt.plot(train_X, train_Y, 'ro', label='Original data')
+    plt.plot(train_X, sess.run(W) * train_X + sess.run(b), label='Fitted line')
+    plt.legend()
+    plt.show()
 
-    <span class="k">print</span> <span class="p">(</span><span class="s">"x=0.2，z="</span><span class="p">,</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">X</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">}))</span>
-</code></pre></div></div>
+    print ("x=0.2，z=", sess.run(z, feed_dict={X: 0.2}))
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Epoch: 1 cost: 2.3882933 W: [-0.57423574] b: [-0.00077672]
+<pre><code>Epoch: 1 cost: 2.3882933 W: [-0.57423574] b: [-0.00077672]
 Epoch: 3 cost: 1.8471793 W: [-0.24579369] b: [-0.00428752]
 Epoch: 5 cost: 1.4345641 W: [0.04090344] b: [-0.00934835]
 Epoch: 7 cost: 1.1199864 W: [0.29114497] b: [-0.01510264]
@@ -358,12 +359,12 @@ Epoch: 17 cost: 0.37104762 W: [1.1384318] b: [-0.04178193]
 Epoch: 19 cost: 0.30939367 W: [1.2490067] b: [-0.04587611]
 finished
 cost: 0.28430763 W: [1.298897] b: [-0.04775647]
-</code></pre></div></div>
+</code></pre>
 
 <p><img src="https://github.com/liuxin21/pic/blob/master/output_10_1.png" alt="png" /></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x=0.2，z= [0.21202296]
-</code></pre></div></div>
+<pre><code>x=0.2，z= [0.21202296]
+</code></pre>
 
 </p>
 	</div>

@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -313,20 +314,20 @@ mapper的<resultMap>把实体类和mysql表格对应起来，
 mapper的<insert><delete><update><select>实现Dao接口具体SQL语句方法。</select></update></delete></insert></resultMap></li>
   <li>业务层: DepartmentService.java(interface), DepartmentServiceImpl.java
 DepartmentServiceImpl.java里需要引入持久层，所以：
-DepartmentDao.java里注释<code class="highlighter-rouge">@Repository("departmentDao")</code>
-DepartmentServiceImpl.java里注释<code class="highlighter-rouge">@Service("departmentService")</code>
+DepartmentDao.java里注释<code>@Repository("departmentDao")</code>
+DepartmentServiceImpl.java里注释<code>@Service("departmentService")</code>
 然后就可以在DepartmentServiceImpl.java里直接引用departmentDao这个bean了：
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Autowired</span>
-<span class="kd">private</span> <span class="n">DepartmentDao</span> <span class="n">departmentDao</span><span class="o">;</span>
-<span class="c1">// 不用再重新new DepartmentDao()来实现departmentDao了</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="n">Department</span> <span class="n">department</span><span class="o">){</span>
- <span class="n">departmentDao</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">department</span><span class="o">);</span>
- <span class="c1">// departmentDao的insert方法是在DepartmentDao.xml(mapper)里写的</span>
-<span class="o">}</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">remove</span><span class="o">(</span><span class="n">Integer</span> <span class="n">id</span><span class="o">){</span>
- <span class="n">departmentDao</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></div>    </div>
+    <pre><code class="language-java">@Autowired
+private DepartmentDao departmentDao;
+// 不用再重新new DepartmentDao()来实现departmentDao了
+public void add(Department department){
+ departmentDao.insert(department);
+ // departmentDao的insert方法是在DepartmentDao.xml(mapper)里写的
+}
+public void remove(Integer id){
+ departmentDao.delete(id);
+}
+</code></pre>
   </li>
   <li>controller, 页面</li>
 </ol>

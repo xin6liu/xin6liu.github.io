@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -265,27 +266,27 @@
 <p>NOTE: The conda package is community supported, not officially supported. That is, the TensorFlow team neither tests nor maintains the conda package. Use that package at your own risk.</p>
 
 <h2 id="pip-更新">pip 更新：</h2>
-<p><code class="highlighter-rouge">$ pip install --upgrade pip</code></p>
+<p><code>$ pip install --upgrade pip</code></p>
 
 <h2 id="检查tensorflow版本">检查tensorflow版本</h2>
-<p><code class="highlighter-rouge">tf.__version__</code></p>
+<p><code>tf.__version__</code></p>
 
-<p><code class="highlighter-rouge">sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))</code>
+<p><code>sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))</code>
 查看设备初始化的提示，从而判断是CPU还是GPU</p>
 
 <h2 id="查看conda安装的包">查看conda安装的包</h2>
-<p><code class="highlighter-rouge">$ conda list</code></p>
+<p><code>$ conda list</code></p>
 
 <h2 id="拆卸conda里的tensorflow">拆卸conda里的tensorflow</h2>
-<p><code class="highlighter-rouge">$ conda uninstall tensorflow</code></p>
+<p><code>$ conda uninstall tensorflow</code></p>
 
 <h2 id="用pip安装">用pip安装</h2>
 
-<p><code class="highlighter-rouge">$ pip install tensorflow      # Python 2.7; CPU support</code></p>
+<p><code>$ pip install tensorflow      # Python 2.7; CPU support</code></p>
 
-<p><code class="highlighter-rouge">$ pip3 install tensorflow     # Python 3.n; CPU support</code></p>
+<p><code>$ pip3 install tensorflow     # Python 3.n; CPU support</code></p>
 
-<p><code class="highlighter-rouge">$ pip install tensorflow-gpu # gpu版本</code></p>
+<p><code>$ pip install tensorflow-gpu # gpu版本</code></p>
 </p>
 	</div>
 

@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -275,7 +276,7 @@
 <h2 id="大括号方程组加括号式子">大括号方程组加括号式子</h2>
 <p>一般写多行方程式对其的话align很合适，但是左侧加括号的那种再用aligned和\lift{ \right.很麻烦，那个.很容易忘记，干脆就用cases环境就行，cases也属于amsmath宏包中的环境。但是align的话直接相当于equation自动加（）了，但cases还要添入equation环境。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\begin{equation}
+<pre><code>\begin{equation}
 \left\{
 \begin{aligned}
 a+b&amp;=2\\
@@ -283,18 +284,18 @@ a-b&amp;=4\\
 \end{aligned}
 \right.
 \end{equation}
-</code></pre></div></div>
+</code></pre>
 
 <p>或者等价的：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\begin{equation}
+<pre><code>\begin{equation}
 f(x)=
 begin{cases}
 a+b=2\\
 a-b=4\\
 end{cases}
 \end{equation}
-</code></pre></div></div>
+</code></pre>
 
 <h2 id="正体">正体：</h2>
 <p>\rm{d}</p>

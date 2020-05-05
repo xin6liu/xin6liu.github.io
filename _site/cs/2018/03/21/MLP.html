@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -274,9 +275,9 @@
   <p><a href="http://liuxin21.com/ai/2018/03/18/ai.html">神经网络基础</a></p>
 </blockquote>
 
-<p>在之前的文章中提到了神经网络<code class="highlighter-rouge">model</code>, 衡量<code class="highlighter-rouge">model</code>性能的损失函数$J(\theta)$, 使$J(\theta)$减小的学习算法<code class="highlighter-rouge">learn</code>(梯度下降算法)。</p>
+<p>在之前的文章中提到了神经网络<code>model</code>, 衡量<code>model</code>性能的损失函数$J(\theta)$, 使$J(\theta)$减小的学习算法<code>learn</code>(梯度下降算法)。</p>
 
-<p>这一次我们来探讨<strong>梯度下降</strong>这个<code class="highlighter-rouge">learn</code>中，如何求$J(\theta)$的梯度。</p>
+<p>这一次我们来探讨<strong>梯度下降</strong>这个<code>learn</code>中，如何求$J(\theta)$的梯度。</p>
 
 <p>我们用到的就是——<strong>反向传播算法（backpropogate algorithm）</strong>。</p>
 
@@ -308,39 +309,39 @@ a_2
 
 <h2 id="python-代码实现">Python 代码实现</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-</code></pre></div></div>
+<pre><code class="language-python">import numpy as np
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">C1</span><span class="p">:</span>
+<pre><code class="language-python">class C1:
     
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lx</span><span class="p">,</span> <span class="n">ly</span><span class="p">):</span>
-        <span class="s">'''
+    def __init__(self, lx, ly):
+        '''
         这里的输入层(a1,a2)的长度lx=2, 输出层(b1)的长度ly=1
         weight矩阵就是1X2, bias就是1X1 
-        '''</span>   
-        <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">ly</span><span class="p">,</span><span class="n">lx</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">ly</span><span class="p">)</span>
+        '''   
+        self.weights = np.random.randn(ly,lx)
+        self.bias = np.random.randn(ly)
     
 
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="s">'''
+    def forward(self, x):
+        '''
         输入：输入层x(a1,a2)
         返回：输出层y(b1)
-        '''</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span>
+        '''
+        self.x = x
+        self.y = np.dot(self.weights, x) + self.bias
+        return self.y
     
-    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
-        <span class="s">'''
+    def backward(self, d):
+        '''
         输入：导数值d
         返回：参数w的梯度dw
-        '''</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dw</span> <span class="o">=</span> <span class="n">d</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span>
-        <span class="c"># self.db = d</span>
-        <span class="c"># self.dx = d * self.weights</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dw</span>
-</code></pre></div></div>
+        '''
+        self.dw = d * self.x
+        # self.db = d
+        # self.dx = d * self.weights
+        return self.dw
+</code></pre>
 
 <p>上面的代码的三个def完成了三个工作：</p>
 <ol>
@@ -351,50 +352,50 @@ a_2
 
 <p>然后进行sigmoid层：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">C2</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
+<pre><code class="language-python">class C2:
+    def __init__(self):
+        pass
     
-    <span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+    def sigmoid(self, x):
+        return 1/(1 + np.exp(-x))
     
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span>
+    def forward(self, x):
+        self.x = x
+        self.y = self.sigmoid(x)
+        return self.y
     
-    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">sig</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dx</span> <span class="o">=</span> <span class="n">sig</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sig</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dx</span>
-</code></pre></div></div>
+    def backward(self):
+        sig = self.sigmoid(self.x)
+        self.dx = sig*(1-sig)
+        return self.dx
+</code></pre>
 
 <p>把上面两层拼起来，就完成了整体的网络结构：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">c1</span> <span class="o">=</span> <span class="n">C1</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">c2</span> <span class="o">=</span> <span class="n">C2</span><span class="p">()</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">]])</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">weights</span><span class="p">,</span> <span class="n">c1</span><span class="o">.</span><span class="n">bias</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<pre><code class="language-python">def main():
+    c1 = C1(2,1)
+    c2 = C2()
+    x = np.array([[1],[2]])
+    print(c1.weights, c1.bias, x)
     
-    <span class="n">y1</span> <span class="o">=</span> <span class="n">c1</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">y2</span> <span class="o">=</span> <span class="n">c2</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">y1</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>
+    y1 = c1.forward(x)
+    y2 = c2.forward(y1)
+    print(y1, y2)
     
-    <span class="n">dh</span> <span class="o">=</span> <span class="n">c2</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
-    <span class="n">dw</span> <span class="o">=</span> <span class="n">c1</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">dh</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">dh</span><span class="p">,</span> <span class="n">dw</span><span class="p">)</span>
+    dh = c2.backward()
+    dw = c1.backward(dh)
+    print(dh, dw)
     
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
-</code></pre></div></div>
+if __name__ == '__main__':
+    main()
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[[-1.07906824 -0.42675882]] [ 0.2913231] [[1]
+<pre><code>[[-1.07906824 -0.42675882]] [ 0.2913231] [[1]
  [2]]
 [[-1.64126277]] [[ 0.16229331]]
 [[ 0.13595419]] [[ 0.13595419]
  [ 0.27190838]]
-</code></pre></div></div>
+</code></pre>
 </p>
 	</div>
 

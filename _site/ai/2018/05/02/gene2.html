@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -260,12 +261,12 @@
 		<!-- 
 		 -->
 <!-- 正文 -->
-		<p><div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-</code></pre></div></div>
+		<p><pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+</code></pre>
 
 <h2 id="recall">Recall:</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class GA():
+<pre><code>class GA():
     def __init__(self,popsize,chrosize,bound,CROSS_RATE=None,MUTATION_RATE=None,N_GENERATIONS=None):
         None
     def get_fitness(self): 
@@ -289,23 +290,23 @@ if __name__ == '__main__':
     ga = GA(popsize,chrosize,bound)
     for generation in range(ga.N_GENERATIONS):
         ga.evolve()
-</code></pre></div></div>
+</code></pre>
 
 <h2 id="pop编码">pop编码</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">popsize</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">chrosize</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">bound1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
-<span class="n">bound2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">90</span><span class="p">]</span>
-<span class="c">## 以前的pop编码：</span>
-<span class="n">pop1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span><span class="p">(</span><span class="n">popsize</span><span class="p">,</span><span class="n">chrosize</span><span class="p">))</span>
-<span class="n">pop2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="n">bound2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">popsize</span><span class="p">,</span> <span class="n">chrosize</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
-<span class="c">## 现在的pop编码</span>
-<span class="n">pop3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">chrosize</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">popsize</span><span class="p">)])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">pop1</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">pop2</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">pop3</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">popsize = 3
+chrosize = 4
+bound1 = [0,5]
+bound2 = [65, 90]
+## 以前的pop编码：
+pop1 = np.random.randint(0,2,size =(popsize,chrosize))
+pop2 = np.random.randint(*bound2, size=(popsize, chrosize)).astype(np.int8)
+## 现在的pop编码
+pop3 = np.vstack([np.random.permutation(chrosize) for _ in range(popsize)])
+print(pop1, '\n', pop2, '\n', pop3)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[[1 0 0 1]
+<pre><code>[[1 0 0 1]
  [0 0 0 1]
  [1 1 0 0]] 
  [[69 78 65 73]
@@ -314,35 +315,35 @@ if __name__ == '__main__':
  [[1 3 2 0]
  [1 2 3 0]
  [0 1 3 2]]
-</code></pre></div></div>
+</code></pre>
 
 <h2 id="解码declist">解码declist</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 以前的declist</span>
-<span class="n">declist1</span> <span class="o">=</span> <span class="n">pop1</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">chrosize</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">chrosize</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">bound1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">bound1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">declist2</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">tostring</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'ascii'</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">pop2</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">declist1</span><span class="p">,</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">declist2</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python"># 以前的declist
+declist1 = pop1.dot(2**np.arange(chrosize)[::-1]) / float(2**chrosize-1) * (bound1[1]-bound1[0])
+declist2 = [row.tostring().decode('ascii') for row in pop2]
+print(declist1,'\n', declist2)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[3.         0.33333333 4.        ] 
+<pre><code>[3.         0.33333333 4.        ] 
  ['ENAI', 'RNVG', 'QWDX']
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 现在的declist</span>
-<span class="n">city_position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">chrosize</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">get_declist</span><span class="p">(</span><span class="n">pop</span><span class="p">,</span> <span class="n">city_position</span><span class="p">):</span>
-    <span class="n">line_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">pop</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-    <span class="n">line_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">pop</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pop</span><span class="p">):</span>
-        <span class="n">city_coord</span> <span class="o">=</span> <span class="n">city_position</span><span class="p">[</span><span class="n">d</span><span class="p">]</span>
-        <span class="n">line_x</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">city_coord</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
-        <span class="n">line_y</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">city_coord</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">line_x</span><span class="p">,</span> <span class="n">line_y</span>
-<span class="n">line_x</span><span class="p">,</span> <span class="n">line_y</span> <span class="o">=</span> <span class="n">get_declist</span><span class="p">(</span><span class="n">pop3</span><span class="p">,</span> <span class="n">city_position</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">city_position</span><span class="p">,</span><span class="s">'</span><span class="se">\n\n</span><span class="s">'</span><span class="p">,</span><span class="n">line_x</span><span class="p">,</span><span class="s">'</span><span class="se">\n\n</span><span class="s">'</span><span class="p">,</span><span class="n">line_y</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python"># 现在的declist
+city_position = np.random.rand(chrosize, 2)
+def get_declist(pop, city_position):
+    line_x = np.empty_like(pop, dtype=np.float64)
+    line_y = np.empty_like(pop, dtype=np.float64)
+    for i, d in enumerate(pop):
+        city_coord = city_position[d]
+        line_x[i, :] = city_coord[:, 0]
+        line_y[i, :] = city_coord[:, 1]
+    return line_x, line_y
+line_x, line_y = get_declist(pop3, city_position)
+print(city_position,'\n\n',line_x,'\n\n',line_y)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[[0.70186715 0.43688989]
+<pre><code>[[0.70186715 0.43688989]
  [0.62532511 0.28370721]
  [0.6217245  0.98702785]
  [0.52359284 0.97002836]] 
@@ -354,134 +355,134 @@ if __name__ == '__main__':
  [[0.28370721 0.97002836 0.98702785 0.43688989]
  [0.28370721 0.98702785 0.97002836 0.43688989]
  [0.43688989 0.28370721 0.97002836 0.98702785]]
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">city_position</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">city_position</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">'k'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">line_x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">line_y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s">'r-'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div></div>
+<pre><code class="language-python">plt.scatter(city_position[:, 0].T, city_position[:, 1].T, s=100, c='k')
+plt.plot(line_x[0].T, line_y[0].T, 'r-')
+plt.show()
+</code></pre>
 
 <p><img src="http://wx2.sinaimg.cn/mw690/8db2c8cbly1fr7q482ubzj20af070gll.jpg" alt="png" /></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">city_position</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">city_position</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">'k'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">line_x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">line_y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s">'r-'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div></div>
+<pre><code class="language-python">plt.scatter(city_position[:, 0].T, city_position[:, 1].T, s=100, c='k')
+plt.plot(line_x[1].T, line_y[1].T, 'r-')
+plt.show()
+</code></pre>
 
 <p><img src="http://wx3.sinaimg.cn/mw690/8db2c8cbly1fr7q49j1qpj20af0700sp.jpg" alt="png" /></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">city_position</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">city_position</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">'k'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">line_x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">line_y</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s">'r-'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div></div>
+<pre><code class="language-python">plt.scatter(city_position[:, 0].T, city_position[:, 1].T, s=100, c='k')
+plt.plot(line_x[2].T, line_y[2].T, 'r-')
+plt.show()
+</code></pre>
 
 <p><img src="http://wx1.sinaimg.cn/mw690/8db2c8cbly1fr7q4at9n2j20af070mx4.jpg" alt="png" /></p>
 
 <h2 id="get_fitness">get_fitness</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 以前</span>
-<span class="c">## y = np.sin(10*x)*x + np.cos(2*x)*x</span>
-<span class="c">## y_positive = y + 1e-3 - np.min(y)</span>
+<pre><code class="language-python"># 以前
+## y = np.sin(10*x)*x + np.cos(2*x)*x
+## y_positive = y + 1e-3 - np.min(y)
 
-<span class="c">## y = (self.pop == self.target_ascii).sum(axis=1)</span>
-</code></pre></div></div>
+## y = (self.pop == self.target_ascii).sum(axis=1)
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 现在</span>
+<pre><code class="language-python"># 现在
 
-<span class="n">total_distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">line_x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">line_x</span><span class="p">,</span> <span class="n">line_y</span><span class="p">)):</span>
-    <span class="n">total_distance</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">xs</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">ys</span><span class="p">))))</span>
-<span class="n">fitness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">chrosize</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">total_distance</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">fitness</span><span class="p">,</span> <span class="n">total_distance</span><span class="p">)</span>
-</code></pre></div></div>
+total_distance = np.empty((line_x.shape[0],), dtype=np.float64)
+for i, (xs, ys) in enumerate(zip(line_x, line_y)):
+    total_distance[i] = np.sum(np.sqrt(np.square(np.diff(xs)) + np.square(np.diff(ys))))
+fitness = np.exp(chrosize * 2 / total_distance)
+print(fitness, total_distance)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ 375.68292479  350.88915329 3996.29945112] [1.34935797 1.36507814 0.96465457]
-</code></pre></div></div>
+<pre><code>[ 375.68292479  350.88915329 3996.29945112] [1.34935797 1.36507814 0.96465457]
+</code></pre>
 
 <h2 id="封装ga">封装GA</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">GA</span><span class="p">():</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">popsize</span><span class="p">,</span><span class="n">chrosize</span><span class="p">,</span><span class="n">CROSS_RATE</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span><span class="n">MUTATE_RATE</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span><span class="n">N_GENERATIONS</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">popsize</span> <span class="o">=</span> <span class="n">popsize</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">chrosize</span> <span class="o">=</span> <span class="n">chrosize</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">CROSS_RATE</span> <span class="o">=</span> <span class="n">CROSS_RATE</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">MUTATE_RATE</span> <span class="o">=</span> <span class="n">MUTATE_RATE</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">N_GENERATIONS</span> <span class="o">=</span> <span class="n">N_GENERATIONS</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">chrosize</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">popsize</span><span class="p">)])</span>
+<pre><code class="language-python">class GA():
+    def __init__(self,popsize,chrosize,CROSS_RATE=0.1,MUTATE_RATE=0.02,N_GENERATIONS=500):
+        self.popsize = popsize
+        self.chrosize = chrosize
+        self.CROSS_RATE = CROSS_RATE
+        self.MUTATE_RATE = MUTATE_RATE
+        self.N_GENERATIONS = N_GENERATIONS
+        self.pop = np.vstack([np.random.permutation(chrosize) for _ in range(popsize)])
     
-    <span class="k">def</span> <span class="nf">get_declist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">city_position</span><span class="p">):</span>
-        <span class="n">line_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pop</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-        <span class="n">line_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pop</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pop</span><span class="p">):</span>
-            <span class="n">city_coord</span> <span class="o">=</span> <span class="n">city_position</span><span class="p">[</span><span class="n">d</span><span class="p">]</span>
-            <span class="n">line_x</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">city_coord</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
-            <span class="n">line_y</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">city_coord</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">line_x</span><span class="p">,</span> <span class="n">line_y</span>
+    def get_declist(self, city_position):
+        line_x = np.empty_like(self.pop, dtype=np.float64)
+        line_y = np.empty_like(self.pop, dtype=np.float64)
+        for i, d in enumerate(self.pop):
+            city_coord = city_position[d]
+            line_x[i, :] = city_coord[:, 0]
+            line_y[i, :] = city_coord[:, 1]
+        return line_x, line_y
     
-    <span class="k">def</span> <span class="nf">get_fitness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line_x</span><span class="p">,</span> <span class="n">line_y</span><span class="p">):</span>
-        <span class="n">total_distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">line_x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">line_x</span><span class="p">,</span> <span class="n">line_y</span><span class="p">)):</span>
-            <span class="n">total_distance</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">xs</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">ys</span><span class="p">))))</span>
-        <span class="n">fitness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chrosize</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">total_distance</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">fitness</span><span class="p">,</span> <span class="n">total_distance</span>
+    def get_fitness(self, line_x, line_y):
+        total_distance = np.empty((line_x.shape[0],), dtype=np.float64)
+        for i, (xs, ys) in enumerate(zip(line_x, line_y)):
+            total_distance[i] = np.sum(np.sqrt(np.square(np.diff(xs)) + np.square(np.diff(ys))))
+        fitness = np.exp(self.chrosize * 2 / total_distance)
+        return fitness, total_distance
      
-    <span class="k">def</span> <span class="nf">selection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fitness</span><span class="p">):</span>
-        <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">popsize</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">popsize</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">fitness</span> <span class="o">/</span> <span class="n">fitness</span><span class="o">.</span><span class="nb">sum</span><span class="p">())</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pop</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>   
+    def selection(self, fitness):
+        idx = np.random.choice(np.arange(self.popsize), size=self.popsize, replace=True, p=fitness / fitness.sum())
+        return self.pop[idx]   
         
-    <span class="k">def</span> <span class="nf">crossover</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">pop</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">CROSS_RATE</span><span class="p">:</span>
-            <span class="n">i_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">popsize</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>                        <span class="c"># select another individual from pop</span>
-            <span class="n">cross_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">chrosize</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">bool</span><span class="p">)</span>   <span class="c"># choose crossover points</span>
-            <span class="n">keep_city</span> <span class="o">=</span> <span class="n">parent</span><span class="p">[</span><span class="o">~</span><span class="n">cross_points</span><span class="p">]</span>                                       <span class="c"># find the city number</span>
-            <span class="n">swap_city</span> <span class="o">=</span> <span class="n">pop</span><span class="p">[</span><span class="n">i_</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">pop</span><span class="p">[</span><span class="n">i_</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">keep_city</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="bp">True</span><span class="p">)]</span>
-            <span class="n">parent</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">keep_city</span><span class="p">,</span> <span class="n">swap_city</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">parent</span>
+    def crossover(self, parent, pop):
+        if np.random.rand() &lt; self.CROSS_RATE:
+            i_ = np.random.randint(0, self.popsize, size=1)                        # select another individual from pop
+            cross_points = np.random.randint(0, 2, self.chrosize).astype(np.bool)   # choose crossover points
+            keep_city = parent[~cross_points]                                       # find the city number
+            swap_city = pop[i_, np.isin(pop[i_].ravel(), keep_city, invert=True)]
+            parent[:] = np.concatenate((keep_city, swap_city))
+        return parent
 
-    <span class="k">def</span> <span class="nf">mutation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chrosize</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">MUTATE_RATE</span><span class="p">:</span>
-                <span class="n">swap_point</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">chrosize</span><span class="p">)</span>
-                <span class="n">swapA</span><span class="p">,</span> <span class="n">swapB</span> <span class="o">=</span> <span class="n">child</span><span class="p">[</span><span class="n">point</span><span class="p">],</span> <span class="n">child</span><span class="p">[</span><span class="n">swap_point</span><span class="p">]</span>
-                <span class="n">child</span><span class="p">[</span><span class="n">point</span><span class="p">],</span> <span class="n">child</span><span class="p">[</span><span class="n">swap_point</span><span class="p">]</span> <span class="o">=</span> <span class="n">swapB</span><span class="p">,</span> <span class="n">swapA</span>
-        <span class="k">return</span> <span class="n">child</span>
+    def mutation(self, child):
+        for point in range(self.chrosize):
+            if np.random.rand() &lt; self.MUTATE_RATE:
+                swap_point = np.random.randint(0, self.chrosize)
+                swapA, swapB = child[point], child[swap_point]
+                child[point], child[swap_point] = swapB, swapA
+        return child
 
-    <span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fitness</span><span class="p">):</span>
-        <span class="n">pop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">selection</span><span class="p">(</span><span class="n">fitness</span><span class="p">)</span>
-        <span class="n">pop_copy</span> <span class="o">=</span> <span class="n">pop</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">parent</span> <span class="ow">in</span> <span class="n">pop</span><span class="p">:</span>  <span class="c"># for every parent</span>
-            <span class="n">child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crossover</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">pop_copy</span><span class="p">)</span>
-            <span class="n">child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mutation</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
-            <span class="n">parent</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">child</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pop</span> <span class="o">=</span> <span class="n">pop</span>
+    def evolve(self, fitness):
+        pop = self.selection(fitness)
+        pop_copy = pop.copy()
+        for parent in pop:  # for every parent
+            child = self.crossover(parent, pop_copy)
+            child = self.mutation(child)
+            parent[:] = child
+        self.pop = pop
 
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">popsize</span> <span class="o">=</span> <span class="mi">500</span>
-<span class="n">chrosize</span> <span class="o">=</span> <span class="mi">20</span> <span class="c">#20个城市</span>
-<span class="n">city_position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">chrosize</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<pre><code class="language-python">popsize = 500
+chrosize = 20 #20个城市
+city_position = np.random.rand(chrosize, 2)
 
-<span class="n">ga</span> <span class="o">=</span> <span class="n">GA</span><span class="p">(</span><span class="n">popsize</span><span class="p">,</span><span class="n">chrosize</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">generation</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ga</span><span class="o">.</span><span class="n">N_GENERATIONS</span><span class="p">):</span>
-    <span class="n">line_x</span><span class="p">,</span> <span class="n">line_y</span> <span class="o">=</span> <span class="n">ga</span><span class="o">.</span><span class="n">get_declist</span><span class="p">(</span><span class="n">city_position</span><span class="p">)</span>
-    <span class="n">fitness</span><span class="p">,</span> <span class="n">total_distance</span> <span class="o">=</span> <span class="n">ga</span><span class="o">.</span><span class="n">get_fitness</span><span class="p">(</span><span class="n">line_x</span><span class="p">,</span> <span class="n">line_y</span><span class="p">)</span>
-    <span class="n">ga</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">fitness</span><span class="p">)</span>
-    <span class="n">best_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">fitness</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'Gen:'</span><span class="p">,</span> <span class="n">generation</span><span class="p">,</span> <span class="s">'| best fit: </span><span class="si">%.2</span><span class="s">f'</span> <span class="o">%</span> <span class="n">fitness</span><span class="p">[</span><span class="n">best_idx</span><span class="p">],</span> <span class="s">'| distance: </span><span class="si">%.2</span><span class="s">f'</span> <span class="o">%</span> <span class="n">total_distance</span><span class="p">[</span><span class="n">best_idx</span><span class="p">])</span>
+ga = GA(popsize,chrosize)
+for generation in range(ga.N_GENERATIONS):
+    line_x, line_y = ga.get_declist(city_position)
+    fitness, total_distance = ga.get_fitness(line_x, line_y)
+    ga.evolve(fitness)
+    best_idx = np.argmax(fitness)
+    print('Gen:', generation, '| best fit: %.2f' % fitness[best_idx], '| distance: %.2f' % total_distance[best_idx])
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">cla</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">city_position</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">city_position</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">'k'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">line_x</span><span class="p">[</span><span class="n">best_idx</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">line_y</span><span class="p">[</span><span class="n">best_idx</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s">'r-'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="s">"Total distance=</span><span class="si">%.2</span><span class="s">f"</span> <span class="o">%</span> <span class="n">total_distance</span><span class="p">[</span><span class="n">best_idx</span><span class="p">],</span> <span class="n">fontdict</span><span class="o">=</span><span class="p">{</span><span class="s">'size'</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">'color'</span><span class="p">:</span> <span class="s">'red'</span><span class="p">})</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">((</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">((</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">pause</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+    plt.cla()
+    plt.scatter(city_position[:, 0].T, city_position[:, 1].T, s=100, c='k')
+    plt.plot(line_x[best_idx].T, line_y[best_idx].T, 'r-')
+    plt.text(-0.05, -0.05, "Total distance=%.2f" % total_distance[best_idx], fontdict={'size': 20, 'color': 'red'})
+    plt.xlim((-0.1, 1.1))
+    plt.ylim((-0.1, 1.1))
+    plt.pause(0.01)
 
-<span class="n">plt</span><span class="o">.</span><span class="n">ioff</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div></div>
+plt.ioff()
+plt.show()
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Gen: 0 | best fit: 386.44 | distance: 6.71
+<pre><code>Gen: 0 | best fit: 386.44 | distance: 6.71
 Gen: 1 | best fit: 646.06 | distance: 6.18
 Gen: 2 | best fit: 646.06 | distance: 6.18
 Gen: 3 | best fit: 768.93 | distance: 6.02
@@ -505,7 +506,7 @@ Gen: 496 | best fit: 76410.32 | distance: 3.56
 Gen: 497 | best fit: 76410.32 | distance: 3.56
 Gen: 498 | best fit: 76410.32 | distance: 3.56
 Gen: 499 | best fit: 76410.32 | distance: 3.56
-</code></pre></div></div>
+</code></pre>
 
 <p><img src="http://wx1.sinaimg.cn/mw690/8db2c8cbly1fr7q4c3v10j20af070t8u.jpg" alt="png" /></p>
 

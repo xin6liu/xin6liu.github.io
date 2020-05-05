@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -282,24 +283,24 @@ y随x连续变化。</p>
 
 <p>要让机器 “学习”，一般需要：</p>
 <ol>
-  <li>用来解决问题的模型 <code class="highlighter-rouge">model</code></li>
-  <li>学习数据（或者说训练数据）<code class="highlighter-rouge">data</code></li>
-  <li>让模型model通过数据data学会解决特定问题的学习算法 <code class="highlighter-rouge">learn</code></li>
+  <li>用来解决问题的模型 <code>model</code></li>
+  <li>学习数据（或者说训练数据）<code>data</code></li>
+  <li>让模型model通过数据data学会解决特定问题的学习算法 <code>learn</code></li>
 </ol>
 
 <p><img src="https://dn-anything-about-doc.qbox.me/document-uid49570labid2864timestamp1493273626507.png" alt="" /></p>
 
 <p>神经元间相连的线上有该条连接线的权重w, 神经网络工作时，将前一层网络中的每个神经元的值，与连接线上的权重w相乘，传递给下一层网络中的神经元。同时，每个神经元还会接收一个偏移量(bias)。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>w11*a1+w12*a2+w13*a3 + bias1=b1
+<pre><code>w11*a1+w12*a2+w13*a3 + bias1=b1
 w21*a1+w22*a2+w23*a3 + bias2=b2
-</code></pre></div></div>
+</code></pre>
 
 <p>对于网络层2中的神经元b，它的值在传给输出之前, 会先经过一次非线性运算g(图中没有画出来)</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>g(b1)=Y1  
+<pre><code>g(b1)=Y1  
 g(b2)=Y2
-</code></pre></div></div>
+</code></pre>
 
 <h2 id="非线性激活函数">非线性激活函数</h2>
 
@@ -318,7 +319,7 @@ g(b2)=Y2
     <p>如果没有非线性运算部分，那么由于矩阵乘法的结合性, 多个线性运算层直接相连的效果实际上相当于只进行了一次线性运算，多层次的网络结构失去了意义。</p>
   </li>
   <li>
-    <p>例如，分类算法：<code class="highlighter-rouge">w11*a1+w12*a2 + bias1=b1</code> 对于输入a, 当最终得到的b1大于 0 时，我们认为a属于b1所代表的的类别，否则不属于b1所代表的的类别。不同类别之间的分界线不是直线而是曲线，此时无论如何也无法用线性分类器去准确的进行分类。 而非线性部分的引入，在一定程度上可以使原本的直线变成曲线。</p>
+    <p>例如，分类算法：<code>w11*a1+w12*a2 + bias1=b1</code> 对于输入a, 当最终得到的b1大于 0 时，我们认为a属于b1所代表的的类别，否则不属于b1所代表的的类别。不同类别之间的分界线不是直线而是曲线，此时无论如何也无法用线性分类器去准确的进行分类。 而非线性部分的引入，在一定程度上可以使原本的直线变成曲线。</p>
   </li>
 </ol>
 
@@ -330,7 +331,7 @@ g(b2)=Y2
 
 <script type="math/tex; mode=display">J(\theta) = [h(\theta, X) - Y]^2</script>
 
-<p>其实，这里<code class="highlighter-rouge">学习算法learn</code>按照某种策略，通过不断的更新参数值来使损失函数$J(\theta,X,Y)$的值减小, theta是不断变化的量, 也就是自变量，而X,Y可以看做常量。</p>
+<p>其实，这里<code>学习算法learn</code>按照某种策略，通过不断的更新参数值来使损失函数$J(\theta,X,Y)$的值减小, theta是不断变化的量, 也就是自变量，而X,Y可以看做常量。</p>
 
 <h2 id="梯度下降算法">梯度下降算法：</h2>
 

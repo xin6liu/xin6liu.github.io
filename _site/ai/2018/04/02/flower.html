@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -347,91 +348,91 @@
 
 <p>你可以通过著名的 UCI 机器学习数据集网站下载<a href="https://archive.ics.uci.edu/ml/datasets/iris">该数据集</a>。本实验中，为了更加便捷地实验。我们直接实验 scikit-learn 提供的方法导入该数据集即可。
 <strong>☞ 示例代码：</strong></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># -*-  coding: utf-8 -*-</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span> <span class="c"># 导入方法类</span>
+<pre><code class="language-python"># -*-  coding: utf-8 -*-
+from sklearn import datasets # 导入方法类
 
-<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span> <span class="c"># 加载 iris 数据集</span>
-<span class="n">iris_feature</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span> <span class="c"># 特征数据</span>
-<span class="n">iris_target</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span> <span class="c"># 分类数据</span>
+iris = datasets.load_iris() # 加载 iris 数据集
+iris_feature = iris.data # 特征数据
+iris_target = iris.target # 分类数据
 
-<span class="n">iris_target</span> <span class="c"># 查看 iris_target</span>
-</code></pre></div></div>
+iris_target # 查看 iris_target
+</code></pre>
 <p><strong>☞ 动手练习：</strong>
-接下来，你可以直接通过 <code class="highlighter-rouge">print(iris_target)</code> 查看一下花的分类数据。这里，scikit-learn 已经将花的原名称进行了转换，其中 0, 1, 2 分别代表 Iris Setosa, Iris Versicolour 和 Iris Virginica。</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+接下来，你可以直接通过 <code>print(iris_target)</code> 查看一下花的分类数据。这里，scikit-learn 已经将花的原名称进行了转换，其中 0, 1, 2 分别代表 Iris Setosa, Iris Versicolour 和 Iris Virginica。</p>
+<pre><code>array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
        0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
        2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
        2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2])
-</code></pre></div></div>
+</code></pre>
 <p>你会发现，这些数据是按照鸢尾花类别的顺序排列的。所以，如果我们将其直接划分为训练集和数据集的话，就会造成数据的分布不均。详细来讲，直接划分容易造成某种类型的花在训练集中一次都未出现，训练的模型就永远不可能预测出这种花来。你可能会想到，我们将这些数据大乱后再划分训练集和数据集。当然，更方便地，scikit-learn 为我们提供了训练集和数据集的方法。
 <strong>☞ 示例代码：</strong></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<pre><code class="language-python">from sklearn.model_selection import train_test_split
 
-<span class="n">feature_train</span><span class="p">,</span> <span class="n">feature_test</span><span class="p">,</span> <span class="n">target_train</span><span class="p">,</span> <span class="n">target_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">iris_feature</span><span class="p">,</span> <span class="n">iris_target</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+feature_train, feature_test, target_train, target_test = train_test_split(iris_feature, iris_target, test_size=0.33, random_state=42)
 
-<span class="n">target_train</span>
-</code></pre></div></div>
+target_train
+</code></pre>
 <p><strong>☞ 动手练习：</strong>
-其中，<code class="highlighter-rouge">feature_train</code>, <code class="highlighter-rouge">feature_test</code>, <code class="highlighter-rouge">target_train</code>, <code class="highlighter-rouge">target_test</code> 分别代表训练集特征、测试集特征、训练集目标值、验证集特征。<code class="highlighter-rouge">test_size</code> 参数代表划分到测试集数据占全部数据的百分比，你也可以用 <code class="highlighter-rouge">train_size</code> 来指定训练集所占全部数据的百分比。一般情况下，我们会将整个训练集划分为 70% 训练集和 30% 测试集。最后的 <code class="highlighter-rouge">random_state</code> 参数表示乱序程度。</p>
+其中，<code>feature_train</code>, <code>feature_test</code>, <code>target_train</code>, <code>target_test</code> 分别代表训练集特征、测试集特征、训练集目标值、验证集特征。<code>test_size</code> 参数代表划分到测试集数据占全部数据的百分比，你也可以用 <code>train_size</code> 来指定训练集所占全部数据的百分比。一般情况下，我们会将整个训练集划分为 70% 训练集和 30% 测试集。最后的 <code>random_state</code> 参数表示乱序程度。</p>
 
-<p>数据集划分之后，我们可以再次执行 <code class="highlighter-rouge">print target_train</code> 看一下结果。</p>
+<p>数据集划分之后，我们可以再次执行 <code>print target_train</code> 看一下结果。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([1, 2, 1, 0, 2, 1, 0, 0, 0, 1, 2, 0, 0, 0, 1, 0, 1, 2, 0, 1, 2, 0,
+<pre><code>array([1, 2, 1, 0, 2, 1, 0, 0, 0, 1, 2, 0, 0, 0, 1, 0, 1, 2, 0, 1, 2, 0,
        2, 2, 1, 1, 2, 1, 0, 1, 2, 0, 0, 1, 1, 0, 2, 0, 0, 1, 1, 2, 1, 2,
        2, 1, 0, 0, 2, 2, 0, 0, 0, 1, 2, 0, 2, 2, 0, 1, 1, 2, 1, 2, 0, 2,
        1, 2, 1, 1, 1, 0, 1, 1, 0, 1, 2, 2, 0, 1, 2, 2, 0, 2, 0, 1, 2, 2,
        1, 2, 1, 1, 2, 2, 0, 1, 2, 0, 1, 2])
-</code></pre></div></div>
+</code></pre>
 <p>现在，你会发现花的种类已经变成了乱序状态，并且只包含有整个训练集的 70% 数据。</p>
 
 <h3 id="32-模型训练及预测">3.2 模型训练及预测</h3>
 
 <p>划分完训练集和测试集之后，我们就可以开始预测了。首先是从 scikit-learn 中导入决策树分类器。然后实验 fit 方法和 predict 方法对模型进行训练和预测。
 <strong>☞ 示例代码：</strong></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># -*-  coding: utf-8 -*-</span>
-<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<pre><code class="language-python"># -*-  coding: utf-8 -*-
+from sklearn.tree import DecisionTreeClassifier
 
-<span class="n">dt_model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span> <span class="c"># 所以参数均置为默认状态</span>
-<span class="n">dt_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">feature_train</span><span class="p">,</span><span class="n">target_train</span><span class="p">)</span> <span class="c"># 使用训练集训练模型</span>
-<span class="n">predict_results</span> <span class="o">=</span> <span class="n">dt_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">feature_test</span><span class="p">)</span> <span class="c"># 使用模型对测试集进行预测</span>
-</code></pre></div></div>
+dt_model = DecisionTreeClassifier() # 所以参数均置为默认状态
+dt_model.fit(feature_train,target_train) # 使用训练集训练模型
+predict_results = dt_model.predict(feature_test) # 使用模型对测试集进行预测
+</code></pre>
 <p><strong>☞ 动手练习：</strong>
-<code class="highlighter-rouge">DecisionTreeClassifier()</code> 模型方法中也包含非常多的参数值。例如：</p>
+<code>DecisionTreeClassifier()</code> 模型方法中也包含非常多的参数值。例如：</p>
 
 <ul>
-  <li><code class="highlighter-rouge">criterion = gini/entropy</code> 可以用来选择用基尼指数或者熵来做损失函数。</li>
-  <li><code class="highlighter-rouge">splitter = best/random</code> 用来确定每个节点的分裂策略。支持 “最佳” 或者“随机”。</li>
-  <li><code class="highlighter-rouge">max_depth = int</code> 用来控制决策树的最大深度，防止模型出现过拟合。</li>
-  <li><code class="highlighter-rouge">min_samples_leaf = int</code> 用来设置叶节点上的最少样本数量，用于对树进行修剪。</li>
+  <li><code>criterion = gini/entropy</code> 可以用来选择用基尼指数或者熵来做损失函数。</li>
+  <li><code>splitter = best/random</code> 用来确定每个节点的分裂策略。支持 “最佳” 或者“随机”。</li>
+  <li><code>max_depth = int</code> 用来控制决策树的最大深度，防止模型出现过拟合。</li>
+  <li><code>min_samples_leaf = int</code> 用来设置叶节点上的最少样本数量，用于对树进行修剪。</li>
 </ul>
 
 <p>我们可以将预测结果和测试集的真实值分别输出，对照比较。
 <strong>☞ 示例代码：</strong></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">'predict_results:'</span><span class="p">,</span> <span class="n">predict_results</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">'target_test:'</span><span class="p">,</span> <span class="n">target_test</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">print('predict_results:', predict_results)
+print('target_test:', target_test)
+</code></pre>
 <p><strong>☞ 动手练习：</strong>
 <strong>☞ 参考结果：</strong></p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>predict_results: [1 0 2 1 1 0 1 2 1 1 2 0 0 0 0 1 2 1 1 2 0 2 0 2 2 2 2 2 0 0 0 0 1 0 0 2 1
+<pre><code>predict_results: [1 0 2 1 1 0 1 2 1 1 2 0 0 0 0 1 2 1 1 2 0 2 0 2 2 2 2 2 0 0 0 0 1 0 0 2 1
  0 0 0 2 1 1 0 0 1 1 2 1 2]
 target_test: [1 0 2 1 1 0 1 2 1 1 2 0 0 0 0 1 2 1 1 2 0 2 0 2 2 2 2 2 0 0 0 0 1 0 0 2 1
  0 0 0 2 1 1 0 0 1 2 2 1 2]
-</code></pre></div></div>
+</code></pre>
 <p>当然，我们可以通过 scikit-learn 中提供的评估计算方法查看预测结果的准确度。
 <strong>☞ 示例代码：</strong></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<pre><code class="language-python">from sklearn.metrics import accuracy_score
 
-<span class="k">print</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">predict_results</span><span class="p">,</span> <span class="n">target_test</span><span class="p">))</span>
-</code></pre></div></div>
+print(accuracy_score(predict_results, target_test))
+</code></pre>
 <p><strong>☞ 动手练习：</strong>
-其实，在 scikit-learn 中的分类决策树模型就带有 score 方法，只是传入的参数和 <code class="highlighter-rouge">accuracy_score()</code> 不太一致。
+其实，在 scikit-learn 中的分类决策树模型就带有 score 方法，只是传入的参数和 <code>accuracy_score()</code> 不太一致。
 <strong>☞ 示例代码：</strong></p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scores</span> <span class="o">=</span> <span class="n">dt_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">feature_test</span><span class="p">,</span> <span class="n">target_test</span><span class="p">)</span>
-<span class="n">scores</span>
-</code></pre></div></div>
+<pre><code class="language-python">scores = dt_model.score(feature_test, target_test)
+scores
+</code></pre>
 <p><strong>☞ 动手练习：</strong>
 你可以看出两种准确度方法输入参数的区别。一般情况下，模型预测的准确度会和多方面因素相关。首先是数据集质量，本实验中，我们使用的数据集非常规范，几乎不包含噪声，所以预测准确度非常高。其次，模型的参数也会对预测结果的准确度造成影响。</p>
 
@@ -442,7 +443,7 @@ target_test: [1 0 2 1 1 0 1 2 1 1 2 0 0 0 0 1 2 1 1 2 0 2 0 2 2 2 2 2 0 0 0 0 1 
 <h2 id="七课后习题">七、课后习题</h2>
 
 <ol>
-  <li>尝试通过修改 <code class="highlighter-rouge">DecisionTreeClassifier()</code> 方法里面的值，查看模型参数对实验结果带来的影响。</li>
+  <li>尝试通过修改 <code>DecisionTreeClassifier()</code> 方法里面的值，查看模型参数对实验结果带来的影响。</li>
   <li>尝试载入 scikit-learn 中提供的另一个著名的 digits 数据集，同样实验决策树分类器实现手写字体识别实验。</li>
 </ol>
 

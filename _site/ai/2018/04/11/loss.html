@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -274,15 +275,15 @@
 
 <p>TensorFlow中没有直接给出MSE函数，但是因为比较简单，可以自己写：</p>
 
-<p><code class="highlighter-rouge">MSE = tf.reduce_mean(tf.square(pred-labels))</code></p>
+<p><code>MSE = tf.reduce_mean(tf.square(pred-labels))</code></p>
 
 <p>softmax交叉熵有现成的：</p>
 
-<p><code class="highlighter-rouge">tf.nn.softmax_cross_entropy_with_logits(pred, labels)</code></p>
+<p><code>tf.nn.softmax_cross_entropy_with_logits(pred, labels)</code></p>
 
 <p>当然也可以自己写，当得到pred = tf.nn.softmax([logits1, logits2, logits3]) 之后：</p>
 
-<p><code class="highlighter-rouge">-tf.reduce_sum(labels * tf.log(pred), 1)</code></p>
+<p><code>-tf.reduce_sum(labels * tf.log(pred), 1)</code></p>
 
 </p>
 	</div>

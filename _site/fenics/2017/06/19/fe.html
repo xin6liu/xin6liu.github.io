@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -264,12 +265,12 @@
   <li>安装Docker</li>
   <li>安装Docker Quickstart Terminal</li>
   <li>在docker is running 的情况下，启动Docker QuickStart Terminal</li>
-  <li>在docker quick start terminal 里输入 <code class="highlighter-rouge">docker-machine rm default</code> （以后我用前面加$表示在terminal里输入的命令）</li>
-  <li><code class="highlighter-rouge">$ docker run hello-world</code> （测试docker是否可以运行）</li>
-  <li><code class="highlighter-rouge">$ docker pull quay.io/fenicsproject/stable:latest</code> (下载fenics)</li>
-  <li><code class="highlighter-rouge">$ docker run -ti quay.io/fenicsproject/stable:latest</code>(启动fenics)</li>
-  <li>步骤7的局限就是只能运行container里面的demo文件，所以可以跳过步骤7，运行：<code class="highlighter-rouge">$ docker run -ti -v $(pwd):/home/fenics/shared quay.io/fenicsproject/stable</code> （如果已经运行步骤7，可以关掉terminal，直接运行8，因为之前都是下载的步骤）可以看出8比7多了的命令为<code class="highlighter-rouge">-v $(pwd):/home/fenics/shared</code> 其中<code class="highlighter-rouge">$(pwd)</code>是Pathname of the current Working Directory, 如果退出docker环境，在terminal输入<code class="highlighter-rouge">$ pwd</code>，下面就会出现$(pwd)所代表的路径，我的是/Users/liuxin，其中liuxin是我的用户名，也就是用户根目录。所以进行8之前可以先在根目录建立一个文件夹叫fenics, 然后输入<code class="highlighter-rouge">$ cd fenics</code>，进入那个文件后再运行8的命令，此时的$(pwd)就代表/Users/liuxin/fenics。然后在fenics里面放入你的python文件就可以访问了。</li>
-  <li>将你写的一个python文件，例如test.py放入刚才的fenics文件夹里，再在terminal里输入：<code class="highlighter-rouge">$ cd $HOME/shared</code>和<code class="highlighter-rouge">$ python test.py</code></li>
+  <li>在docker quick start terminal 里输入 <code>docker-machine rm default</code> （以后我用前面加$表示在terminal里输入的命令）</li>
+  <li><code>$ docker run hello-world</code> （测试docker是否可以运行）</li>
+  <li><code>$ docker pull quay.io/fenicsproject/stable:latest</code> (下载fenics)</li>
+  <li><code>$ docker run -ti quay.io/fenicsproject/stable:latest</code>(启动fenics)</li>
+  <li>步骤7的局限就是只能运行container里面的demo文件，所以可以跳过步骤7，运行：<code>$ docker run -ti -v $(pwd):/home/fenics/shared quay.io/fenicsproject/stable</code> （如果已经运行步骤7，可以关掉terminal，直接运行8，因为之前都是下载的步骤）可以看出8比7多了的命令为<code>-v $(pwd):/home/fenics/shared</code> 其中<code>$(pwd)</code>是Pathname of the current Working Directory, 如果退出docker环境，在terminal输入<code>$ pwd</code>，下面就会出现$(pwd)所代表的路径，我的是/Users/liuxin，其中liuxin是我的用户名，也就是用户根目录。所以进行8之前可以先在根目录建立一个文件夹叫fenics, 然后输入<code>$ cd fenics</code>，进入那个文件后再运行8的命令，此时的$(pwd)就代表/Users/liuxin/fenics。然后在fenics里面放入你的python文件就可以访问了。</li>
+  <li>将你写的一个python文件，例如test.py放入刚才的fenics文件夹里，再在terminal里输入：<code>$ cd $HOME/shared</code>和<code>$ python test.py</code></li>
 </ol>
 
 <p><img src="http://wx3.sinaimg.cn/mw690/8db2c8cbgy1fhaqlhm8jpj20lf0jmjv1.jpg" alt="" />
@@ -282,22 +283,22 @@
 <img src="http://wx1.sinaimg.cn/mw690/8db2c8cbgy1fhaqlk9tfpj207502baa6.jpg" alt="" /></p>
 
 <h3 id="给你的container命名">给你的container命名：￼</h3>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -ti -v $(pwd):/home/fenics/shared --name fenics-container quay.io/fenicsproject/stable 
-</code></pre></div></div>
+<pre><code>docker run -ti -v $(pwd):/home/fenics/shared --name fenics-container quay.io/fenicsproject/stable 
+</code></pre>
 
-<p>相较于步骤8，这里多了：<code class="highlighter-rouge">--name fenics-container</code> ，也就是把你的container命名为fenics-container了。</p>
+<p>相较于步骤8，这里多了：<code>--name fenics-container</code> ，也就是把你的container命名为fenics-container了。</p>
 
-<p>输入<code class="highlighter-rouge">$ exit</code>退出这个container</p>
+<p>输入<code>$ exit</code>退出这个container</p>
 
-<p>输入<code class="highlighter-rouge">docker ps -a</code>查看container列表：
+<p>输入<code>docker ps -a</code>查看container列表：
 <img src="http://wx2.sinaimg.cn/mw690/8db2c8cbgy1fhaqllmbr9j20xq04rabp.jpg" alt="" /></p>
 
 <h3 id="运行-jupyterntebook">运行 jupyterntebook</h3>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run --name notebook -w /home/fenics -v $(pwd):/home/fenics/shared -d -p $(docker-machine ip $(docker-machine active)):8888:8888 quay.io/fenicsproject/stable 'jupyter-notebook --ip=0.0.0.0'
-</code></pre></div></div>
+<pre><code>docker run --name notebook -w /home/fenics -v $(pwd):/home/fenics/shared -d -p $(docker-machine ip $(docker-machine active)):8888:8888 quay.io/fenicsproject/stable 'jupyter-notebook --ip=0.0.0.0'
+</code></pre>
 
 <p>然后在terminal上查看你的ip:
-<code class="highlighter-rouge">$ docker-machine ip $(docker-machine active)</code>。
+<code>$ docker-machine ip $(docker-machine active)</code>。
 例如我的是：192.168.99.100</p>
 
 <p>之后在浏览器中打开：http://此处填你的ip:8888，例如我的是：http://192.168.99.100:8888</p>
@@ -308,35 +309,35 @@
 
 <p>先把刚才的container删掉：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker stop notebook
+<pre><code>$ docker stop notebook
 $ docker rm notebook
-</code></pre></div></div>
+</code></pre>
 
 <p>创建一个密码：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ jupyter notebook --generate-config
+<pre><code>$ jupyter notebook --generate-config
 $ jupyter notebook password
-</code></pre></div></div>
+</code></pre>
 
-<p>这时会出现<code class="highlighter-rouge">Enter password: </code>，输入你想设置的密码如123，但这里屏幕是不显示你在打字的，不要管他，输完点回车即可。</p>
+<p>这时会出现<code>Enter password: </code>，输入你想设置的密码如123，但这里屏幕是不显示你在打字的，不要管他，输完点回车即可。</p>
 
-<p>这时查看你的jupyter文件夹，会多出一个<code class="highlighter-rouge">jupyter\_notebook\_config.json</code>文件，用文字编辑器打开它，我的里面写的是：</p>
+<p>这时查看你的jupyter文件夹，会多出一个<code>jupyter\_notebook\_config.json</code>文件，用文字编辑器打开它，我的里面写的是：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+<pre><code>{
   "NotebookApp": {
     "password": "sha1:da81c88402f0:55a9107941d889a2f8b29d1297c04351920475d6"
   }
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>复制的你密码，这里也就是sha1:da81c88402f0:55a9107941d889a2f8b29d1297c04351920475d6</p>
 
 <p>运行</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker run --name notebook -w /home/fenics -v $(pwd):/home/fenics/shared -d -p $(docker-machine ip $(docker-machine active)):8888:8888 quay.io/fenicsproject/stable 'jupyter-notebook --ip=0.0.0.0 --NotebookApp.password='sha1:da81c88402f0:55a9107941d889a2f8b29d1297c04351920475d6''
-</code></pre></div></div>
+<pre><code>$ docker run --name notebook -w /home/fenics -v $(pwd):/home/fenics/shared -d -p $(docker-machine ip $(docker-machine active)):8888:8888 quay.io/fenicsproject/stable 'jupyter-notebook --ip=0.0.0.0 --NotebookApp.password='sha1:da81c88402f0:55a9107941d889a2f8b29d1297c04351920475d6''
+</code></pre>
 
-<p>和上面那个步骤很相似，只不过尾部多了<code class="highlighter-rouge">--NotebookApp.password='sha1:da81c88402f0:55a9107941d889a2f8b29d1297c04351920475d6'</code>这个命令，这里的密码填你生成的密码。</p>
+<p>和上面那个步骤很相似，只不过尾部多了<code>--NotebookApp.password='sha1:da81c88402f0:55a9107941d889a2f8b29d1297c04351920475d6'</code>这个命令，这里的密码填你生成的密码。</p>
 
 <p>再在浏览器输入http://此处填你的ip:8888，在要求输密码的地方输入刚才的123.</p>
 
@@ -344,34 +345,34 @@ $ jupyter notebook password
 
 <p>讲道理一般把上面那个命令重新输一遍就行了，但是可能会出现以下状况：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The container name "/notebook" is already in use by container "9378f5...". You have to remove (or rename) that container to be able to reuse that name.
+<pre><code>The container name "/notebook" is already in use by container "9378f5...". You have to remove (or rename) that container to be able to reuse that name.
 No active host found
-</code></pre></div></div>
+</code></pre>
 
 <p>第一种情况是因为container的名字重复了，可以直接改一个名字notebook2啊之类的等等都行，或者是把之前的notebook删掉：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker stop notebook
+<pre><code>$ docker stop notebook
 $ docker rm notebook
 之后再run jupiter
 $ docker run --name notebook...
-</code></pre></div></div>
+</code></pre>
 
 <p>第二种情况是主机没有激活，采用以下方法：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ eval $(docker-machine env)
+<pre><code>$ eval $(docker-machine env)
 $ docker-machine ls
 $ docker-machine active
 之后再run jupiter
 $ docker run --name notebook...
-</code></pre></div></div>
+</code></pre>
 
 <h2 id="重点">重点：</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd fenics
+<pre><code>$ cd fenics
 $ docker run -ti -v $(pwd):/home/fenics/shared quay.io/fenicsproject/stable
 $ cd $HOME/shared
 $ python test.py
 $ docker run --name notebook -w /home/fenics -v $(pwd):/home/fenics/shared -d -p $(docker-machine ip $(docker-machine active)):8888:8888 quay.io/fenicsproject/stable 'jupyter-notebook --ip=0.0.0.0 --NotebookApp.password='sha1:da81c88402f0:55a9107941d889a2f8b29d1297c04351920475d6''
-</code></pre></div></div>
+</code></pre>
 
 </p>
 	</div>

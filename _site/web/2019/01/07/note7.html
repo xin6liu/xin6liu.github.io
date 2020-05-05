@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -268,64 +269,64 @@
 
 <h2 id="这是不加spring的mybatis-configxml">这是不加spring的<strong>mybatis-config.xml</strong>：</h2>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
-<span class="cp">&lt;!DOCTYPE configuration
+<pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span>
-<span class="nt">&lt;configuration&gt;</span>
-<span class="c">&lt;!-- properties --&gt;</span>
-    <span class="nt">&lt;properties</span> <span class="na">resource=</span><span class="s">"db.properties"</span><span class="nt">&gt;&lt;/properties&gt;</span>
-<span class="c">&lt;!-- environments --&gt;</span>
-    <span class="nt">&lt;environments</span> <span class="na">default=</span><span class="s">"development"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;environment</span> <span class="na">id=</span><span class="s">"development"</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;transactionManager</span> <span class="na">type=</span><span class="s">"JDBC"</span><span class="nt">/&gt;</span>
-            <span class="nt">&lt;dataSource</span> <span class="na">type=</span><span class="s">"POOLED"</span><span class="nt">&gt;</span>
-                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"driver"</span> <span class="na">value=</span><span class="s">"${driver}"</span><span class="nt">/&gt;</span>
-                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"url"</span> <span class="na">value=</span><span class="s">"${url}"</span><span class="nt">/&gt;</span>
-                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"username"</span> <span class="na">value=</span><span class="s">"${username}"</span><span class="nt">/&gt;</span>
-                <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"password"</span> <span class="na">value=</span><span class="s">"${password}"</span><span class="nt">/&gt;</span>
-            <span class="nt">&lt;/dataSource&gt;</span>
-        <span class="nt">&lt;/environment&gt;</span>
-    <span class="nt">&lt;/environments&gt;</span>
-<span class="c">&lt;!-- mappers --&gt;</span>
-    <span class="nt">&lt;mappers&gt;</span>
-        <span class="nt">&lt;mapper</span> <span class="na">resource=</span><span class="s">"mapper/userMapper.xml"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/mappers&gt;</span>
-<span class="nt">&lt;/configuration&gt;</span>
-</code></pre></div></div>
+        "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;
+&lt;configuration&gt;
+&lt;!-- properties --&gt;
+    &lt;properties resource="db.properties"&gt;&lt;/properties&gt;
+&lt;!-- environments --&gt;
+    &lt;environments default="development"&gt;
+        &lt;environment id="development"&gt;
+            &lt;transactionManager type="JDBC"/&gt;
+            &lt;dataSource type="POOLED"&gt;
+                &lt;property name="driver" value="${driver}"/&gt;
+                &lt;property name="url" value="${url}"/&gt;
+                &lt;property name="username" value="${username}"/&gt;
+                &lt;property name="password" value="${password}"/&gt;
+            &lt;/dataSource&gt;
+        &lt;/environment&gt;
+    &lt;/environments&gt;
+&lt;!-- mappers --&gt;
+    &lt;mappers&gt;
+        &lt;mapper resource="mapper/userMapper.xml"/&gt;
+    &lt;/mappers&gt;
+&lt;/configuration&gt;
+</code></pre>
 
 <h2 id="这是引入了spring的mybatis-configxml">这是引入了spring的<strong>mybatis-config.xml</strong>：</h2>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;beans</span> <span class="na">xmlns=</span><span class="s">"http://www.springframework.org/schema/beans"</span>
-       <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
-       <span class="na">xmlns:context=</span><span class="s">"http://www.springframework.org/schema/context"</span>
-       <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.springframework.org/schema/beans
+<pre><code class="language-xml">&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
-    http://www.springframework.org/schema/context/spring-context.xsd"</span><span class="nt">&gt;</span>
+    http://www.springframework.org/schema/context/spring-context.xsd"&gt;
 
-    <span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">"com.imooc.oa.dao"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;context:property-placeholder</span> <span class="na">location=</span><span class="s">"classpath:db.properties"</span><span class="nt">/&gt;</span>
+    &lt;context:component-scan base-package="com.imooc.oa.dao"/&gt;
+    &lt;context:property-placeholder location="classpath:db.properties"/&gt;
 
-    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"dataSource"</span> <span class="na">class=</span><span class="s">"org.springframework.jdbc.datasource.DriverManagerDataSource"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"driverClassName"</span> <span class="na">value=</span><span class="s">"com.mysql.jdbc.Driver"</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"url"</span> <span class="na">value=</span><span class="s">"jdbc:mysql://localhost:3306/oa?useUnicode=true&amp;amp;characterEncoding=utf-8"</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"username"</span> <span class="na">value=</span><span class="s">"root"</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"password"</span> <span class="na">value=</span><span class="s">"307715"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/bean&gt;</span>
+    &lt;bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"&gt;
+        &lt;property name="driverClassName" value="com.mysql.jdbc.Driver"/&gt;
+        &lt;property name="url" value="jdbc:mysql://localhost:3306/oa?useUnicode=true&amp;amp;characterEncoding=utf-8"/&gt;
+        &lt;property name="username" value="root"/&gt;
+        &lt;property name="password" value="307715"/&gt;
+    &lt;/bean&gt;
 
-    <span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"sessionFactory"</span> <span class="na">class=</span><span class="s">"org.mybatis.spring.SqlSessionFactoryBean"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"dataSource"</span> <span class="na">ref=</span><span class="s">"dataSource"</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"typeAliasesPackage"</span> <span class="na">value=</span><span class="s">"com.imooc.oa.entity"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/bean&gt;</span>
+    &lt;bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"&gt;
+        &lt;property name="dataSource" ref="dataSource"/&gt;
+        &lt;property name="typeAliasesPackage" value="com.imooc.oa.entity"/&gt;
+    &lt;/bean&gt;
 
-    <span class="nt">&lt;bean</span> <span class="na">class=</span><span class="s">"org.mybatis.spring.mapper.MapperScannerConfigurer"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"sqlSessionFactoryBeanName"</span> <span class="na">value=</span><span class="s">"sessionFactory"</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"basePackage"</span> <span class="na">value=</span><span class="s">"com.imooc.oa.dao"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/bean&gt;</span>
+    &lt;bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"&gt;
+        &lt;property name="sqlSessionFactoryBeanName" value="sessionFactory"/&gt;
+        &lt;property name="basePackage" value="com.imooc.oa.dao"/&gt;
+    &lt;/bean&gt;
 
-<span class="nt">&lt;/beans&gt;</span>
-</code></pre></div></div>
+&lt;/beans&gt;
+</code></pre>
 </p>
 	</div>
 

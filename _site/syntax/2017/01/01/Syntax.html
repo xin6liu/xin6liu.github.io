@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -264,46 +265,46 @@
 
 <h3 id="highlighted-code-blocks">Highlighted Code Blocks</h3>
 
-<p>To modify styling and highlight colors edit <code class="highlighter-rouge">/_sass/_syntax.scss</code>.</p>
+<p>To modify styling and highlight colors edit <code>/_sass/_syntax.scss</code>.</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nt">code</span> <span class="p">{</span>
-        <span class="nl">font-size</span><span class="p">:</span> <span class="m">13px</span><span class="p">;</span>
-        <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="no">black</span><span class="p">;</span>
-        <span class="nl">font-family</span><span class="p">:</span> <span class="n">Menlo</span><span class="p">,</span> <span class="n">Monaco</span><span class="p">,</span> <span class="s1">"Andale Mono"</span><span class="p">,</span> <span class="nb">serif</span><span class="p">;</span>
-    <span class="p">}</span>
-</code></pre></div></div>
+<pre><code class="language-css">  code {
+        font-size: 13px;
+        border: 1px solid black;
+        font-family: Menlo, Monaco, "Andale Mono", serif;
+    }
+</code></pre>
 
-<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s2">"test"</span>
-<span class="no">CONSTANT</span> <span class="o">=</span> <span class="mi">777</span>
+<pre><code class="language-ruby">require "test"
+CONSTANT = 777
 
-<span class="c1"># Sample comment</span>
+# Sample comment
 
-<span class="k">class</span> <span class="nc">Module</span><span class="o">::</span><span class="no">Class</span>
-  <span class="kp">include</span> <span class="no">Testcase</span>
+class Module::Class
+  include Testcase
 
-  <span class="n">render</span> <span class="ss">:action</span> <span class="o">=&gt;</span> <span class="s1">'foo'</span>
-  <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span>
-    <span class="vi">@parameter</span> <span class="o">=</span> <span class="n">parameter</span>
-  <span class="k">end</span>
+  render :action =&gt; 'foo'
+  def foo(parameter)
+    @parameter = parameter
+  end
 
-  <span class="n">local_var</span> <span class="o">=</span> <span class="nb">eval</span> <span class="o">&lt;&lt;-</span><span class="no">"FOO"</span><span class="p">;\</span><span class="sh">
+  local_var = eval &lt;&lt;-"FOO";\
   printIndex "Hello world!"
   And now this is heredoc!
   printIndex "Hello world again!"
-</span><span class="no">  FOO</span>
-  <span class="n">foo</span><span class="p">(</span><span class="s2">"</span><span class="si">#{</span><span class="vg">$GLOBAL_TIME</span> <span class="o">&gt;&gt;</span> <span class="vg">$`</span><span class="si">}</span><span class="s2"> is </span><span class="se">\Z</span><span class="s2"> sample </span><span class="se">\"</span><span class="s2">string</span><span class="se">\"</span><span class="s2">"</span> <span class="o">*</span> <span class="mi">777</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="vg">$1</span> <span class="o">=~</span> <span class="sr">/sample regular expression/ni</span><span class="p">)</span> <span class="k">then</span>
-  <span class="k">begin</span>
-    <span class="nb">puts</span> <span class="sx">%W(sample words)</span><span class="p">,</span> <span class="no">CONSTANT</span><span class="p">,</span> <span class="ss">:fooo</span><span class="p">;</span>
-    <span class="n">do_something</span> <span class="ss">:action</span> <span class="o">=&gt;</span> <span class="s2">"action"</span>
-  <span class="k">end</span>
-  <span class="n">expect</span><span class="p">{</span><span class="n">counter</span><span class="p">[</span><span class="mi">0</span><span class="p">]}.</span><span class="nf">to_be</span> <span class="n">eq</span> <span class="mi">1</span>
-  <span class="mi">1</span><span class="p">.</span><span class="nf">upto</span><span class="p">(</span><span class="vc">@@n</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">index</span><span class="o">|</span> <span class="n">printIndex</span> <span class="s1">'Hello'</span> <span class="o">+</span> <span class="n">index</span> <span class="k">end</span>
-  <span class="p">\\\\\\\\\\</span>
-  <span class="k">end</span>
-<span class="k">end</span>
+  FOO
+  foo("#{$GLOBAL_TIME &gt;&gt; $`} is \Z sample \"string\"" * 777);
+  if ($1 =~ /sample regular expression/ni) then
+  begin
+    puts %W(sample words), CONSTANT, :fooo;
+    do_something :action =&gt; "action"
+  end
+  expect{counter[0]}.to_be eq 1
+  1.upto(@@n) do |index| printIndex 'Hello' + index end
+  \\\\\\\\\\
+  end
+end
 
-</code></pre></div></div>
+</code></pre>
 
 <h3 id="github-gist-embed">GitHub Gist Embed</h3>
 

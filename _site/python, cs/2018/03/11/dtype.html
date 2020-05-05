@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -260,17 +261,17 @@
 		<!-- 
 		 -->
 <!-- 正文 -->
-		<p><div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
-</code></pre></div></div>
+		<p><pre><code class="language-python">import numpy as np
+import pandas as pd
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
-<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="s">'a'</span><span class="p">,</span><span class="s">'b'</span><span class="p">,</span><span class="s">'c'</span><span class="p">,</span><span class="s">'d'</span><span class="p">,</span><span class="s">'e'</span><span class="p">,</span><span class="s">'f'</span><span class="p">,</span><span class="s">'g'</span><span class="p">,</span><span class="s">'h'</span><span class="p">,</span><span class="s">'i'</span><span class="p">]</span>
-<span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">300</span><span class="p">,</span><span class="mi">400</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">600</span><span class="p">,</span><span class="mi">700</span><span class="p">,</span><span class="mi">800</span><span class="p">,</span><span class="mi">900</span><span class="p">]</span>
-</code></pre></div></div>
+<pre><code class="language-python">a = [1,1,2,2,2,3,3,3,3]
+b = ['a','b','c','d','e','f','g','h','i']
+c = [100,200,300,400,500,600,700,800,900]
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">])</span>
-</code></pre></div></div>
+<pre><code class="language-python">pd.DataFrame([a,b,c])
+</code></pre>
 
 <div>
 <style>
@@ -342,9 +343,9 @@
 </table>
 </div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">"id"</span><span class="p">,</span><span class="s">"name"</span><span class="p">,</span><span class="s">"number"</span><span class="p">])</span>
-<span class="n">df</span>
-</code></pre></div></div>
+<pre><code class="language-python">df = pd.DataFrame(np.array([a,b,c]).T, columns=["id","name","number"])
+df
+</code></pre>
 
 <div>
 <style>
@@ -428,10 +429,10 @@
 </table>
 </div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</code></pre></div></div>
+<pre><code class="language-python">df.info()
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 9 entries, 0 to 8
 Data columns (total 3 columns):
 id        9 non-null object
@@ -439,30 +440,30 @@ name      9 non-null object
 number    9 non-null object
 dtypes: object(3)
 memory usage: 296.0+ bytes
-</code></pre></div></div>
+</code></pre>
 
 <p>通过info的dtypes，我们可以看到，在使用np.array([a,b,c])的时候，array的dtype改为了object。
 这样的话算mean之类的计算就会发生错误。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'id'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'id'</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s">'id'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'id'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int'</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'id'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'id'</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">print(df['id'].mean())
+print(df['id'].dtype)
+df['id'] = df['id'].astype('int')
+print(df['id'].mean())
+print(df['id'].dtype)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>12469259.2222
+<pre><code>12469259.2222
 object
 2.2222222222222223
 int64
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span><span class="p">[</span><span class="s">'name'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'name'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'str'</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s">'number'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'number'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'float'</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</code></pre></div></div>
+<pre><code class="language-python">df['name'] = df['name'].astype('str')
+df['number'] = df['number'].astype('float')
+df.info()
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 9 entries, 0 to 8
 Data columns (total 3 columns):
 id        9 non-null int64
@@ -470,10 +471,10 @@ name      9 non-null object
 number    9 non-null float64
 dtypes: float64(1), int64(1), object(1)
 memory usage: 296.0+ bytes
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-</code></pre></div></div>
+<pre><code class="language-python">
+</code></pre>
 </p>
 	</div>
 

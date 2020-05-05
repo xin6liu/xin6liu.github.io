@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -307,7 +308,7 @@ wise polynomials (Taylor–Hood elements)</p>
 
 <p>代码是：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def E(u):
+<pre><code>def E(u):
     return 0.5*(nabla_grad(u) + nabla_grad(u).T)
 def T(u, p):
     return 2*mu*E(u) - p*Identity(len(u))
@@ -338,7 +339,7 @@ solve(A2, p_.vector(), b2)
 # Step 3: Velocity correction step
 b3 = assemble(L3)
 solve(A3, u_.vector(), b3)
-</code></pre></div></div>
+</code></pre>
 
 </p>
 	</div>

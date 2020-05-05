@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -270,35 +271,35 @@
   <li>使用这些层构建出只有<strong>一个隐层</strong>的浅层神经网络</li>
 </ol>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span><span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">liuxin21</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="nb">file</span><span class="o">/</span><span class="n">data</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-</code></pre></div></div>
+<pre><code class="language-python">!wget http://liuxin21.com/file/data.tar.gz
+</code></pre>
 
-<p>没有wget的可以利用brew下载：<code class="highlighter-rouge">brew install wget</code></p>
+<p>没有wget的可以利用brew下载：<code>brew install wget</code></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span><span class="n">tar</span> <span class="n">zxvf</span> <span class="n">data</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-</code></pre></div></div>
+<pre><code class="language-python">!tar zxvf data.tar.gz
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span><span class="n">ls</span>
-</code></pre></div></div>
+<pre><code class="language-python">!ls
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>data.tar.gz        test.txt           validate.txt
+<pre><code>data.tar.gz        test.txt           validate.txt
 [34mpic[m[m                train.txt          识别图片.ipynb
-</code></pre></div></div>
+</code></pre>
 
-<p>可以看到<code class="highlighter-rouge">data.tar.gz</code>被解压成一个pic文件夹和三个txt文件。</p>
+<p>可以看到<code>data.tar.gz</code>被解压成一个pic文件夹和三个txt文件。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">!</span> <span class="n">cat</span> <span class="n">train</span><span class="o">.</span><span class="n">txt</span>
-</code></pre></div></div>
+<pre><code class="language-python">! cat train.txt
+</code></pre>
 
 <p>例如第一个图片 0.png 显示的是字母D, train.txt 里对应的就是 3；第二个图片 1.png 里面画是字母X，train.txt 里对应的就是 23.</p>
 
 <ol>
-  <li><code class="highlighter-rouge">train.txt</code>: 训练集 (0.png - 39999.png)</li>
-  <li><code class="highlighter-rouge">validate.txt</code>: 验证集 (40000.png - 49999.png)</li>
-  <li><code class="highlighter-rouge">test.txt</code>: 测试集 (50000.png - 59999.png)</li>
+  <li><code>train.txt</code>: 训练集 (0.png - 39999.png)</li>
+  <li><code>validate.txt</code>: 验证集 (40000.png - 49999.png)</li>
+  <li><code>test.txt</code>: 测试集 (50000.png - 59999.png)</li>
 </ol>
 
-<p>(在sklearn中，可以用<code class="highlighter-rouge">from sklearn.model_selection import train_test_split</code>随机把样本分成train和test)</p>
+<p>(在sklearn中，可以用<code>from sklearn.model_selection import train_test_split</code>随机把样本分成train和test)</p>
 
 <p>(因为是监督学习，这些txt文件就是图片文件的标签)</p>
 
@@ -306,40 +307,40 @@
 
 <p>对于图片数据，我们首先需要将它们转换成输入向量的形式，并且由于我们是有监督学习，每张图片的标签也必须与对应的图片向量一一对应。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">misc</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-</code></pre></div></div>
+<pre><code class="language-python">from scipy import misc
+import numpy as np
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">):</span>
-    <span class="s">'''
+<pre><code class="language-python">def main(src, dst):
+    '''
     src: train.txt、validate.txt和test.txt，
     我们从src中读取图片的路径和它的标签
     dst: 代表我们将预处理好的图片数据保存到哪里，
     我们直接使用 np.save() 函数将数组保存到npy文件。
-    '''</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="nb">list</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    '''
+    with open(src, 'r') as f:
+        list = f.readlines()
         
-    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">:</span>
-        <span class="n">name</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">' '</span><span class="p">)</span>  <span class="c"># 将图片列表中的每一行拆分成图片名和图片标签</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">"name: "</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s">", label: "</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="s">', processed'</span><span class="p">)</span>
-        <span class="n">img</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="c"># 将图片读取出来，存入一个矩阵</span>
-        <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">/</span><span class="mi">255</span> <span class="c"># 将图片转换为只有0、1值的矩阵</span>
-        <span class="n">img</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>  <span class="c"># 为了之后的运算方便，我们将图片存储到一个img.size*1的列向量里面</span>
-        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-        <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">label</span><span class="p">))</span>
+    data = []
+    labels = []
+    for i in list:
+        name, label = i.strip('\n').split(' ')  # 将图片列表中的每一行拆分成图片名和图片标签
+        print("name: ", name, ", label: ", label, ', processed')
+        img = misc.imread(name) # 将图片读取出来，存入一个矩阵
+        img = img/255 # 将图片转换为只有0、1值的矩阵
+        img.resize((img.size, 1))  # 为了之后的运算方便，我们将图片存储到一个img.size*1的列向量里面
+        data.append(img)
+        labels.append(int(label))
 
-    <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">dst</span><span class="p">,</span> <span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="n">labels</span><span class="p">])</span>  <span class="c"># 将训练数据以npy的形式保存到成本地文件</span>
-</code></pre></div></div>
+    np.save(dst, [data, labels])  # 将训练数据以npy的形式保存到成本地文件
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">main</span><span class="p">(</span><span class="s">'train.txt'</span><span class="p">,</span><span class="s">'train.npy'</span><span class="p">)</span>
-<span class="n">main</span><span class="p">(</span><span class="s">'validate.txt'</span><span class="p">,</span><span class="s">'validate.npy'</span><span class="p">)</span>
-<span class="n">main</span><span class="p">(</span><span class="s">'test.txt'</span><span class="p">,</span><span class="s">'test.npy'</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">main('train.txt','train.npy')
+main('validate.txt','validate.npy')
+main('test.txt','test.npy')
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>name:  pic/0.png , label:  3 , processed
+<pre><code>name:  pic/0.png , label:  3 , processed
 name:  pic/1.png , label:  23 , processed
 name:  pic/2.png , label:  12 , processed
 name:  pic/3.png , label:  4 , processed
@@ -348,77 +349,77 @@ name:  pic/5.png , label:  2 , processed
 ...
 name:  pic/59998.png , label:  0 , processed
 name:  pic/59999.png , label:  1 , processed
-</code></pre></div></div>
+</code></pre>
 
 <h2 id="数据层">数据层</h2>
 
 <p>将数据读入我们的神经网络，为了一致性，我们将读入数据的操作放到一个数据层里面，数据层代码如下：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Data</span><span class="p">:</span>
-    <span class="s">'''
+<pre><code class="language-python">class Data:
+    '''
     输入: name，batch_size
     eg: 使用时，Data("xxx.txt", 1000).backward(d)
     初始化: (x,y,l,batch_size,pos)
     
-    '''</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>  <span class="c"># 数据所在的文件名name和batch中图片的数量batch_size</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c"># 输入x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c"># 预期正确输出y</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">l</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c"># pos用来记录数据读取的位置</span>
+    '''
+    def __init__(self, name, batch_size):  # 数据所在的文件名name和batch中图片的数量batch_size
+        with open(name, 'rb') as f:
+            data = np.load(f)
+        self.x = data[0]  # 输入x
+        self.y = data[1]  # 预期正确输出y
+        self.l = len(self.x)
+        self.batch_size = batch_size
+        self.pos = 0  # pos用来记录数据读取的位置
 
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos</span>  
-        <span class="n">bat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span>
-        <span class="n">l</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">l</span>
-        <span class="k">if</span> <span class="n">pos</span> <span class="o">+</span> <span class="n">bat</span> <span class="o">&gt;=</span> <span class="n">l</span><span class="p">:</span>  <span class="c"># 已经是最后一个batch时，返回剩余的数据，并设置pos为开始位置0</span>
-            <span class="n">ret</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">pos</span><span class="p">:</span><span class="n">l</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">pos</span><span class="p">:</span><span class="n">l</span><span class="p">])</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>  <span class="c"># 将训练数据打乱</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>  <span class="c"># 不是最后一个batch, pos直接加上batch_size</span>
-            <span class="n">ret</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">pos</span><span class="p">:</span><span class="n">pos</span> <span class="o">+</span> <span class="n">bat</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">pos</span><span class="p">:</span><span class="n">pos</span> <span class="o">+</span> <span class="n">bat</span><span class="p">])</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">pos</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span>
+    def forward(self):
+        pos = self.pos  
+        bat = self.batch_size
+        l = self.l
+        if pos + bat &gt;= l:  # 已经是最后一个batch时，返回剩余的数据，并设置pos为开始位置0
+            ret = (self.x[pos:l], self.y[pos:l])
+            self.pos = 0
+            index = range(l)
+            np.random.shuffle(list(index))  # 将训练数据打乱
+            self.x = self.x[index]
+            self.y = self.y[index]
+        else:  # 不是最后一个batch, pos直接加上batch_size
+            ret = (self.x[pos:pos + bat], self.y[pos:pos + bat])
+            self.pos += self.batch_size
 
-        <span class="k">return</span> <span class="n">ret</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos</span>  <span class="c"># 返回的pos为0时代表一个epoch已经结束</span>
+        return ret, self.pos  # 返回的pos为0时代表一个epoch已经结束
 
-    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>  <span class="c"># 数据层无backward操作</span>
-        <span class="k">pass</span>
-</code></pre></div></div>
+    def backward(self, d):  # 数据层无backward操作
+        pass
+</code></pre>
 
 <p>随机梯度下降算法（stochastic gradient descent）:</p>
 
-<p>在实际的深度学习训练过程当中，我们每次计算梯度并更新参数值时，总是一次性计算多个输入数据的梯度，并将这些梯度求平均值，再使用这个平均值对参数进行更新。这样做可以利用并行计算来提高训练速度。我们将一次性一起计算的一组数据称为一个<code class="highlighter-rouge">batch</code>。同时，我们称所有训练图片都已参与一遍训练的一个周期称为一个<code class="highlighter-rouge">epoch</code>。每个<code class="highlighter-rouge">epoch</code>结束时，我们会将训练数据重新打乱，这样可以获得更好的训练效果。我们通常会训练多个<code class="highlighter-rouge">epoch</code>。</p>
+<p>在实际的深度学习训练过程当中，我们每次计算梯度并更新参数值时，总是一次性计算多个输入数据的梯度，并将这些梯度求平均值，再使用这个平均值对参数进行更新。这样做可以利用并行计算来提高训练速度。我们将一次性一起计算的一组数据称为一个<code>batch</code>。同时，我们称所有训练图片都已参与一遍训练的一个周期称为一个<code>epoch</code>。每个<code>epoch</code>结束时，我们会将训练数据重新打乱，这样可以获得更好的训练效果。我们通常会训练多个<code>epoch</code>。</p>
 
 <h2 id="全连接层">全连接层</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">FullyConnect</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">l_x</span><span class="p">,</span> <span class="n">l_y</span><span class="p">):</span>  <span class="c"># 两个参数分别为输入层的长度和输出层的长度</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">l_y</span><span class="p">,</span> <span class="n">l_x</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">l_x</span><span class="p">)</span>  <span class="c"># 使用随机数初始化参数，请暂时忽略这里为什么多了np.sqrt(l_x)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">l_y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c"># 使用随机数初始化参数</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c"># 先将学习速率初始化为0，最后统一设置学习速率</span>
+<pre><code class="language-python">class FullyConnect:
+    def __init__(self, l_x, l_y):  # 两个参数分别为输入层的长度和输出层的长度
+        self.weights = np.random.randn(l_y, l_x) / np.sqrt(l_x)  # 使用随机数初始化参数，请暂时忽略这里为什么多了np.sqrt(l_x)
+        self.bias = np.random.randn(l_y, 1)  # 使用随机数初始化参数
+        self.lr = 0  # 先将学习速率初始化为0，最后统一设置学习速率
 
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>  <span class="c"># 把中间结果保存下来，以备反向传播时使用</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">,</span> <span class="n">xx</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="k">for</span> <span class="n">xx</span> <span class="ow">in</span> <span class="n">x</span><span class="p">])</span>  <span class="c"># 计算全连接层的输出</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span>  <span class="c"># 将这一层计算的结果向前传递</span>
+    def forward(self, x):
+        self.x = x  # 把中间结果保存下来，以备反向传播时使用
+        self.y = np.array([np.dot(self.weights, xx) + self.bias for xx in x])  # 计算全连接层的输出
+        return self.y  # 将这一层计算的结果向前传递
 
-    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
-        <span class="n">ddw</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span> <span class="n">xx</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="k">for</span> <span class="n">dd</span><span class="p">,</span> <span class="n">xx</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)]</span>  <span class="c"># 根据链式法则，将反向传递回来的导数值乘以x，得到对参数的梯度</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">ddw</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">dd</span><span class="p">)</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">d</span><span class="p">])</span>
+    def backward(self, d):
+        ddw = [np.dot(dd, xx.T) for dd, xx in zip(d, self.x)]  # 根据链式法则，将反向传递回来的导数值乘以x，得到对参数的梯度
+        self.dw = np.sum(ddw, axis=0) / self.x.shape[0]
+        self.db = np.sum(d, axis=0) / self.x.shape[0]
+        self.dx = np.array([np.dot(self.weights.T, dd) for dd in d])
 
-        <span class="c"># 更新参数</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dw</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dx</span>  <span class="c"># 反向传播梯度</span>
-</code></pre></div></div>
+        # 更新参数
+        self.weights -= self.lr * self.dw
+        self.bias -= self.lr * self.db
+        return self.dx  # 反向传播梯度
+</code></pre>
 
 <p>为了理解上面的代码，我们以一个包含 100 个训练输入数据的 batch 为例，分析一下具体执行流程：
 我们的 l_x 为输入单个数据向量的长度，在这里是 17<em>17=289，l_y 代表全连接层输出的节点数量，由于大写英文字母有 26 个，所以这里的 l_y=26。
@@ -426,35 +427,35 @@ name:  pic/59999.png , label:  1 , processed
 
 <p>forward() 函数里的代码比较好理解，由于这里的 x 包含了多组数据，所以要对每组数据分别进行计算。</p>
 
-<p>backward() 函数里的代码就不太好理解了，ddw 保存的是对于每组输入数据，损失函数对于参数的梯度。由于这里的参数是一个 26<em>289 的矩阵，所以，我们需要求损失函数对矩阵的导数。（对矩阵求导可能大部分本科生都不会。但其实也不难，如果你线性代数功底可以，可以尝试推导矩阵求导公式。）不过这里有一个简便的方法去推断对矩阵求导时应该如何计算：由于这里的参数矩阵本身是 26</em>289 的，那损失函数对于它的梯度（即损失函数对参数矩阵求导的结果）的尺寸也一定是 26<em>289 的。而这里每组输入数据的尺寸是 289</em>1，每组数据对应的部分梯度尺寸为 26<em>1, 要得到一个 26</em>289 尺寸的梯度矩阵，就只能是一个 26<em>1 尺寸的矩阵乘以一个 1</em>289 尺寸的矩阵，需要对输入数据进行转置。所以这里计算的是<code class="highlighter-rouge">np.dot(dd,xx.T)</code>。
-对一个 batch 里的数据分别求得梯度之后，按照<code class="highlighter-rouge">随机梯度下降算法</code>的要求，我们需要对所有梯度求平均值，得到 self.dw, 其尺寸为 26*289，刚好与我们的 self.weights 匹配。</p>
+<p>backward() 函数里的代码就不太好理解了，ddw 保存的是对于每组输入数据，损失函数对于参数的梯度。由于这里的参数是一个 26<em>289 的矩阵，所以，我们需要求损失函数对矩阵的导数。（对矩阵求导可能大部分本科生都不会。但其实也不难，如果你线性代数功底可以，可以尝试推导矩阵求导公式。）不过这里有一个简便的方法去推断对矩阵求导时应该如何计算：由于这里的参数矩阵本身是 26</em>289 的，那损失函数对于它的梯度（即损失函数对参数矩阵求导的结果）的尺寸也一定是 26<em>289 的。而这里每组输入数据的尺寸是 289</em>1，每组数据对应的部分梯度尺寸为 26<em>1, 要得到一个 26</em>289 尺寸的梯度矩阵，就只能是一个 26<em>1 尺寸的矩阵乘以一个 1</em>289 尺寸的矩阵，需要对输入数据进行转置。所以这里计算的是<code>np.dot(dd,xx.T)</code>。
+对一个 batch 里的数据分别求得梯度之后，按照<code>随机梯度下降算法</code>的要求，我们需要对所有梯度求平均值，得到 self.dw, 其尺寸为 26*289，刚好与我们的 self.weights 匹配。</p>
 
 <p>由于全连接层对 bias 的部分导数为 1，所以这里对于 bias 的梯度 self.bias 就直接等于从之前的层反向传回来的梯度的平均值。
 损失函数对于输入 x 的梯度值 self.dx 的求解与 self.dw 类似。由于输入数据 self.x 中的一个数据的尺寸为 289<em>1，self.weights 的尺寸为 26</em>289, dd 的尺寸为 26<em>1, 所以需要对 self.weights 进行转置。即 “289</em>1=(289<em>26)</em>(26*1)”。</p>
 
-<p>最后是使用梯度更新参数，注意这里的 self.lr 即为前面我们提到过的学习速率<code class="highlighter-rouge">alpha</code>，它是一个需要我们手工设定的超参数。</p>
+<p>最后是使用梯度更新参数，注意这里的 self.lr 即为前面我们提到过的学习速率<code>alpha</code>，它是一个需要我们手工设定的超参数。</p>
 
 <p>这里的矩阵求导确实不太好处理，容易出错，请你仔细分析每一个变量代表的含义，如果对一个地方不清楚，请回到前面看看相关的概念是如何定义的。</p>
 
 <h2 id="激活函数层">激活函数层</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Sigmoid</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c"># 无参数，不需初始化</span>
-        <span class="k">pass</span>
+<pre><code class="language-python">class Sigmoid:
+    def __init__(self):  # 无参数，不需初始化
+        pass
 
-    <span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+    def sigmoid(self, x):
+        return 1 / (1 + np.exp(-x))
 
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span>
+    def forward(self, x):
+        self.x = x
+        self.y = self.sigmoid(x)
+        return self.y
 
-    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
-        <span class="n">sig</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dx</span> <span class="o">=</span> <span class="n">d</span> <span class="o">*</span> <span class="n">sig</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sig</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dx</span>  <span class="c"># 反向传递梯度</span>
-</code></pre></div></div>
+    def backward(self, d):
+        sig = self.sigmoid(self.x)
+        self.dx = d * sig * (1 - sig)
+        return self.dx  # 反向传递梯度
+</code></pre>
 
 <p>sigmoid 函数将输出限制在 0 到 1 之间，刚好可以作为概率看待。这里我们有 26 个输入节点，经过 sigmoid 层计算之后，哪个输出节点的数值最大，就认为图片上最有可能是该节点代表的字母。比如如果输出层第 0 个节点值最大，就认为图片上的字母是 “A”, 如果第 25 个节点的值最大，就认为图片上的字母是 “Z”。</p>
 
@@ -462,89 +463,89 @@ name:  pic/59999.png , label:  1 , processed
 
 <h2 id="损失函数层">损失函数层</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">QuadraticLoss</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
+<pre><code class="language-python">class QuadraticLoss:
+    def __init__(self):
+        pass
 
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c"># 由于我们的label本身只包含一个数字，我们需要将其转换成和模型输出值尺寸相匹配的向量形式</span>
-        <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
-            <span class="n">a</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c"># 只有正确标签所代表的位置概率为1，其他为0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">loss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">))</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c"># 求平均后再除以2是为了表示方便</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss</span>
+    def forward(self, x, label):
+        self.x = x
+        self.label = np.zeros_like(x)  # 由于我们的label本身只包含一个数字，我们需要将其转换成和模型输出值尺寸相匹配的向量形式
+        for a, b in zip(self.label, label):
+            a[b] = 1.0  # 只有正确标签所代表的位置概率为1，其他为0
+        self.loss = np.sum(np.square(x - self.label)) / self.x.shape[0] / 2  # 求平均后再除以2是为了表示方便
+        return self.loss
 
-    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dx</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c"># 2被抵消掉了</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dx</span>
-</code></pre></div></div>
+    def backward(self):
+        self.dx = (self.x - self.label) / self.x.shape[0]  # 2被抵消掉了
+        return self.dx
+</code></pre>
 
-<p>在<code class="highlighter-rouge">随机梯度下降算法</code>里，每次前向计算和反向传播都会计算包含多个输入数据的一个 batch。所以损失函数值在随后也要除以 batch 中包含的数据数量,　即<code class="highlighter-rouge">self.x.shape[0]</code>，同时这里除以了 2,　这个地方的 2 可以和对二次损失函数求导后多出来的系数 2 抵消掉。所以，我们的损失函数变成了：</p>
+<p>在<code>随机梯度下降算法</code>里，每次前向计算和反向传播都会计算包含多个输入数据的一个 batch。所以损失函数值在随后也要除以 batch 中包含的数据数量,　即<code>self.x.shape[0]</code>，同时这里除以了 2,　这个地方的 2 可以和对二次损失函数求导后多出来的系数 2 抵消掉。所以，我们的损失函数变成了：</p>
 
 <script type="math/tex; mode=display">J(\theta) = \frac{1}{2m} \sum^m_{i=1} (h(\theta,X_i)-Y_i)^2</script>
 
 <h2 id="准确率层">准确率层</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Accuracy</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
+<pre><code class="language-python">class Accuracy:
+    def __init__(self):
+        pass
 
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>  <span class="c"># 只需forward</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">accuracy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span> <span class="o">==</span> <span class="n">ll</span> <span class="k">for</span> <span class="n">xx</span><span class="p">,</span> <span class="n">ll</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">label</span><span class="p">)])</span>  <span class="c"># 对预测正确的实例数求和</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">accuracy</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">accuracy</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">accuracy</span>
-</code></pre></div></div>
+    def forward(self, x, label):  # 只需forward
+        self.accuracy = np.sum([np.argmax(xx) == ll for xx, ll in zip(x, label)])  # 对预测正确的实例数求和
+        self.accuracy = 1.0 * self.accuracy / x.shape[0]
+        return self.accuracy
+</code></pre>
 
 <p>如果我们的神经网络的输出层中，概率最大的节点的下标与实际的标签 label 相等，则预测正确。预测正确的数量除以总的数量，就得到了正确率。</p>
 
 <h2 id="构建神经网络">构建神经网络</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">datalayer1</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span><span class="s">'train.npy'</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>  <span class="c"># 用于训练，batch_size设置为1024</span>
-    <span class="n">datalayer2</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span><span class="s">'validate.npy'</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>  <span class="c"># 用于验证，所以设置batch_size为10000,一次性计算所有的样例</span>
-    <span class="n">inner_layers</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">inner_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">FullyConnect</span><span class="p">(</span><span class="mi">17</span> <span class="o">*</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">26</span><span class="p">))</span>
-    <span class="n">inner_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Sigmoid</span><span class="p">())</span>
-    <span class="n">losslayer</span> <span class="o">=</span> <span class="n">QuadraticLoss</span><span class="p">()</span>
-    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">Accuracy</span><span class="p">()</span>
+<pre><code class="language-python">def main():
+    datalayer1 = Data('train.npy', 1024)  # 用于训练，batch_size设置为1024
+    datalayer2 = Data('validate.npy', 10000)  # 用于验证，所以设置batch_size为10000,一次性计算所有的样例
+    inner_layers = []
+    inner_layers.append(FullyConnect(17 * 17, 26))
+    inner_layers.append(Sigmoid())
+    losslayer = QuadraticLoss()
+    accuracy = Accuracy()
 
-    <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">inner_layers</span><span class="p">:</span>
-        <span class="n">layer</span><span class="o">.</span><span class="n">lr</span> <span class="o">=</span> <span class="mf">1000.0</span>  <span class="c"># 为所有中间层设置学习速率</span>
+    for layer in inner_layers:
+        layer.lr = 1000.0  # 为所有中间层设置学习速率
 
-    <span class="n">epochs</span> <span class="o">=</span> <span class="mi">20</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">'epochs:'</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-        <span class="n">losssum</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">iters</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-            <span class="n">data</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">datalayer1</span><span class="o">.</span><span class="n">forward</span><span class="p">()</span>  <span class="c"># 从数据层取出数据</span>
-            <span class="n">x</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">data</span>
-            <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">inner_layers</span><span class="p">:</span>  <span class="c"># 前向计算</span>
-                <span class="n">x</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    epochs = 20
+    for i in range(epochs):
+        print('epochs:', i)
+        losssum = 0
+        iters = 0
+        while True:
+            data, pos = datalayer1.forward()  # 从数据层取出数据
+            x, label = data
+            for layer in inner_layers:  # 前向计算
+                x = layer.forward(x)
 
-            <span class="n">loss</span> <span class="o">=</span> <span class="n">losslayer</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>  <span class="c"># 调用损失层forward函数计算损失函数值</span>
-            <span class="n">losssum</span> <span class="o">+=</span> <span class="n">loss</span>
-            <span class="n">iters</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="n">d</span> <span class="o">=</span> <span class="n">losslayer</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>  <span class="c"># 调用损失层backward函数层计算将要反向传播的梯度</span>
+            loss = losslayer.forward(x, label)  # 调用损失层forward函数计算损失函数值
+            losssum += loss
+            iters += 1
+            d = losslayer.backward()  # 调用损失层backward函数层计算将要反向传播的梯度
 
-            <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">inner_layers</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>  <span class="c"># 反向传播</span>
-                <span class="n">d</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+            for layer in inner_layers[::-1]:  # 反向传播
+                d = layer.backward(d)
 
-            <span class="k">if</span> <span class="n">pos</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c"># 一个epoch完成后进行准确率测试</span>
-                <span class="n">data</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">datalayer2</span><span class="o">.</span><span class="n">forward</span><span class="p">()</span>
-                <span class="n">x</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">data</span>
-                <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">inner_layers</span><span class="p">:</span>
-                    <span class="n">x</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-                <span class="n">accu</span> <span class="o">=</span> <span class="n">accuracy</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>  <span class="c"># 调用准确率层forward()函数求出准确率</span>
-                <span class="k">print</span><span class="p">(</span><span class="s">'loss:'</span><span class="p">,</span> <span class="n">losssum</span> <span class="o">/</span> <span class="n">iters</span><span class="p">)</span>
-                <span class="k">print</span><span class="p">(</span><span class="s">'accuracy:'</span><span class="p">,</span> <span class="n">accu</span><span class="p">)</span>
-                <span class="k">break</span>
+            if pos == 0:  # 一个epoch完成后进行准确率测试
+                data, _ = datalayer2.forward()
+                x, label = data
+                for layer in inner_layers:
+                    x = layer.forward(x)
+                accu = accuracy.forward(x, label)  # 调用准确率层forward()函数求出准确率
+                print('loss:', losssum / iters)
+                print('accuracy:', accu)
+                break
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
-</code></pre></div></div>
+if __name__ == '__main__':
+    main()
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>epochs: 0
+<pre><code>epochs: 0
 loss: 0.541326932161
 accuracy: 0.33
 epochs: 1
@@ -604,10 +605,10 @@ accuracy: 0.8724
 epochs: 19
 loss: 0.0868923293202
 accuracy: 0.8733
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-</code></pre></div></div>
+<pre><code class="language-python">
+</code></pre>
 </p>
 	</div>
 

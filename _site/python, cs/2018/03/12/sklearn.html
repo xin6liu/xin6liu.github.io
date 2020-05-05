@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -260,34 +261,34 @@
 		<!-- 
 		 -->
 <!-- 正文 -->
-		<p><div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
-<span class="o">%</span> <span class="n">matplotlib</span> <span class="n">inline</span>
-</code></pre></div></div>
+		<p><pre><code class="language-python">import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+% matplotlib inline
+</code></pre>
 
 <h2 id="numpy">numpy</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span>
-<span class="n">b</span> <span class="o">=</span> <span class="s">'A B C D E F G H I J'</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">11</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">43</span><span class="p">,</span><span class="mi">51</span><span class="p">,</span><span class="mi">62</span><span class="p">,</span><span class="mi">77</span><span class="p">,</span><span class="mi">82</span><span class="p">,</span><span class="mi">91</span><span class="p">,</span><span class="mi">101</span><span class="p">])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">a = np.arange(1,11)
+b = 'A B C D E F G H I J'.split()
+c = np.array([11,21,32,43,51,62,77,82,91,101])
+print(a,'\n',b,'\n',c)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ 1  2  3  4  5  6  7  8  9 10] 
+<pre><code>[ 1  2  3  4  5  6  7  8  9 10] 
  ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'] 
  [ 11  21  32  43  51  62  77  82  91 101]
-</code></pre></div></div>
+</code></pre>
 
 <h2 id="pandas">pandas</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s">'id'</span><span class="p">:</span> <span class="n">a</span><span class="p">,</span> <span class="s">'name'</span><span class="p">:</span> <span class="n">b</span><span class="p">,</span> <span class="s">'number'</span><span class="p">:</span> <span class="n">c</span><span class="p">}</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-<span class="c">#df.info()</span>
-<span class="c">#df.describe()</span>
-</code></pre></div></div>
+<pre><code class="language-python">dic = {'id': a, 'name': b, 'number': c}
+df = pd.DataFrame(dic)
+df.head()
+#df.info()
+#df.describe()
+</code></pre>
 
 <div>
 <style>
@@ -349,25 +350,25 @@
 
 <h2 id="seaborn">seaborn</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s">'id'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">'number'</span><span class="p">)</span>
-<span class="c"># sns.distplot(df['number'])</span>
-<span class="c"># sns.jointplot(data=df, x='id', y='number')</span>
-<span class="c"># sns.jointplot(data=df, x='id', y='number', kind='hex')</span>
-<span class="c"># sns.pairplot(df)</span>
-</code></pre></div></div>
+<pre><code class="language-python">sns.lmplot(data=df, x='id', y='number')
+# sns.distplot(df['number'])
+# sns.jointplot(data=df, x='id', y='number')
+# sns.jointplot(data=df, x='id', y='number', kind='hex')
+# sns.pairplot(df)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;seaborn.axisgrid.FacetGrid at 0x1196e8ba8&gt;
-</code></pre></div></div>
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1196e8ba8&gt;
+</code></pre>
 
 <p><img src="https://i.imgur.com/d4d1EGC.png" alt="output_6_1" /></p>
 
 <h2 id="sklearn">sklearn</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'id'</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s">'number'</span><span class="p">]</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s">'X_train'</span><span class="p">:</span><span class="n">X_train</span><span class="p">,</span> <span class="s">'X_test'</span><span class="p">:</span><span class="n">X_test</span><span class="p">,</span> <span class="s">'y_train'</span><span class="p">:</span><span class="n">y_train</span><span class="p">,</span> <span class="s">'y_test'</span><span class="p">:</span><span class="n">y_test</span><span class="p">})</span>
-</code></pre></div></div>
+<pre><code class="language-python">from sklearn.model_selection import train_test_split
+X, y = df['id'], df['number']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4)
+pd.DataFrame({'X_train':X_train, 'X_test':X_test, 'y_train':y_train, 'y_test':y_test})
+</code></pre>
 
 <div>
 <style>
@@ -468,38 +469,38 @@
 </table>
 </div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 这里X_train和X_test只有一个Series, 要把它变成DataFrame</span>
-<span class="n">X_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
-<span class="n">X_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python"># 这里X_train和X_test只有一个Series, 要把它变成DataFrame
+X_train = pd.DataFrame(X_train)
+X_test = pd.DataFrame(X_test)
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
-<span class="n">lm</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
-<span class="n">lm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">lm</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">lm</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+<pre><code class="language-python">from sklearn.linear_model import LinearRegression
+lm = LinearRegression()
+lm.fit(X_train, y_train)
+print(lm.intercept_)
+print(lm.coef_)
 
-<span class="c"># 和之前的 sns.lmplot 比较</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="n">lm</span><span class="o">.</span><span class="n">coef_</span><span class="o">+</span><span class="n">lm</span><span class="o">.</span><span class="n">intercept_</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div></div>
+# 和之前的 sns.lmplot 比较
+x = np.arange(10)
+y = x*lm.coef_+lm.intercept_
+plt.plot(x,y)
+plt.show()
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.71428571429
+<pre><code>1.71428571429
 [ 10.07142857]
-</code></pre></div></div>
+</code></pre>
 
 <p><img src="https://i.imgur.com/8LWRDj2.png" alt="output_10_1" /></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">predictions</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
-<span class="n">metrics</span><span class="o">.</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">predictions = lm.predict(X_test)
+plt.scatter(y_test, predictions)
+from sklearn import metrics
+metrics.mean_squared_error(y_test, predictions)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0.45535714285714313
-</code></pre></div></div>
+<pre><code>0.45535714285714313
+</code></pre>
 
 <p><img src="https://i.imgur.com/tessLcc.png" alt="output_11_1" /></p>
 

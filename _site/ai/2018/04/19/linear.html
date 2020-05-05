@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -264,13 +265,13 @@
 
 <p>线性分类器中，<strong>Logistic Regression</strong>比较常用，适合做概率估计，即对分配给每个类别一个估计概率。</p>
 
-<p>另外，<code class="highlighter-rouge">from sklearn.linear_model import SGDClassifier</code>, 选择使用<strong>SGD分类器</strong>，适合大规模数据，随机梯度下降方法估计参数。</p>
+<p>另外，<code>from sklearn.linear_model import SGDClassifier</code>, 选择使用<strong>SGD分类器</strong>，适合大规模数据，随机梯度下降方法估计参数。</p>
 
 <p>比起SGD这个分类器而言，Logistic Regression使用更加精确，但是更加耗时的解析解。SGD分类器可以大体代表这些线性分类器的性能，但是由于是近似估计的参数，因此模型性能结果不是很稳定，需要通过调节超参数获得模型的性能上限。</p>
 
-<h2 id="sklearnlinear_model-generalized-linear-models"><code class="highlighter-rouge">sklearn.linear_model</code>: Generalized Linear Models</h2>
+<h2 id="sklearnlinear_model-generalized-linear-models"><code>sklearn.linear_model</code>: Generalized Linear Models</h2>
 
-<p>The <code class="highlighter-rouge">sklearn.linear_model</code> module implements <strong>generalized linear models</strong>. It includes:</p>
+<p>The <code>sklearn.linear_model</code> module implements <strong>generalized linear models</strong>. It includes:</p>
 
 <ul>
   <li>Ridge regression,</li>

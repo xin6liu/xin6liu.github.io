@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -274,7 +275,7 @@
 </ul>
 
 <h2 id="matlab文件ex2m">matlab文件ex2.m</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>clear ; close all; clc
+<pre><code>clear ; close all; clc
  
 %% Load Data 两个特征，一个label
 data = load('ex2data1.txt');
@@ -294,20 +295,20 @@ xlabel('Exam 1 score')
 ylabel('Exam 2 score')
 legend('Admitted', 'Not admitted')
 hold off;
-</code></pre></div></div>
+</code></pre>
 
 <h2 id="python实现">python实现</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-</code></pre></div></div>
+<pre><code class="language-python">import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'ex2data1.txt'</span><span class="p">,</span><span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s">"X1"</span><span class="p">,</span><span class="s">"X2"</span><span class="p">,</span><span class="s">"Y"</span><span class="p">])</span>
-</code></pre></div></div>
+<pre><code class="language-python">df = pd.read_csv('ex2data1.txt',names=["X1","X2","Y"])
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</code></pre></div></div>
+<pre><code class="language-python">df.head()
+</code></pre>
 
 <div>
 <style>
@@ -367,22 +368,22 @@ hold off;
 </table>
 </div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">as_matrix</span><span class="p">()</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span>
-</code></pre></div></div>
+<pre><code class="language-python">data = df.as_matrix()
+X = data[:,0:2]
+Y = data[:,2]
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">colors</span> <span class="o">=</span><span class="p">[</span><span class="s">'r'</span> <span class="k">if</span> <span class="n">l</span><span class="o">==</span><span class="mi">0</span> <span class="k">else</span> <span class="s">'b'</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">Y</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Exam 1 score'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Exam 2 score'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div></div>
+<pre><code class="language-python">colors =['r' if l==0 else 'b' for l in Y]
+plt.scatter(X[:,0],X[:,1],c=colors)
+plt.xlabel('Exam 1 score')
+plt.ylabel('Exam 2 score')
+plt.show()
+</code></pre>
 
 <p><img src="https://i.imgur.com/lCMIxVp.png" alt="output_7_0" /></p>
 
 <h2 id="matlab文件ex2m-1">matlab文件ex2.m</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%% ============ Part 2: Compute Cost and Gradient ============
+<pre><code>%% ============ Part 2: Compute Cost and Gradient ============
 % 完成sigmoid.m，costFunction.m
 % cost and gradient for logistic regression
 
@@ -407,58 +408,58 @@ fprintf('Expected cost (approx): 0.218\n');
 fprintf('Gradient at test theta: \n');
 fprintf(' %f \n', grad);
 fprintf('Expected gradients (approx):\n 0.043\n 2.566\n 2.647\n');
-</code></pre></div></div>
+</code></pre>
 
 <h3 id="costfunctiontheta-x-y">costFunction(theta, X, y)</h3>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function [J, grad] = costFunction(theta, X, y)
+<pre><code>function [J, grad] = costFunction(theta, X, y)
 m = length(y); 
 J = 0;
 grad = zeros(size(theta));
 J =  sum(-y.*log(sigmoid(X*theta)) -(1-y).*log(1-sigmoid(X*theta))) / m;
 grad = X'*(sigmoid(X*theta) - y) / m;
 end
-</code></pre></div></div>
+</code></pre>
 <h3 id="sigmoidz">sigmoid(z)</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function g = sigmoid(z)
+<pre><code>function g = sigmoid(z)
 g = zeros(size(z));
 g = 1 ./ (1 + exp(-z))
 end
-</code></pre></div></div>
+</code></pre>
 
 <h2 id="python实现-1">python实现</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span><span class="p">))</span>
-</code></pre></div></div>
+<pre><code class="language-python">def sigmoid(z):
+    return 1/(1+np.exp(-z))
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">costFunction</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">X</span><span class="p">)</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
-    <span class="n">cost</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">y</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">a</span><span class="p">))</span><span class="o">/</span><span class="n">m</span>  
-    <span class="k">return</span> <span class="n">cost</span>
-</code></pre></div></div>
+<pre><code class="language-python">def costFunction(theta,X,y):
+    m = y.shape[1]
+    z = np.dot(theta,X)
+    a = sigmoid(z)
+    cost = -np.sum(y*np.log(a)+(1-y)*np.log(1-a))/m  
+    return cost
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> 
-<span class="n">Y</span> <span class="o">=</span> <span class="n">Y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">)</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">m</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">initial_theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-</code></pre></div></div>
+<pre><code class="language-python">X = X.T 
+Y = Y.reshape(1,-1)
+(n,m) = np.shape(X)
+X = np.insert(X, 0, values=np.ones(m), axis=0)
+initial_theta = np.zeros((1,n+1))
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cost</span> <span class="o">=</span> <span class="n">costFunction</span><span class="p">(</span><span class="n">initial_theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">cost = costFunction(initial_theta, X, Y)
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cost</span>
-</code></pre></div></div>
+<pre><code class="language-python">cost
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0.6931471805599453
-</code></pre></div></div>
+<pre><code>0.6931471805599453
+</code></pre>
 
 <h2 id="regularized-logistic-regression">Regularized logistic regression</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function [J, grad] = costFunctionReg(theta, X, y, lambda)
+<pre><code>function [J, grad] = costFunctionReg(theta, X, y, lambda)
 
 m = length(y); 
 J = 0;
@@ -473,13 +474,13 @@ grad(1,:) = 1/m * (X(:, 1)' * (a - y));
 grad(2:nx, :) = 1/m * (X(:, 2:nx)' * (a - y)) + lambda/m*theta(2:nx, :);
 
 end
-</code></pre></div></div>
+</code></pre>
 
 <p><img src="https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/Od9mobDaEeaCrQqTpeD5ng_4f5e9c71d1aa285c1152ed4262f019c1_Screenshot-2016-11-22-09.31.21.png?expiry=1527724800000&amp;hmac=e_MXtnvWs_a70qb9dOkEhKfEYvBVrtxg0lVK9ukIQ6A" alt="" />
 <img src="https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/dfHLC70SEea4MxKdJPaTxA_306de28804a7467f7d84da0fe3ee9c7b_Screen-Shot-2016-12-07-at-10.49.02-PM.png?expiry=1527724800000&amp;hmac=PedI8KYSSByY85sujmGEXxguTwimpLCV2mLAkTW96Yw" alt="" /></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-</code></pre></div></div>
+<pre><code class="language-python">
+</code></pre>
 </p>
 	</div>
 

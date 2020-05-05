@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -262,7 +263,7 @@
 <!-- 正文 -->
 		<p><h1 id="生成pip下载包">生成pip下载包</h1>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd desktop
+<pre><code>$ cd desktop
 $ mkdir xin
 $ cd xin
 $ mkdir pyxin
@@ -272,10 +273,10 @@ $ touch module1.py
 $ touch module2.py
 $ cd ../
 $ touch setup.py
-</code></pre></div></div>
+</code></pre>
 
 <h2 id="打包package-压缩">打包package (压缩)</h2>
-<p>将.tar.gz文件生成到 <code class="highlighter-rouge">dist</code> 目录中, 并生成一个 <code class="highlighter-rouge">.egg-info</code> 目录:
+<p>将.tar.gz文件生成到 <code>dist</code> 目录中, 并生成一个 <code>.egg-info</code> 目录:
 $ python setup.py sdist</p>
 
 <h2 id="部署到pypi-deploy">[部署到PyPI] (#deploy)</h2>
@@ -290,7 +291,7 @@ $ python setup.py sdist</p>
 <h1 id="directory-structure">Directory structure</h1>
 <p>在编写一个包之前先要明确这个文件夹的结构。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+<pre><code>.
 ├── docs
 |   └── ...
 ├── examples
@@ -299,45 +300,45 @@ $ python setup.py sdist</p>
 |   ├── __init__.py
 |   └── ...
 └── README.md
-</code></pre></div></div>
+</code></pre>
 
-<p><code class="highlighter-rouge">docs</code>和<code class="highlighter-rouge">examples</code>装文件和例子，<code class="highlighter-rouge">readme.md</code>写说明，<code class="highlighter-rouge">neat</code>是我们包的文件夹</p>
+<p><code>docs</code>和<code>examples</code>装文件和例子，<code>readme.md</code>写说明，<code>neat</code>是我们包的文件夹</p>
 
-<p><code class="highlighter-rouge">neat</code>文件夹里有<code class="highlighter-rouge">__init__.py</code>和其他各种<code class="highlighter-rouge">module.py</code></p>
+<p><code>neat</code>文件夹里有<code>__init__.py</code>和其他各种<code>module.py</code></p>
 
-<p><code class="highlighter-rouge">__init__.py</code>里把其他的module都给导入进去，例如：</p>
+<p><code>__init__.py</code>里把其他的module都给导入进去，例如：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">from</span> <span class="nn">neat.config</span> <span class="kn">import</span> <span class="n">Config</span>
-    <span class="kn">from</span> <span class="nn">neat.population</span> <span class="kn">import</span> <span class="n">Population</span><span class="p">,</span> <span class="n">CompleteExtinctionException</span>
-    <span class="kn">from</span> <span class="nn">neat.genome</span> <span class="kn">import</span> <span class="n">DefaultGenome</span>
-    <span class="kn">from</span> <span class="nn">neat.reproduction</span> <span class="kn">import</span> <span class="n">DefaultReproduction</span>
-</code></pre></div></div>
+<pre><code class="language-python">    from neat.config import Config
+    from neat.population import Population, CompleteExtinctionException
+    from neat.genome import DefaultGenome
+    from neat.reproduction import DefaultReproduction
+</code></pre>
 
-<p>我们拿<code class="highlighter-rouge">config.py</code>开始讲解。</p>
+<p>我们拿<code>config.py</code>开始讲解。</p>
 
-<p>从上面<code class="highlighter-rouge">from neat.config import Config</code>可以看出, <code class="highlighter-rouge">config.py</code>里是有一个class叫<code class="highlighter-rouge">Config</code>的，除此之外还有其他的class:</p>
+<p>从上面<code>from neat.config import Config</code>可以看出, <code>config.py</code>里是有一个class叫<code>Config</code>的，除此之外还有其他的class:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
-<span class="k">class</span> <span class="nc">ConfigParameter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="o">...</span>
-<span class="k">def</span> <span class="nf">write_pretty_params</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
-    <span class="o">...</span>
-<span class="k">class</span> <span class="nc">UnknownConfigItemError</span><span class="p">(</span><span class="nb">NameError</span><span class="p">):</span>
-    <span class="o">...</span>
-<span class="k">class</span> <span class="nc">DefaultClassConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="o">...</span>
-<span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="o">...</span>
-</code></pre></div></div>
+<pre><code class="language-python">import os
+class ConfigParameter(object):
+    ...
+def write_pretty_params(f, config, params):
+    ...
+class UnknownConfigItemError(NameError):
+    ...
+class DefaultClassConfig(object):
+    ...
+class Config(object):
+    ...
+</code></pre>
 
-<p>其中class <code class="highlighter-rouge">Config</code> 如下：</p>
+<p>其中class <code>Config</code> 如下：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">genome_type</span><span class="p">,</span> <span class="n">reproduction_type</span><span class="p">,</span> <span class="n">species_set_type</span><span class="p">,</span> <span class="n">stagnation_type</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
-        <span class="o">...</span>
-    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
-        <span class="o">...</span>
-</code></pre></div></div>
+<pre><code class="language-python">class Config(object):
+    def __init__(self, genome_type, reproduction_type, species_set_type, stagnation_type, filename):
+        ...
+    def save(self, filename):
+        ...
+</code></pre>
 
 </p>
 	</div>

@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -262,89 +263,89 @@
 <!-- 正文 -->
 		<p><p>以下是经常遗忘的一些用法：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="n">s</span> <span class="o">=</span> <span class="s">"Hi there Sam!"</span>
-<span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+<pre><code class="language-python">
+s = "Hi there Sam!"
+list(s.split())
 
-<span class="n">planet</span> <span class="o">=</span> <span class="s">"Earth"</span>
-<span class="n">diameter</span> <span class="o">=</span> <span class="mi">12742</span>
-<span class="k">print</span><span class="p">(</span><span class="s">"the diameter of {} is {} kilometers"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s">"earth"</span><span class="p">,</span><span class="mi">12742</span><span class="p">))</span>
+planet = "Earth"
+diameter = 12742
+print("the diameter of {} is {} kilometers".format("earth",12742))
 
-<span class="k">def</span> <span class="nf">findDog</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s">'dog'</span> <span class="ow">in</span> <span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+def findDog(str):
+    return 'dog' in str.lower()
 
-<span class="k">def</span> <span class="nf">countDog</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">"dog"</span><span class="p">)</span> 
+def countDog(str):
+    return str.lower().count("dog") 
 
-<span class="c">#    或：</span>
-<span class="c">#    def countDog(st):</span>
-<span class="c">#        count = 0</span>
-<span class="c">#       for word in st.lower().split():</span>
-<span class="c">#            if word == 'dog':</span>
-<span class="c">#                count += 1</span>
-<span class="c">#        return count</span>
+#    或：
+#    def countDog(st):
+#        count = 0
+#       for word in st.lower().split():
+#            if word == 'dog':
+#                count += 1
+#        return count
 
-<span class="c"># 找到以S开头的string</span>
-<span class="n">seq</span> <span class="o">=</span> <span class="p">[</span><span class="s">'soup'</span><span class="p">,</span><span class="s">'dog'</span><span class="p">,</span><span class="s">'salad'</span><span class="p">,</span><span class="s">'cat'</span><span class="p">,</span><span class="s">'great'</span><span class="p">]</span>
-<span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">word</span><span class="p">:</span> <span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s">'s'</span><span class="p">,</span><span class="n">seq</span><span class="p">))</span>
-
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">random</span>
-<span class="c">#  a random number between 0 and 1</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="c">#  an array of 20 random numbers sampled from a standard normal distribution</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
-
-<span class="c"># 注意mat[1]和mat[1:2]的区别</span>
-<span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">26</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">mat</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">mat</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
-
-<span class="n">mat</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span>
-<span class="n">mat</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
-<span class="n">mat</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="c">## 机器学习相关</span>
-
-<span class="n">mat3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
-<span class="n">tmat3</span> <span class="o">=</span> <span class="n">mat3</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-<span class="c"># 相当于reshape(3,4,2)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">mat3</span><span class="p">,</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">mat3</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">tmat3</span><span class="p">,</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">tmat3</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-
-<span class="c"># broadcast</span>
-<span class="n">mat1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-<span class="n">vec</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">]])</span>
-<span class="k">print</span><span class="p">(</span><span class="n">mat1</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">vec</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">mat1</span><span class="o">+</span><span class="n">vec</span><span class="p">)</span>
-<span class="c"># 比如我们需要将一个列向量加到一个矩阵的每一列上,</span>
-<span class="c"># 自动执行的 broadcast 操作则会先将列向量 “拓宽” 成一个相同尺寸的矩阵，</span>
-<span class="c"># 且其每一列都是对原列向量的复制, 然后再进行运算。</span>
-
-<span class="c"># between 0 and 1</span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-<span class="c"># standard normal distribution</span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+# 找到以S开头的string
+seq = ['soup','dog','salad','cat','great']
+list(filter(lambda word: word[0]=='s',seq))
 
 
-<span class="c"># 随机打乱矩阵</span>
-<span class="n">l</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+import numpy as np
+from numpy import random
+#  a random number between 0 and 1
+np.random.rand(1)
+#  an array of 20 random numbers sampled from a standard normal distribution
+np.random.randn(20)
+
+# 注意mat[1]和mat[1:2]的区别
+mat = np.arange(1,26).reshape(5,5)
+mat[:3,1:2]
+mat[:3,1]
+
+mat.sum()
+mat.std()
+mat.sum(axis=0)
+
+## 机器学习相关
+
+mat3 = np.zeros([2,3,4])
+tmat3 = mat3.transpose(1,2,0)
+# 相当于reshape(3,4,2)
+print(mat3,'\n', mat3.shape)
+print(tmat3,'\n', tmat3.shape)
+
+# broadcast
+mat1=np.zeros((3,2))
+vec=np.array([[1],[2],[3]])
+print(mat1.shape, vec.shape)
+print(mat1+vec)
+# 比如我们需要将一个列向量加到一个矩阵的每一列上,
+# 自动执行的 broadcast 操作则会先将列向量 “拓宽” 成一个相同尺寸的矩阵，
+# 且其每一列都是对原列向量的复制, 然后再进行运算。
+
+# between 0 and 1
+print(np.random.rand(5))
+# standard normal distribution
+print(np.random.randn(5))
+print(np.random.randn(5,5))
 
 
-<span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+# 随机打乱矩阵
+l=[1,2,3]
+np.random.shuffle(l)
+print(l)
 
-<span class="c"># 求一个数组中最大元素的下标</span>
-<span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
 
-</code></pre></div></div>
+a=np.ones((3,2))
+print(np.sum(a))
+print(np.sum(a,axis=0))
+print(np.sum(a,axis=1))
+
+# 求一个数组中最大元素的下标
+a=[1,2,3,4,3,2,1]
+print(np.argmax(a))
+
+</code></pre>
 </p>
 	</div>
 

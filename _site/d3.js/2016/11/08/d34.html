@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -302,14 +303,14 @@
 
 <p>使用 D3 在 body 元素中添加 svg 的代码如下:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var width = 300;  //画布的宽度
+<pre><code>var width = 300;  //画布的宽度
 var height = 300;   //画布的高度
 
 var svg = d3.select("body")     //选择文档中的body元素
     .append("svg")          //添加一个svg元素
     .attr("width", width)       //设定宽度
     .attr("height", height);    //设定高度
-</code></pre></div></div>
+</code></pre>
 
 <p>有了画布，接下来就可以在画布上作图了。</p>
 
@@ -317,13 +318,13 @@ var svg = d3.select("body")     //选择文档中的body元素
 
 <p>本文绘制一个横向的柱形图。只绘制矩形，不绘制文字和坐标轴。</p>
 
-<p>在 SVG 中，矩形的元素标签是 <code class="highlighter-rouge">rect</code>。例如：</p>
+<p>在 SVG 中，矩形的元素标签是 <code>rect</code>。例如：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;svg&gt;
+<pre><code>&lt;svg&gt;
 &lt;rect&gt;&lt;/rect&gt;
 &lt;rect&gt;&lt;/rect&gt;
 &lt;/svg&gt;
-</code></pre></div></div>
+</code></pre>
 
 <p>上面的 rect 里没有矩形的属性。矩形的属性，常用的有四个：</p>
 
@@ -335,13 +336,13 @@ height：矩形的高度
 
 <p>现在给出一组数据，要对此进行可视化。数据如下：</p>
 
-<p><code class="highlighter-rouge">var dataset = [ 250 , 210 , 170 , 130 , 90 ];  //数据（表示矩形的宽度)</code></p>
+<p><code>var dataset = [ 250 , 210 , 170 , 130 , 90 ];  //数据（表示矩形的宽度)</code></p>
 
 <p>为简单起见，我们直接用数值的大小来表示矩形的像素宽度（后面会说到这不是一种好方法）。</p>
 
 <p>然后，添加以下代码。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var rectHeight = 25;   //每个矩形所占的像素高度(包括空白)
+<pre><code>var rectHeight = 25;   //每个矩形所占的像素高度(包括空白)
 
 svg.selectAll("rect")
     .data(dataset)
@@ -356,7 +357,7 @@ svg.selectAll("rect")
     })
     .attr("height",rectHeight-2)
     .attr("fill","steelblue");
-</code></pre></div></div>
+</code></pre>
 
 <p>代码解释：</p>
 
@@ -364,11 +365,11 @@ svg.selectAll("rect")
 
 <p>这段代码添加了与 dataset 数组的长度相同数量的矩形，所使用的语句是：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>svg.selectAll("rect")   //选择svg内所有的矩形
+<pre><code>svg.selectAll("rect")   //选择svg内所有的矩形
     .data(dataset)  //绑定数组
     .enter()        //指定选择集的enter部分
     .append("rect") //添加足够数量的矩形元素
-</code></pre></div></div>
+</code></pre>
 
 <p>这段代码以后会常常出现在 D3 的代码中，请务必牢记。目前不深入讨论它的作用机制是怎样的，只需要读者牢记，当：</p>
 
@@ -378,8 +379,8 @@ svg.selectAll("rect")
 
 <p>最后一行的：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.attr("fill","steelblue");
-</code></pre></div></div>
+<pre><code>.attr("fill","steelblue");
+</code></pre>
 
 <p>是给矩形元素设置颜色。一般来说，最好写成外置 CSS 的形式，方便归类和修改。这里为了便于初学者理解，将样式直接写到元素里。</p>
 

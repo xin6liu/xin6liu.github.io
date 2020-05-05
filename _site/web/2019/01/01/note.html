@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -266,27 +267,27 @@
 方法: delete, save</p>
 
 <h3 id="myaspectjava">MyAspect.java</h3>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Aspect</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyAspect</span> <span class="o">{</span>
-    <span class="nd">@Before</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span><span class="s">"execution(* com.imooc.ProductDao.save(..))"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">before</span><span class="o">(){</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"前置advice"</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
+<pre><code class="language-java">@Aspect
+public class MyAspect {
+    @Before(value ="execution(* com.imooc.ProductDao.save(..))")
+    public void before(){
+        System.out.println("前置advice");
+    }
+}
+</code></pre>
 <h3 id="applicationcontextxml">applicationContext.xml</h3>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s">"1.0"</span> <span class="n">encoding</span><span class="o">=</span><span class="s">"UTF-8"</span><span class="o">?&gt;</span>
-<span class="o">&lt;</span><span class="n">beans</span> <span class="n">xmlns</span><span class="o">=</span><span class="s">"http://www.springframework.org/schema/beans"</span>
-       <span class="nl">xmlns:</span><span class="n">xsi</span><span class="o">=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
-       <span class="nl">xmlns:</span><span class="n">aop</span><span class="o">=</span><span class="s">"http://www.springframework.org/schema/aop"</span> <span class="nl">xsi:</span><span class="n">schemaLocation</span><span class="o">=</span><span class="s">"
+<pre><code class="language-java">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="nl">aop:</span><span class="n">aspectj</span><span class="o">-</span><span class="n">autoproxy</span><span class="o">/&gt;</span>
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"&gt;
+    &lt;aop:aspectj-autoproxy/&gt;
 
-    <span class="o">&lt;</span><span class="n">bean</span> <span class="n">id</span><span class="o">=</span><span class="s">"pd"</span> <span class="kd">class</span><span class="err">="</span><span class="nc">com</span><span class="o">.</span><span class="na">imooc</span><span class="o">.</span><span class="na">ProductDao</span><span class="s">"&gt;&lt;/bean&gt;
-    &lt;bean class="</span><span class="n">com</span><span class="o">.</span><span class="na">imooc</span><span class="o">.</span><span class="na">MyAspect</span><span class="err">"</span><span class="o">&gt;&lt;/</span><span class="n">bean</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">beans</span><span class="o">&gt;</span>
-</code></pre></div></div>
+    &lt;bean id="pd" class="com.imooc.ProductDao"&gt;&lt;/bean&gt;
+    &lt;bean class="com.imooc.MyAspect"&gt;&lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre>
 
 <h3 id="testjava">Test.java</h3>
 <p>```java

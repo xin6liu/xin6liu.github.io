@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -262,15 +263,15 @@
 <!-- 正文 -->
 		<p><h2 id="1-import-some-key-classes-导入关键类">1. Import some key classes 导入关键类</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">fenics</span> <span class="kn">import</span> <span class="o">*</span>
-</code></pre></div></div>
+<pre><code class="language-python">from fenics import *
+</code></pre>
 
 <p>这些类(classes)包括<strong>UnitSquareMesh, FunctionSpace, Function</strong>等</p>
 
 <h2 id="2-generating-simple-meshes-生成简单的网格">2. Generating simple meshes 生成简单的网格</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mesh</span> <span class="o">=</span> <span class="n">UnitSquareMesh</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">mesh = UnitSquareMesh(8,8)
+</code></pre>
 
 <p>这里用到 <strong>UnitSquareSpace()</strong>. 括号里面表示 unit square 里矩形的数量。</p>
 
@@ -292,8 +293,8 @@ $[0,1]\times [0,1]$。 网格由<strong>cells</strong>组成，其中2D是三角
 
 <h2 id="3-defining-the-finite-element-function-space-定义有限元函数空间">3. Defining the finite element function space 定义有限元函数空间</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">V</span><span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span><span class="s">'Lagrange'</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">V= FunctionSpace(mesh,'Lagrange',1)
+</code></pre>
 
 <p>这里用到 <strong>FunctionSpace()</strong>.</p>
 
@@ -317,19 +318,19 @@ FEniCS支持所有单体元素族和符号定义在：<a href="https://www.femta
 
 <h2 id="4-defining-the-trial-and-test-functions">4. Defining the trial and test functions</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">u = TrialFunction(V)
+v = TestFunction(V)
+</code></pre>
 
 <p>在数学上，trial spaces $V$ 和 test spaces $\hat V$ 是不同的。对于这个问题，唯一的不同是边界条件。但是在fenics里，边界条件不是function space 的一部分。所以对于 trial functions 和 test functions, 我们用同一个space $V$.</p>
 
 <h2 id="5-defining-the-boundary-conditions">5. Defining the boundary conditions</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">u_D</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s">'1 + x[0]*x[0] + 2*x[1]*x[1]'</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">u_D = Expression('1 + x[0]*x[0] + 2*x[1]*x[1]', degree=2)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">--- Instant: compiling ---
-</span></code></pre></div></div>
+<pre><code>--- Instant: compiling ---
+</code></pre>
 
 <blockquote>
   <p>u_D = Expression(formula, degree=1)</p>
@@ -347,13 +348,13 @@ FEniCS支持所有单体元素族和符号定义在：<a href="https://www.femta
 
 <p>expression有两个variables： x[0] and x<a href="https://www.femtable.org">1</a>对应 x 和 y coordinates，如果是3维，会再加上 x<a href="liuxin.in">2</a>对应 z coordiante.</p>
 
-<p>因为我们选择的是: $u_D(x,y)=1+x^2+2y^2$, 所以formula string可以写作: <code class="highlighter-rouge">1 + x[0]*x[0] + 2*x[1]*x[1]</code>。注意：<a href="liuxin.in">String expressions must have valid C++ syntax</a>。</p>
+<p>因为我们选择的是: $u_D(x,y)=1+x^2+2y^2$, 所以formula string可以写作: <code>1 + x[0]*x[0] + 2*x[1]*x[1]</code>。注意：<a href="liuxin.in">String expressions must have valid C++ syntax</a>。</p>
 
 <p>我们把degree设置为2，这样 u_D 就可以准确表示这个问题的 quadratic solution 了。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">boundary</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">on_boundary</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">on_boundary</span>
-</code></pre></div></div>
+<pre><code class="language-python">def boundary(x, on_boundary):
+    return on_boundary
+</code></pre>
 
 <p>如下面在 <strong>DirichletBC</strong> 中所介绍的，function <strong>boundary</strong> 用来定义哪些点属于边界。</p>
 
@@ -365,8 +366,8 @@ FEniCS支持所有单体元素族和符号定义在：<a href="https://www.femta
 
 <p>注意: <a href="liuxin.in">Never use == for comparing real numbers</a>。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bc</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">u_D</span><span class="p">,</span> <span class="n">boundary</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">bc = DirichletBC(V, u_D, boundary)
+</code></pre>
 
 <p>Boundary Condition: $u = u_D$ on $\partial \Omega$</p>
 
@@ -376,8 +377,8 @@ FEniCS支持所有单体元素族和符号定义在：<a href="https://www.femta
 
 <h2 id="6-defining-the-source-term">6. Defining the source term</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">f</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">f = Constant(-6)
+</code></pre>
 
 <p>在定义bilinear 和 linear forms： a(u,v) L(v) 之前，我们必须先定义source term f:</p>
 <blockquote>
@@ -388,9 +389,9 @@ FEniCS支持所有单体元素族和符号定义在：<a href="https://www.femta
 
 <h2 id="7-defining-the-variational-problem">7. Defining the variational problem</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span>
-<span class="n">L</span> <span class="o">=</span> <span class="n">f</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span>
-</code></pre></div></div>
+<pre><code class="language-python">a = dot(grad(u), grad(v))*dx
+L = f*v*dx
+</code></pre>
 
 <p>这两行描述了要解决的PDE。python的语法和数学语言非常相似，eg:  $\nabla u\cdot \nabla v \ dx$ 和 $fv\ dx$。</p>
 
@@ -400,14 +401,14 @@ FEniCS支持所有单体元素族和符号定义在：<a href="https://www.femta
 
 <h2 id="8-forming-and-solving-the-linear-system">8. Forming and solving the linear system</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">u</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
-<span class="n">solve</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">L</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">bc</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">u = Function(V)
+solve(a == L, u, bc)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Calling FFC just-in-time (JIT) compiler, this may take some time.
+<pre><code>Calling FFC just-in-time (JIT) compiler, this may take some time.
 Calling FFC just-in-time (JIT) compiler, this may take some time.
 Calling FFC just-in-time (JIT) compiler, this may take some time.
-</code></pre></div></div>
+</code></pre>
 
 <p>定义完有限元 variational problem 和边界条件之后，我们可以让FEniCS来计算结果了。</p>
 
@@ -415,19 +416,19 @@ Calling FFC just-in-time (JIT) compiler, this may take some time.
 
 <h2 id="9-plotting-the-solution-using-the-plot-command">9. Plotting the solution using the plot command</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">%matplotlib inline
+plot(mesh)
+plot(u, interactive=True)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.tri.tricontour.TriContourSet at 0x7fd32720d890&gt;
-</code></pre></div></div>
+<pre><code>&lt;matplotlib.tri.tricontour.TriContourSet at 0x7fd32720d890&gt;
+</code></pre>
 
 <p><img src="http://wx2.sinaimg.cn/mw690/8db2c8cbgy1fhasmtkejmj207a070jrs.jpg" alt="png" /></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span> 
-<span class="n">HTML</span><span class="p">(</span><span class="n">X3DOM</span><span class="p">()</span><span class="o">.</span><span class="n">html</span><span class="p">(</span><span class="n">u</span><span class="p">))</span>
-</code></pre></div></div>
+<pre><code class="language-python">from IPython.display import HTML 
+HTML(X3DOM().html(u))
+</code></pre>
 
 <p>&lt;!DOCTYPE html&gt;</p>
 <html>
@@ -534,8 +535,8 @@ Calling FFC just-in-time (JIT) compiler, this may take some time.
   </body>
 </html>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-</code></pre></div></div>
+<pre><code class="language-python">
+</code></pre>
 
 </p>
 	</div>

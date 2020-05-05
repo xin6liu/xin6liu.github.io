@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -292,75 +293,75 @@
 
 <p>由于根据上式还是泊松方程，f也给出了，a和L还是原样：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span><span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span>
-<span class="n">L</span> <span class="o">=</span> <span class="n">f</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span>
-</code></pre></div></div>
+<pre><code class="language-python">a = dot(grad(u),grad(v))*dx
+L = f*v*dx
+</code></pre>
 
 <h2 id="fenics">FEniCS</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">fenics</span> <span class="kn">import</span> <span class="o">*</span>
-</code></pre></div></div>
+<pre><code class="language-python">from fenics import *
+</code></pre>
 
 <p>首先确定parameters: $\beta$和$R_0$</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># parameters</span>
-<span class="n">beta</span> <span class="o">=</span> <span class="mi">8</span>
-<span class="n">R0</span> <span class="o">=</span> <span class="mf">0.6</span>
-</code></pre></div></div>
+<pre><code class="language-python"># parameters
+beta = 8
+R0 = 0.6
+</code></pre>
 
 <p>bc时，mesh的方法不同于之前的UnitSquareMesh, 这里是一个圆形，所以先确定domain是一个圆形。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># bc</span>
-<span class="kn">from</span> <span class="nn">mshr</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">domain</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">mesh</span> <span class="o">=</span> <span class="n">generate_mesh</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
-<span class="n">V</span> <span class="o">=</span> <span class="n">FunctionSpace</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="s">'P'</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">u_D</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">boundary</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">on_boundary</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">on_boundary</span>
-<span class="n">bc</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">u_D</span><span class="p">,</span> <span class="n">boundary</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python"># bc
+from mshr import *
+domain = Circle(Point(0,0), 1)
+mesh = generate_mesh(domain, 64)
+V = FunctionSpace(mesh, 'P', 2)
+u_D = Constant(0)
+def boundary(x, on_boundary):
+    return on_boundary
+bc = DirichletBC(V, u_D, boundary)
+</code></pre>
 
-<p>这里写f的表达式时，看起来比较麻烦，但是之后如果要改变parameters的话就比较容易了，eg：<code class="highlighter-rouge">f.beta = 12</code> 或 <code class="highlighter-rouge">f.R0 = 2</code></p>
+<p>这里写f的表达式时，看起来比较麻烦，但是之后如果要改变parameters的话就比较容易了，eg：<code>f.beta = 12</code> 或 <code>f.R0 = 2</code></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># a&amp;L</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s">'4*exp(-pow(beta,2)*(pow(x[0],2)+pow(x[1]-R0,2)))'</span><span class="p">,</span> <span class="n">degree</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="n">beta</span><span class="p">,</span> <span class="n">R0</span><span class="o">=</span><span class="n">R0</span><span class="p">)</span>
-<span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span>
-<span class="n">L</span> <span class="o">=</span> <span class="n">f</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span>
-</code></pre></div></div>
+<pre><code class="language-python"># a&amp;L
+f = Expression('4*exp(-pow(beta,2)*(pow(x[0],2)+pow(x[1]-R0,2)))', degree = 1, beta=beta, R0=R0)
+u = TrialFunction(V)
+v = TestFunction(V)
+a = dot(grad(u), grad(v))*dx
+L = f*v*dx
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># solve</span>
-<span class="n">u</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
-<span class="n">solve</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">L</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">bc</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python"># solve
+u = Function(V)
+solve(a == L, u, bc)
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">%matplotlib inline
+plot(u)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.tri.tricontour.TriContourSet at 0x7f23c4696710&gt;
-</code></pre></div></div>
+<pre><code>&lt;matplotlib.tri.tricontour.TriContourSet at 0x7f23c4696710&gt;
+</code></pre>
 
 <p><img src="http://wx3.sinaimg.cn/mw690/8db2c8cbgy1fhl0tcuvi2j207p070gln.jpg" alt="png" /></p>
 
 <p>注意在画压力f的分布图时，我们必须把 <strong>formula (Expression)</strong> 转换成一个 <strong>finite element function (Function)</strong>。最简单的方法就是建造一个finite element function，这个 function 的 degrees of freedom 是由f计算而来的，也就是我们把f插值(interpolate)到 function space V 中。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">f</span> <span class="o">=</span> <span class="n">interpolate</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">f = interpolate(f, V)
+plot(f)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.tri.tricontour.TriContourSet at 0x7f23c44c4d90&gt;
-</code></pre></div></div>
+<pre><code>&lt;matplotlib.tri.tricontour.TriContourSet at 0x7f23c44c4d90&gt;
+</code></pre>
 
 <p><img src="http://wx3.sinaimg.cn/mw690/8db2c8cbgy1fhl0te9fj5j207p070dfr.jpg" alt="png" /></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vtkfile_u</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s">'poisson_membrane/deflection.pvd'</span><span class="p">)</span>
-<span class="n">vtkfile</span> <span class="o">&lt;&lt;</span> <span class="n">u</span>
-<span class="n">vtkfile_f</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="s">'poisson_membrane/load.pvd'</span><span class="p">)</span>
-<span class="n">vtkfile</span> <span class="o">&lt;&lt;</span> <span class="n">f</span>
-</code></pre></div></div>
+<pre><code class="language-python">vtkfile_u = File('poisson_membrane/deflection.pvd')
+vtkfile &lt;&lt; u
+vtkfile_f = File('poisson_membrane/load.pvd')
+vtkfile &lt;&lt; f
+</code></pre>
 </p>
 	</div>
 

@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -295,42 +296,42 @@ com.liuxin.ssm.biz.impl -&gt; DepartmentBizImpl.java</p>
 <p>com.liuxin.ssm.controller -&gt; DepartmentController.java</p>
 
 <h3 id="departmentdaojava">DepartmentDao.java</h3>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Repository</span><span class="o">(</span><span class="s">"departmentDao"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">DepartmentDao</span> <span class="o">{</span>
-    <span class="kt">void</span> <span class="nf">insert</span><span class="o">(</span><span class="n">Department</span> <span class="n">department</span><span class="o">);</span>
-    <span class="kt">void</span> <span class="nf">update</span><span class="o">(</span><span class="n">Department</span> <span class="n">department</span><span class="o">);</span>
-    <span class="kt">void</span> <span class="nf">delete</span><span class="o">(</span><span class="n">String</span> <span class="n">sn</span><span class="o">);</span>
-    <span class="n">Department</span> <span class="nf">select</span><span class="o">(</span><span class="n">String</span> <span class="n">sn</span><span class="o">);</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">Department</span><span class="o">&gt;</span> <span class="nf">selectAll</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre></div></div>
+<pre><code class="language-java">@Repository("departmentDao")
+public interface DepartmentDao {
+    void insert(Department department);
+    void update(Department department);
+    void delete(String sn);
+    Department select(String sn);
+    List&lt;Department&gt; selectAll();
+}
+</code></pre>
 <h3 id="departmentbizimpljava">DepartmentBizImpl.java</h3>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span><span class="o">(</span><span class="s">"departmentBiz"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DepartmentBizImpl</span> <span class="kd">implements</span> <span class="n">DepartmentBiz</span> <span class="o">{</span>
-    <span class="nd">@Autowired</span>
-    <span class="kd">private</span> <span class="n">DepartmentDao</span> <span class="n">departmentDao</span><span class="o">;</span>
+<pre><code class="language-java">@Service("departmentBiz")
+public class DepartmentBizImpl implements DepartmentBiz {
+    @Autowired
+    private DepartmentDao departmentDao;
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="n">Department</span> <span class="n">department</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">departmentDao</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">department</span><span class="o">);</span>
-    <span class="o">}</span>
+    public void add(Department department) {
+        departmentDao.insert(department);
+    }
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">edit</span><span class="o">(</span><span class="n">Department</span> <span class="n">department</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">departmentDao</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">department</span><span class="o">);</span>
-    <span class="o">}</span>
+    public void edit(Department department) {
+        departmentDao.update(department);
+    }
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">remove</span><span class="o">(</span><span class="n">String</span> <span class="n">sn</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">departmentDao</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">sn</span><span class="o">);</span>
-    <span class="o">}</span>
+    public void remove(String sn) {
+        departmentDao.delete(sn);
+    }
 
-    <span class="kd">public</span> <span class="n">Department</span> <span class="nf">get</span><span class="o">(</span><span class="n">String</span> <span class="n">sn</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">departmentDao</span><span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="n">sn</span><span class="o">);</span>
-    <span class="o">}</span>
+    public Department get(String sn) {
+        return departmentDao.select(sn);
+    }
 
-    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Department</span><span class="o">&gt;</span> <span class="nf">getAll</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">departmentDao</span><span class="o">.</span><span class="na">selectAll</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
+    public List&lt;Department&gt; getAll() {
+        return departmentDao.selectAll();
+    }
+}
+</code></pre>
 <h3 id="departmentcontrollerjava">DepartmentController.java</h3>
 <p>```java
 @Controller(“departmentController”)
@@ -339,12 +340,12 @@ public class DepartmentController {
     @Autowired
     private DepartmentBiz departmentBiz;</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@RequestMapping("/list")
+<pre><code>@RequestMapping("/list")
 public String list(Map&lt;String,Object&gt; map){
     map.put("list",departmentBiz.getAll());
     return "department_list";
 }
-</code></pre></div></div>
+</code></pre>
 
 <p>}</p>
 </p>

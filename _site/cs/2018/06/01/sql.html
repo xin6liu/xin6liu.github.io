@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -268,7 +269,7 @@
 
 <p>MySQL是一种DBMS（数据库软件）。MySQL是一个<strong>客户机—服务器</strong>DBMS，因此，为了使用 MySQL，需要有一个客户机，即你需要用来与MySQL打交道(给 MySQL 提供要执行的命令)的一个应用。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT * FROM celebs;
+<pre><code>SELECT * FROM celebs;
 
 create table table_name (
     cloum_1 data_type,
@@ -286,10 +287,10 @@ INSERT INTO celebs (id, name, age)
 VALUES (1, 'Justin Bieber', 21);
 
 SELECT * FROM celebs;
-</code></pre></div></div>
+</code></pre>
 
 <h2 id="实验楼">实验楼</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo service mysql start
+<pre><code>sudo service mysql start
 mysql -u root
 
 CREATE DATABASE mysql_shiyan;
@@ -313,7 +314,7 @@ values(
 );
 
 select * from aaa;
-</code></pre></div></div>
+</code></pre>
 
 </p>
 	</div>

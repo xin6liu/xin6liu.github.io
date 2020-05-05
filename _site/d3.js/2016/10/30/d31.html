@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -275,11 +276,11 @@
 
 <p>（2）还可以直接包含网络的链接，这种方法较简单：</p>
 
-<p><code class="highlighter-rouge">&lt;script src="http://d3js.org/d3.v3.min.js" charset="utf-8"&gt;&lt;/script&gt;</code></p>
+<p><code>&lt;script src="http://d3js.org/d3.v3.min.js" charset="utf-8"&gt;&lt;/script&gt;</code></p>
 
 <p>或者最新的：</p>
 
-<p><code class="highlighter-rouge">&lt;script src="https://d3js.org/d3.v4.min.js"&gt;&lt;/script&gt;</code></p>
+<p><code>&lt;script src="https://d3js.org/d3.v4.min.js"&gt;&lt;/script&gt;</code></p>
 
 <p>但使用的时候要保持网络连接有效，不能在断网的情况下使用。</p>
 
@@ -297,39 +298,39 @@
 
 <p>举个栗子：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span> 
-  <span class="nt">&lt;head&gt;</span> 
-        <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span> 
-        <span class="nt">&lt;title&gt;</span>HelloWorld<span class="nt">&lt;/title&gt;</span> 
-  <span class="nt">&lt;/head&gt;</span> 
-    <span class="nt">&lt;body&gt;</span> 
-        <span class="nt">&lt;p&gt;</span>Hello World 1<span class="nt">&lt;/p&gt;</span>
-        <span class="nt">&lt;p&gt;</span>Hello World 2<span class="nt">&lt;/p&gt;</span>
-    <span class="nt">&lt;/body&gt;</span> 
-<span class="nt">&lt;/html&gt;</span>
-</code></pre></div></div>
+<pre><code>&lt;html&gt; 
+  &lt;head&gt; 
+        &lt;meta charset="utf-8"&gt; 
+        &lt;title&gt;HelloWorld&lt;/title&gt; 
+  &lt;/head&gt; 
+    &lt;body&gt; 
+        &lt;p&gt;Hello World 1&lt;/p&gt;
+        &lt;p&gt;Hello World 2&lt;/p&gt;
+    &lt;/body&gt; 
+&lt;/html&gt;
+</code></pre>
 
 <p>利用d3.js改写：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span> 
-  <span class="nt">&lt;head&gt;</span> 
-        <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span> 
-        <span class="nt">&lt;title&gt;</span>HelloWorld<span class="nt">&lt;/title&gt;</span> 
-  <span class="nt">&lt;/head&gt;</span> 
-    <span class="nt">&lt;body&gt;</span> 
-        <span class="nt">&lt;p&gt;</span>Hello World 1<span class="nt">&lt;/p&gt;</span>
-        <span class="nt">&lt;p&gt;</span>Hello World 2<span class="nt">&lt;/p&gt;</span>
-        <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://d3js.org/d3.v4.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span> 
-        <span class="nt">&lt;script&gt;</span>  
-        <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">"body"</span><span class="p">).</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">"p"</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s2">"liuxin"</span><span class="p">);</span>      
-        <span class="nt">&lt;/script&gt;</span> 
-    <span class="nt">&lt;/body&gt;</span> 
-<span class="nt">&lt;/html&gt;</span>
-</code></pre></div></div>
+<pre><code>&lt;html&gt; 
+  &lt;head&gt; 
+        &lt;meta charset="utf-8"&gt; 
+        &lt;title&gt;HelloWorld&lt;/title&gt; 
+  &lt;/head&gt; 
+    &lt;body&gt; 
+        &lt;p&gt;Hello World 1&lt;/p&gt;
+        &lt;p&gt;Hello World 2&lt;/p&gt;
+        &lt;script src="https://d3js.org/d3.v4.min.js"&gt;&lt;/script&gt; 
+        &lt;script&gt;  
+        d3.select("body").selectAll("p").text("liuxin");      
+        &lt;/script&gt; 
+    &lt;/body&gt; 
+&lt;/html&gt;
+</code></pre>
 
 <p>另外一种方法：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;script src="https://d3js.org/d3.v4.min.js"&gt;&lt;/script&gt; 
+<pre><code>&lt;script src="https://d3js.org/d3.v4.min.js"&gt;&lt;/script&gt; 
 &lt;script&gt;  
 	//选择&lt;body&gt;中所有的&lt;p&gt;，其文本内容为liuxin，选择集保存在变量 p 中
 	var p = d3.select("body")
@@ -339,12 +340,12 @@
 	p.style("color","red")
 	 .style("font-size","72px");    
 &lt;/script&gt; 
-</code></pre></div></div>
+</code></pre>
 
 <p>上面的代码是先将选中的元素赋值给变量 p，然后通过变量 p 来改变样式，这样可以使代码更整洁。
-这里涉及一个概念：<strong>选择集</strong> 后面也会说到，使用 <code class="highlighter-rouge">d3.select()</code> 或 <code class="highlighter-rouge">d3.selectAll()</code> 选择元素后返回的对象，就是选择集。</p>
+这里涉及一个概念：<strong>选择集</strong> 后面也会说到，使用 <code>d3.select()</code> 或 <code>d3.selectAll()</code> 选择元素后返回的对象，就是选择集。</p>
 
-<p>另外，D3 能够连续不断地调用函数，形如：<code class="highlighter-rouge">d3.select().selectAll().text()</code>
+<p>另外，D3 能够连续不断地调用函数，形如：<code>d3.select().selectAll().text()</code>
 这称为链式语法，和 JQuery 的语法很像，常用 JQuery 的朋友一定会感到很亲切哈哈～</p>
 
 <h2 id="reference">Reference</h2>

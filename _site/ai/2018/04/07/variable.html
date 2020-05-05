@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -260,189 +261,189 @@
 		<!-- 
 		 -->
 <!-- 正文 -->
-		<p><div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-</code></pre></div></div>
+		<p><pre><code class="language-python">import tensorflow as tf
+import numpy as np
+</code></pre>
 
 <h2 id="recall">Recall</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s">"t1"</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">tf.ones([3,2], name="t1")
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tf.Tensor 't1:0' shape=(3, 2) dtype=float32&gt;
-</code></pre></div></div>
+<pre><code>&lt;tf.Tensor 't1:0' shape=(3, 2) dtype=float32&gt;
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
-</code></pre></div></div>
+<pre><code class="language-python">tf.constant([3,2])
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tf.Tensor 'Const:0' shape=(2,) dtype=int32&gt;
-</code></pre></div></div>
+<pre><code>&lt;tf.Tensor 'Const:0' shape=(2,) dtype=int32&gt;
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">tf.placeholder(tf.int32)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tf.Tensor 'Placeholder:0' shape=&lt;unknown&gt; dtype=int32&gt;
-</code></pre></div></div>
+<pre><code>&lt;tf.Tensor 'Placeholder:0' shape=&lt;unknown&gt; dtype=int32&gt;
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">tf.Variable(5)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tf.Variable 'Variable:0' shape=() dtype=int32_ref&gt;
-</code></pre></div></div>
+<pre><code>&lt;tf.Variable 'Variable:0' shape=() dtype=int32_ref&gt;
+</code></pre>
 
 <h2 id="variable用法">variable用法</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">var_1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">"haha"</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">var_1 = tf.Variable(1.0, name="haha")
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">var_1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">var_1</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">print(var_1)
+print(var_1.name)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tf.Variable 'haha:0' shape=() dtype=float32_ref&gt;
+<pre><code>&lt;tf.Variable 'haha:0' shape=() dtype=float32_ref&gt;
 haha:0
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">var_1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">"haha"</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">var_1 = tf.Variable(2, name="haha")
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">var_1</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">print(var_1)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tf.Variable 'haha_1:0' shape=() dtype=int32_ref&gt;
-</code></pre></div></div>
+<pre><code>&lt;tf.Variable 'haha_1:0' shape=() dtype=int32_ref&gt;
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">init</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">()</span>
-</code></pre></div></div>
+<pre><code class="language-python">init = tf.global_variables_initializer()
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
-    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">var_1</span><span class="p">))</span>
-</code></pre></div></div>
+<pre><code class="language-python">with tf.Session() as sess:
+    sess.run(init)
+    print(sess.run(var_1))
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2
-</code></pre></div></div>
+<pre><code>2
+</code></pre>
 
 <p>定义了两个var_1, 因为虽然自己设的名字是一样的haha，但是内存里保存的名字是不一样的（haha:0 和 haha_1:0）。所以内存里有两个var_1, 但是运行sess.run时产生的却是第二个var_1。</p>
 
 <h2 id="get_variable-用法">get_variable 用法</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s">"test1"</span><span class="p">):</span>
-    <span class="n">var_2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s">"hehe"</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>    
-<span class="k">print</span><span class="p">(</span><span class="n">var_2</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">with tf.variable_scope("test1"):
+    var_2 = tf.get_variable("hehe", shape=[2])    
+print(var_2)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tf.Variable 'test1/hehe:0' shape=(2,) dtype=float32_ref&gt;
-</code></pre></div></div>
+<pre><code>&lt;tf.Variable 'test1/hehe:0' shape=(2,) dtype=float32_ref&gt;
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s">"test2"</span><span class="p">):</span>
-    <span class="n">var_2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s">"hehe"</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>    
-<span class="k">print</span><span class="p">(</span><span class="n">var_2</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">with tf.variable_scope("test2"):
+    var_2 = tf.get_variable("hehe", shape=[2])    
+print(var_2)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tf.Variable 'test2/hehe:0' shape=(2,) dtype=float32_ref&gt;
-</code></pre></div></div>
+<pre><code>&lt;tf.Variable 'test2/hehe:0' shape=(2,) dtype=float32_ref&gt;
+</code></pre>
 
 <p>可以看出，两个名字是可以一样的，只不过在不同的scope里。</p>
 
 <h2 id="共享功能的实现">共享功能的实现</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># scope 嵌套</span>
-<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s">"t1"</span><span class="p">):</span>
-    <span class="n">v1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s">"n1"</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<pre><code class="language-python"># scope 嵌套
+with tf.variable_scope("t1"):
+    v1 = tf.get_variable("n1", shape=[2])
     
-    <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s">"t2"</span><span class="p">):</span>
-        <span class="n">v2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s">"n1"</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    with tf.variable_scope("t2"):
+        v2 = tf.get_variable("n1", shape=[2])
         
-<span class="k">print</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span>
-</code></pre></div></div>
+print(v1)
+print(v2)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tf.Variable 't1/n1:0' shape=(2,) dtype=float32_ref&gt;
+<pre><code>&lt;tf.Variable 't1/n1:0' shape=(2,) dtype=float32_ref&gt;
 &lt;tf.Variable 't1/t2/n1:0' shape=(2,) dtype=float32_ref&gt;
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s">"t1"</span><span class="p">,</span> <span class="n">reuse</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
-    <span class="n">v3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s">"n1"</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<pre><code class="language-python">with tf.variable_scope("t1", reuse=True):
+    v3 = tf.get_variable("n1", shape=[2])
     
-    <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s">"t2"</span><span class="p">,</span> <span class="n">reuse</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
-        <span class="n">v4</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s">"n1"</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    with tf.variable_scope("t2", reuse=True):
+        v4 = tf.get_variable("n1", shape=[2])
         
-<span class="k">print</span><span class="p">(</span><span class="n">v3</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">v4</span><span class="p">)</span>
-</code></pre></div></div>
+print(v3)
+print(v4)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tf.Variable 't1/n1:0' shape=(2,) dtype=float32_ref&gt;
+<pre><code>&lt;tf.Variable 't1/n1:0' shape=(2,) dtype=float32_ref&gt;
 &lt;tf.Variable 't1/t2/n1:0' shape=(2,) dtype=float32_ref&gt;
-</code></pre></div></div>
+</code></pre>
 
 <p>v1和v3共享一个变量，v2和v4共享一个变量。</p>
 
 <h2 id="共享变量的作用域和初始化">共享变量的作用域和初始化</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s">"t1"</span><span class="p">,</span> <span class="n">initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">constant_initializer</span><span class="p">(</span><span class="mf">0.4</span><span class="p">)):</span>
-    <span class="n">var1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s">"v1"</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-    <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s">"t2"</span><span class="p">):</span>
-        <span class="n">var2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s">"v1"</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-        <span class="n">var3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s">"var3"</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">constant_initializer</span><span class="p">(</span><span class="mf">0.3</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">var2</span><span class="p">,</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">var3</span><span class="p">)</span>
+<pre><code class="language-python">with tf.variable_scope("t1", initializer=tf.constant_initializer(0.4)):
+    var1 = tf.get_variable("v1", shape=[2], dtype=tf.float32)
+    with tf.variable_scope("t2"):
+        var2 = tf.get_variable("v1", shape=[2], dtype=tf.float32)
+        var3 = tf.get_variable("var3", shape=[2], initializer=tf.constant_initializer(0.3))
+print(var1,"\n",var2,"\n",var3)
 
-<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
-    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">())</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">var1</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">var2</span><span class="p">))</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">var3</span><span class="p">))</span>
-</code></pre></div></div>
+with tf.Session() as sess:
+    sess.run(tf.global_variables_initializer())
+    print(sess.run(var1))
+    print(sess.run(var2))
+    print(sess.run(var3))
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;tf.Variable 't1/v1:0' shape=(2,) dtype=float32_ref&gt; 
+<pre><code>&lt;tf.Variable 't1/v1:0' shape=(2,) dtype=float32_ref&gt; 
  &lt;tf.Variable 't1/t2/v1:0' shape=(2,) dtype=float32_ref&gt; 
  &lt;tf.Variable 't1/t2/var3:0' shape=(2,) dtype=float32_ref&gt;
 [0.4 0.4]
 [0.4 0.4]
 [0.3 0.3]
-</code></pre></div></div>
+</code></pre>
 
 <h2 id="作用域和操作符的受限范围">作用域和操作符的受限范围</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s">"s1"</span><span class="p">)</span> <span class="k">as</span> <span class="n">sp</span><span class="p">:</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s">"a"</span><span class="p">,[</span><span class="mi">1</span><span class="p">])</span>
+<pre><code class="language-python">with tf.variable_scope("s1") as sp:
+    a = tf.get_variable("a",[1])
     
-<span class="k">print</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>  <span class="c"># 作用域scope名称</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>   <span class="c"># 变量variable名称</span>
-</code></pre></div></div>
+print(sp.name)  # 作用域scope名称
+print(a.name)   # 变量variable名称
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>s1
+<pre><code>s1
 s1/a:0
-</code></pre></div></div>
+</code></pre>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s">"s2"</span><span class="p">):</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s">"a"</span><span class="p">,[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span> <span class="k">as</span> <span class="n">sp3</span><span class="p">:</span>   <span class="c">#注意这里variable_scope()里传送的是sp,而不是命名</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s">"c"</span><span class="p">,[</span><span class="mi">1</span><span class="p">])</span>
+<pre><code class="language-python">with tf.variable_scope("s2"):
+    b = tf.get_variable("a",[1])
+    with tf.variable_scope(sp) as sp3:   #注意这里variable_scope()里传送的是sp,而不是命名
+        c = tf.get_variable("c",[1])
         
-<span class="k">print</span><span class="p">(</span><span class="n">sp3</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-</code></pre></div></div>
+print(sp3.name)
+print(b.name)
+print(c.name)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>s1
+<pre><code>s1
 s2/a:0
 s1/c:0
-</code></pre></div></div>
+</code></pre>
 
 <p>可以看到sp3的name是s1而不是s2, 并不受外层限制。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s">"s"</span><span class="p">):</span>
-    <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">name_scope</span><span class="p">(</span><span class="s">"bar"</span><span class="p">):</span>
-        <span class="n">d</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s">"d"</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">d</span>
-<span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-</code></pre></div></div>
+<pre><code class="language-python">with tf.variable_scope("s"):
+    with tf.name_scope("bar"):
+        d = tf.get_variable("d", [1])
+        x = 1.0 + d
+print(d.name)
+print(x.op.name)
+</code></pre>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>s/d:0
+<pre><code>s/d:0
 s/bar/add
-</code></pre></div></div>
+</code></pre>
 
 <p>tf.name_scope 只能限制op,不能限制variable</p>
 </p>

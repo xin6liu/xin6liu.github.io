@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -262,10 +263,10 @@
 <!-- 正文 -->
 		<p><h2 id="新建marven项目">新建marven项目</h2>
 <h2 id="pomxml">pom.xml:</h2>
-<p><code class="highlighter-rouge">&lt;packaging&gt;war&lt;/packaging&gt;</code></p>
+<p><code>&lt;packaging&gt;war&lt;/packaging&gt;</code></p>
 <h2 id="main目录下有java和resources-再建立一个webapp">main目录下有java和resources, 再建立一个webapp</h2>
 <h2 id="webxml">web.xml:</h2>
-<p><code class="highlighter-rouge">&lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;</code></p>
+<p><code>&lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;</code></p>
 <h2 id="indexjsp">index.jsp:</h2>
 
 <pre><code class="language-jsp">&lt;%@ page contentType="text/html;charset=UTF-8" language="java" %&gt;
@@ -296,97 +297,97 @@
 
 <h2 id="创建servlet跳转indexjsp">创建servlet跳转index.jsp</h2>
 
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 导入包 --&gt;</span>
-<span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>javax.servlet<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>javax.servlet-api<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>4.0.1<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</code></pre></div></div>
+<pre><code class="language-xml">&lt;!-- 导入包 --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+    &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
+    &lt;version&gt;4.0.1&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
 
-<p>在<code class="highlighter-rouge">java.com.liuxin.servlet</code>下创建<code class="highlighter-rouge">ListServlet.java</code></p>
+<p>在<code>java.com.liuxin.servlet</code>下创建<code>ListServlet.java</code></p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@WebServlet</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"ListServlet"</span><span class="o">,</span> <span class="n">urlPatterns</span> <span class="o">=</span> <span class="s">"/List.do"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ListServlet</span> <span class="kd">extends</span> <span class="n">HttpServlet</span> <span class="o">{</span>
-    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doPost</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
-        <span class="n">request</span><span class="o">.</span><span class="na">getRequestDispatcher</span><span class="o">(</span><span class="s">"index.jsp"</span><span class="o">).</span><span class="na">forward</span><span class="o">(</span><span class="n">request</span><span class="o">,</span><span class="n">response</span><span class="o">);</span>
-    <span class="o">}</span>
+<pre><code class="language-java">@WebServlet(name = "ListServlet", urlPatterns = "/List.do")
+public class ListServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("index.jsp").forward(request,response);
+    }
 
-    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span> <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">doPost</span><span class="o">(</span><span class="n">request</span><span class="o">,</span><span class="n">response</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        this.doPost(request,response);
+    }
+}
+</code></pre>
 
 <h2 id="创建数据库">创建数据库</h2>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">create</span> <span class="k">database</span> <span class="nv">`test_db`</span> <span class="n">character</span> <span class="k">set</span> <span class="n">utf8</span><span class="p">;</span>
-    <span class="n">use</span> <span class="nv">`test_db`</span><span class="p">;</span>
+<pre><code class="language-sql">    create database `test_db` character set utf8;
+    use `test_db`;
 
-    <span class="k">create</span> <span class="k">table</span> <span class="nv">`message`</span><span class="p">(</span>
-    <span class="nv">`id`</span> <span class="n">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">not</span> <span class="k">null</span> <span class="n">auto_increment</span><span class="p">,</span>
-    <span class="nv">`command`</span> <span class="n">varchar</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="k">default</span> <span class="k">null</span><span class="p">,</span>
-    <span class="nv">`description`</span> <span class="n">varchar</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="k">default</span> <span class="k">null</span><span class="p">,</span>
-    <span class="nv">`content`</span> <span class="n">varchar</span><span class="p">(</span><span class="mi">2048</span><span class="p">)</span> <span class="k">default</span> <span class="k">null</span><span class="p">,</span>
-    <span class="k">primary</span> <span class="k">key</span> <span class="p">(</span><span class="nv">`id`</span><span class="p">)</span>
-    <span class="p">);</span>
+    create table `message`(
+    `id` int(11) not null auto_increment,
+    `command` varchar(16) default null,
+    `description` varchar(32) default null,
+    `content` varchar(2048) default null,
+    primary key (`id`)
+    );
 
-    <span class="k">insert</span> <span class="k">into</span> <span class="nv">`message`</span> <span class="k">values</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'查看'</span><span class="p">,</span> <span class="s1">'精彩内容'</span><span class="p">,</span> <span class="s1">'这就是精彩内容'</span><span class="p">);</span>
-    <span class="k">insert</span> <span class="k">into</span> <span class="nv">`message`</span> <span class="k">values</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">'段子'</span><span class="p">,</span> <span class="s1">'精彩段子'</span><span class="p">,</span> <span class="s1">'哈哈哈'</span><span class="p">);</span>
-    <span class="k">insert</span> <span class="k">into</span> <span class="nv">`message`</span> <span class="k">values</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">'新闻'</span><span class="p">,</span> <span class="s1">'今日头条'</span><span class="p">,</span> <span class="s1">'汪峰'</span><span class="p">);</span>
+    insert into `message` values (1, '查看', '精彩内容', '这就是精彩内容');
+    insert into `message` values (2, '段子', '精彩段子', '哈哈哈');
+    insert into `message` values (3, '新闻', '今日头条', '汪峰');
 
-    <span class="k">SELECT</span> <span class="o">*</span> <span class="k">from</span> <span class="n">message</span><span class="p">;</span>
-</code></pre></div></div>
+    SELECT * from message;
+</code></pre>
 
 <h2 id="jdbc设置">jdbc设置</h2>
 <p>要先在marven中引入mysql-connector包：</p>
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>mysql<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>mysql-connector-java<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>8.0.13<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</code></pre></div></div>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;mysql&lt;/groupId&gt;
+    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+    &lt;version&gt;8.0.13&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
 <p>在ListServelet里加入jdbc设置：</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">"com.mysql.jdbc.Driver"</span><span class="o">);</span>
-<span class="n">Connection</span> <span class="n">conn</span><span class="o">=</span> <span class="n">DriverManager</span><span class="o">.</span><span class="na">getConnection</span><span class="o">(</span><span class="s">"jdbc:mysql://127.0.0.1:3306/test_db?useUnicode=true&amp;characterEncoding=UTF-8"</span><span class="o">,</span><span class="s">"root"</span><span class="o">,</span><span class="s">"307715"</span><span class="o">);</span>
-<span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">"select id,command,description,content from message"</span><span class="o">;</span>
-<span class="n">PreparedStatement</span> <span class="n">statement</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">prepareStatement</span><span class="o">(</span><span class="n">sql</span><span class="o">);</span>
-<span class="n">ResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">statement</span><span class="o">.</span><span class="na">executeQuery</span><span class="o">();</span>
-</code></pre></div></div>
+<pre><code class="language-java">Class.forName("com.mysql.jdbc.Driver");
+Connection conn= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test_db?useUnicode=true&amp;characterEncoding=UTF-8","root","307715");
+String sql = "select id,command,description,content from message";
+PreparedStatement statement = conn.prepareStatement(sql);
+ResultSet rs = statement.executeQuery();
+</code></pre>
 
 <h2 id="创建message实体类来存放resultset">创建message实体类来存放ResultSet</h2>
 <p>在java.com.imooc.bean里创建Message.java</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">String</span> <span class="n">id</span><span class="o">;</span>
-<span class="kd">public</span> <span class="n">String</span> <span class="n">cmd</span><span class="o">;</span>
-<span class="kd">public</span> <span class="n">String</span> <span class="n">dpn</span><span class="o">;</span>
-<span class="kd">public</span> <span class="n">String</span> <span class="n">ctt</span><span class="o">;</span>
-<span class="err">和各自的</span><span class="n">getter</span><span class="err">和</span><span class="n">setter</span><span class="o">;</span>
-</code></pre></div></div>
+<pre><code class="language-java">public String id;
+public String cmd;
+public String dpn;
+public String ctt;
+和各自的getter和setter;
+</code></pre>
 
 <h2 id="在listservelet里创建messagelist">在ListServelet里创建messageList</h2>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">List</span><span class="o">&lt;</span><span class="n">Message</span><span class="o">&gt;</span> <span class="n">messageList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Message</span><span class="o">&gt;();</span>
-<span class="k">while</span> <span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">next</span><span class="o">())</span> <span class="o">{</span>
-    <span class="n">Message</span> <span class="n">message</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Message</span><span class="o">();</span>
-    <span class="n">message</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"id"</span><span class="o">));</span>
-    <span class="n">message</span><span class="o">.</span><span class="na">setCmd</span><span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"command"</span><span class="o">));</span>
-    <span class="n">message</span><span class="o">.</span><span class="na">setDpn</span><span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"description"</span><span class="o">));</span>
-    <span class="n">message</span><span class="o">.</span><span class="na">setCtt</span><span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"content"</span><span class="o">));</span>
-    <span class="n">messageList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
-<span class="o">}</span>
-<span class="n">request</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">"messageList"</span><span class="o">,</span><span class="n">messageList</span><span class="o">);</span>
-</code></pre></div></div>
-<p>这样就把messageList储存在request里了，第六步的<code class="highlighter-rouge">request.getRequestDispatcher("index.jsp").forward(request,response);</code>会把信息传给<code class="highlighter-rouge">index.jsp</code></p>
+<pre><code class="language-java">List&lt;Message&gt; messageList = new ArrayList&lt;Message&gt;();
+while (rs.next()) {
+    Message message = new Message();
+    message.setId(rs.getString("id"));
+    message.setCmd(rs.getString("command"));
+    message.setDpn(rs.getString("description"));
+    message.setCtt(rs.getString("content"));
+    messageList.add(message);
+}
+request.setAttribute("messageList",messageList);
+</code></pre>
+<p>这样就把messageList储存在request里了，第六步的<code>request.getRequestDispatcher("index.jsp").forward(request,response);</code>会把信息传给<code>index.jsp</code></p>
 
 <h2 id="在indexjsp中取messagelist信息">在index.jsp中取messageList信息</h2>
 <p>marven中加入依赖：</p>
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>javax.servlet<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>jstl<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>1.2<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</code></pre></div></div>
+<pre><code class="language-xml">&lt;dependency&gt;
+    &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+    &lt;artifactId&gt;jstl&lt;/artifactId&gt;
+    &lt;version&gt;1.2&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
 
 <p>index.jsp中第二行加入c-tag：
-<code class="highlighter-rouge">&lt;%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %&gt;</code></p>
+<code>&lt;%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %&gt;</code></p>
 
 <p>表格替换：</p>
 <pre><code class="language-jsp">&lt;c:forEach items="${messageList}" var="message" varStatus="status"&gt;
@@ -413,12 +414,12 @@
 
 <p>ListServlet.java里：
 在jdbc建立前，把form里输入的查找关键词给储存起来：</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">request</span><span class="o">.</span><span class="na">setCharacterEncoding</span><span class="o">(</span><span class="s">"UTF-8"</span><span class="o">);</span>
-<span class="n">String</span> <span class="n">command</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">"input_command"</span><span class="o">);</span>
-<span class="n">String</span> <span class="n">description</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getParameter</span><span class="o">(</span><span class="s">"input_description"</span><span class="o">);</span>
-<span class="n">request</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">"command"</span><span class="o">,</span><span class="n">command</span><span class="o">);</span>
-<span class="n">request</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">"description"</span><span class="o">,</span><span class="n">description</span><span class="o">);</span>
-</code></pre></div></div>
+<pre><code class="language-java">request.setCharacterEncoding("UTF-8");
+String command = request.getParameter("input_command");
+String description = request.getParameter("input_description");
+request.setAttribute("command",command);
+request.setAttribute("description",description);
+</code></pre>
 
 <p>之前是:</p>
 <ol>
@@ -433,21 +434,21 @@
 </ol>
 
 <p>现在[3sql]和[4statement]与以前不同：</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">StringBuilder</span> <span class="n">sql</span> <span class="o">=</span><span class="k">new</span> <span class="n">StringBuilder</span><span class="o">(</span><span class="s">"select ID,COMMAND,DESCRIPTION,CONTENT from MESSAGE where 1=1"</span><span class="o">);</span>
-<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">paramList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
-<span class="k">if</span> <span class="o">(</span><span class="n">command</span><span class="o">!=</span><span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="s">""</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">command</span><span class="o">.</span><span class="na">trim</span><span class="o">())){</span>
-    <span class="n">sql</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">" and COMMAND=?"</span><span class="o">);</span>
-    <span class="n">paramList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">command</span><span class="o">);</span>
-<span class="o">}</span>
-<span class="k">if</span> <span class="o">(</span><span class="n">description</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="s">""</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">description</span><span class="o">.</span><span class="na">trim</span><span class="o">())){</span>
-    <span class="n">sql</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">" and DESCRIPTION like '%' ? '%'"</span><span class="o">);</span>
-    <span class="n">paramList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">description</span><span class="o">);</span>
-<span class="o">}</span>
-<span class="n">PreparedStatement</span> <span class="n">statement</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">prepareStatement</span><span class="o">(</span><span class="n">sql</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
-<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">paramList</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-    <span class="n">statement</span><span class="o">.</span><span class="na">setString</span><span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span><span class="n">paramList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
-<span class="o">}</span>
-</code></pre></div></div>
+<pre><code class="language-java">StringBuilder sql =new StringBuilder("select ID,COMMAND,DESCRIPTION,CONTENT from MESSAGE where 1=1");
+List&lt;String&gt; paramList = new ArrayList&lt;String&gt;();
+if (command!=null &amp;&amp; !"".equals(command.trim())){
+    sql.append(" and COMMAND=?");
+    paramList.add(command);
+}
+if (description != null &amp;&amp; !"".equals(description.trim())){
+    sql.append(" and DESCRIPTION like '%' ? '%'");
+    paramList.add(description);
+}
+PreparedStatement statement = conn.prepareStatement(sql.toString());
+for (int i = 0; i &lt; paramList.size(); i++) {
+    statement.setString(i+1,paramList.get(i));
+}
+</code></pre>
 
 <h2 id="封装">封装</h2>
 <p>把1-7都封装到Dao包里</p>

@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -261,11 +262,11 @@
 		 -->
 <!-- 正文 -->
 		<p><h2 id="dffillna">df.fillna</h2>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s">'pad'</span><span class="p">)</span>
-<span class="sb">`df.fillna(0,inplace=Ture)`</span> <span class="err">和</span> <span class="sb">`df = df.fillna(0)`</span> <span class="err">效果一样</span>
-<span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">thresh</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s">'name'</span><span class="p">,</span> <span class="s">'born'</span><span class="p">])</span>
-</code></pre></div></div>
+<pre><code class="language-python">df.fillna(method='pad')
+`df.fillna(0,inplace=Ture)` 和 `df = df.fillna(0)` 效果一样
+df.dropna(thresh=2)
+df.dropna(subset=['name', 'born'])
+</code></pre>
 
 <h2 id="dfindex-和-dfcolumns">df.index 和 df.columns</h2>
 <p>df.index = range(1,len(df) + 1)

@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -260,24 +261,24 @@
 		<!-- 
 		 -->
 <!-- 正文 -->
-		<p><div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ pip3 install neat-python
-</code></pre></div></div>
+		<p><pre><code>$ pip3 install neat-python
+</code></pre>
 
 <p>会把neat这个包下到如下路径：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/xinliu/anaconda/lib/python3.6/site-packages
-</code></pre></div></div>
+<pre><code>/Users/xinliu/anaconda/lib/python3.6/site-packages
+</code></pre>
 
 <p>brew install graphviz</p>
 
 <p>直接用pip3 install graphviz 会出错</p>
 
-<p><code class="highlighter-rouge">os.path.dirname(\__file\__)</code></p>
+<p><code>os.path.dirname(\__file\__)</code></p>
 
 <p>不能用在python interactive shell中</p>
 
 <p>正确的写法：
-<code class="highlighter-rouge">os.path.dirname(os.path.realpath('\__file\__'))</code></p>
+<code>os.path.dirname(os.path.realpath('\__file\__'))</code></p>
 
 <p>back propagation with gradient descent</p>
 
@@ -309,13 +310,13 @@
 
 <h2 id="defaultreproduction-section">[DefaultReproduction] section</h2>
 
-<p>The DefaultReproduction section specifies parameters for the builtin <code class="highlighter-rouge">DefaultReproduction</code> class.</p>
+<p>The DefaultReproduction section specifies parameters for the builtin <code>DefaultReproduction</code> class.</p>
 
 <p>This section is only necessary if you specify this class as the <strong>reproduction implementation</strong> when creating the Config instance; otherwise you need to include whatever configuration (if any) is required for your particular implementation.</p>
 
 <h2 id="defaultgenome-section">[DefaultGenome] section</h2>
 
-<p>The DefaultGenome section specifies parameters for the builtin <code class="highlighter-rouge">DefaultGenome</code> class.</p>
+<p>The DefaultGenome section specifies parameters for the builtin <code>DefaultGenome</code> class.</p>
 
 <p>This section is only necessary if you specify this class as the <strong>genome implementation</strong> when creating the Config instance; otherwise you need to include whatever configuration (if any) is required for your particular implementation.</p>
 </p>

@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
 	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
 	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
 	<script type="text/javascript"
@@ -313,24 +314,24 @@
 
 <p>如果W和b都初始为零的话，无论几次结果都一样</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
-        <span class="n">parameters</span><span class="p">[</span><span class="s">'W'</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">l</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">layers_dims</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="n">layers_dims</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
-        <span class="n">parameters</span><span class="p">[</span><span class="s">'b'</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">l</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">layers_dims</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="mi">1</span><span class="p">))</span>
-</code></pre></div></div>
+<pre><code class="language-python">    for l in range(1, L):
+        parameters['W' + str(l)] = np.zeros((layers_dims[l], layers_dims[l-1]))
+        parameters['b' + str(l)] = np.zeros((layers_dims[l], 1))
+</code></pre>
 
 <p>如果W太大的话，刚开始cost会很大，运算慢，结果不好</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
-        <span class="n">parameters</span><span class="p">[</span><span class="s">'W'</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">l</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">layers_dims</span><span class="p">[</span><span class="n">l</span><span class="p">],</span><span class="n">layers_dims</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="mi">10</span>
-        <span class="n">parameters</span><span class="p">[</span><span class="s">'b'</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">l</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">layers_dims</span><span class="p">[</span><span class="n">l</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span>
-</code></pre></div></div>
+<pre><code class="language-python">    for l in range(1, L):
+        parameters['W' + str(l)] = np.random.randn(layers_dims[l],layers_dims[l-1])*10
+        parameters['b' + str(l)] = np.zeros((layers_dims[l],1))
+</code></pre>
 
-<p>He initialization: instead of multiplying <code class="highlighter-rouge">np.random.randn(..,..)</code> by 10, you will multiply it by $\sqrt{\frac{2}{\text{dimension of the previous layer}}}$</p>
+<p>He initialization: instead of multiplying <code>np.random.randn(..,..)</code> by 10, you will multiply it by $\sqrt{\frac{2}{\text{dimension of the previous layer}}}$</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
-        <span class="n">parameters</span><span class="p">[</span><span class="s">'W'</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">l</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">layers_dims</span><span class="p">[</span><span class="n">l</span><span class="p">],</span><span class="n">layers_dims</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">layers_dims</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-        <span class="n">parameters</span><span class="p">[</span><span class="s">'b'</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">l</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">layers_dims</span><span class="p">[</span><span class="n">l</span><span class="p">],</span><span class="mi">1</span><span class="p">))</span>
-</code></pre></div></div>
+<pre><code class="language-python">    for l in range(1, L):
+        parameters['W' + str(l)] = np.random.randn(layers_dims[l],layers_dims[l-1])*np.sqrt(2/layers_dims[l-1])
+        parameters['b' + str(l)] = np.zeros((layers_dims[l],1))
+</code></pre>
 
 <h2 id="adam-optimization-algorithm">Adam optimization algorithm:</h2>
 
