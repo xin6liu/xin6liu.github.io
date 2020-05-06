@@ -776,4 +776,4 @@
 
 
 .hide{display:none;}
-.hide:target{background:orange; display:block;}
+.hide:target{display:block;}
