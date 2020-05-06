@@ -9,6 +9,7 @@ nav-menu: true
 # 计算流体力学 CFD 
 
 ### 数学部分
+
 <ul class="posts">
 {% for post in site.posts %}
 	{% if post.tags == "PDE" %}
@@ -19,6 +20,19 @@ nav-menu: true
 	{% endif %}
 {% endfor %}
 </ul>
+
+<ul class="posts">
+{% for post in site.posts %}
+	{% if post.nav-menu == true %}
+	<li>
+		<a href="{{ post.url }}">{{ post.title }}</a>
+		<span> &raquo; {{ post.date | date: "%B %d, %Y" }}</span>
+	</li>
+	{% endif %}
+{% endfor %}
+</ul>
+
+
 
 <ul class="actions">
 	<a href="/file/3cfd/计算流体力学/PDE" class="button">PDE</a>
