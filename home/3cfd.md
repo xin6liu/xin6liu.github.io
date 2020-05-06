@@ -41,6 +41,15 @@ nav-menu: true
 {% endfor %}
 </ul>
 
+<ul class="links">
+	{% assign pages = site.pages | sort: "name" %}
+	{% for page in pages limit:8 %}
+		{% if page.nav-menu == true %}
+			<li><a href="{{ page.url | relative_url }}">{{ page.title }}</a></li>
+		{% endif %}
+	{% endfor %}
+</ul>
+
 
 <!--### 数学部分
 <ul class="actions">
