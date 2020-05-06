@@ -8,53 +8,20 @@ nav-menu: true
 
 ### 计算流体力学CFD 
 
-<ul class="posts">
-{% for post in site.posts %}
-	{% if post.category == "cfd" %}
-	<li>
-		<a href="{{ post.url }}">{{ post.title }}</a>
-		<span> &raquo; {{ post.date | date: "%B %d, %Y" }}</span>
-	</li>
-	{% endif %}
-{% endfor %}
-</ul>
 
-<ul class="posts">
-{% for post in site.posts %}
-	{% if post.tags contains "PDE" %}
-	<li>
-		<a href="{{ post.url }}">{{ post.title }}</a>
-		<span> &raquo; {{ post.date | date: "%B %d, %Y" }}</span>
-	</li>
-	{% endif %}
-{% endfor %}
-</ul>
-
-<ul class="posts">
-{% for post in site.posts %}
-	{% if post.nav-menu == true %}
-	<li>
-		<a href="{{ post.url }}">{{ post.title }}</a>
-		<span> &raquo; {{ post.date | date: "%B %d, %Y" }}</span>
-	</li>
-	{% endif %}
-{% endfor %}
-</ul>
-
-<ul class="links">
-	{% assign pages = site.pages | sort: "name" %}
-	{% for page in pages limit:8 %}
-		{% if page.nav-menu == true %}
-			<li><a href="{{ page.url | relative_url }}">{{ page.title }}</a></li>
-		{% endif %}
-	{% endfor %}
-</ul>
-
-
-<!--### 数学部分
+### 数学部分
 <ul class="actions">
 	<a href="/file/3cfd/计算流体力学/PDE" class="button">PDE</a>
-
+	<ul class="posts">
+	{% for post in site.posts %}
+		{% if post.tags contains "PDE" %}
+		<li>
+			<a href="{{ post.url }}">{{ post.title }}</a>
+			<span> &raquo; {{ post.date | date: "%B %d, %Y" }}</span>
+		</li>
+		{% endif %}
+	{% endfor %}
+	</ul>
 	<a href="/file/3cfd/计算流体力学/变分法" class="button">变分法</a>
 	<a href="/file/3cfd/计算流体力学/有限体积法" class="button">有限体积法</a>
 </ul>
@@ -65,4 +32,4 @@ nav-menu: true
 <ul class="actions">
 	<a href="/file/3cfd/计算流体力学/流体力学" class="button">流体力学</a>
 	<a href="/file/3cfd/计算流体力学/变分法" class="button">连续介质力学</a>
-</ul> -->
+</ul>
