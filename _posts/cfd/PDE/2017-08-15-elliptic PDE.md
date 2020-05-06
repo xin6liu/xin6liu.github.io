@@ -4,7 +4,7 @@ author: liuxin
 title: 1-intro
 date: 2017-08-15
 category: cfd
-tags: elliptic PDE
+tags: [elliptic PDE]
 ---
 
 two-dimensional Laplace equation 就是简单的 elliptic PDE 
