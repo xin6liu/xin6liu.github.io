@@ -4,7 +4,7 @@ author: liuxin
 title: 1-泛函数 (Functionals)
 date: 2017-08-01
 category: cfd
-tags: 基础知识 变分法 calculus of variations 
+tags: 基础知识 变分法 calculus-of-variations 
 ---
 
 ## 泛函数

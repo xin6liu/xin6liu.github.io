@@ -11,7 +11,7 @@ nav-menu: true
 ### 数学部分
 <ul class="posts">
 {% for post in site.posts %}
-	{% if post.tags == "ansys" %}
+	{% if post.tags == "PDE" %}
 	<li>
 		<a href="{{ post.url }}">{{ post.title }}</a>
 		<span> &raquo; {{ post.date | date: "%B %d, %Y" }}</span>

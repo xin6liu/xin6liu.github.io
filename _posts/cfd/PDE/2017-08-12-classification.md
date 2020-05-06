@@ -3,8 +3,8 @@ layout: post
 author: liuxin
 title: 2-PDE的分类
 date: 2017-08-12
-category: PDE
-tags: partial differential equations 
+category: cfd
+tags: PDE  
 ---
 
 ## 分类
