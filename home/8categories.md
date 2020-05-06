@@ -1,28 +1,28 @@
 ---
 layout: post
-title: 总目录 Categories
-description: 这是所有目录的汇总 All the categories are included.
+title: 总目录 tags
+description: 这是所有目录的汇总 All the tags are included.
 image: assets/images/pic08.jpg
 nav-menu: true
 ---
 
 
-{% capture categories %}{% for category in site.categories %}{{ category | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
-{% assign category = categories | split:',' | sort %}
-<h4 class="category">全部分类</h4>
+{% capture tags %}{% for category in site.tags %}{{ category | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
+{% assign category = tags | split:',' | sort %}
+<h4 class="category">全部标签</h4>
 <ul>
-    {% for item in (0..site.categories.size) %}{% unless forloop.last %}
+    {% for item in (0..site.tags.size) %}{% unless forloop.last %}
     {% capture word %}{{ category[item] | strip_newlines }}{% endcapture %}
-    <li><a href="#{{ word }}">{{ word }}&nbsp;<sup>{{ site.categories[word].size }}</sup></a></li>
+    <li><a href="#{{ word }}">{{ word }}&nbsp;<sup>{{ site.tags[word].size }}</sup></a></li>
     {% endunless %}{% endfor %}
   </ul>
 
 
-{% for item in (0..site.categories.size) %}{% unless forloop.last %}
+{% for item in (0..site.tags.size) %}{% unless forloop.last %}
 {% capture word %}{{ category[item] | strip_newlines }}{% endcapture %}
 <h2 class="category" id="{{ word }}">{{ word }}</h2>
 
-{% for post in site.categories[word] %}{% if post.title != null %}
+{% for post in site.tags[word] %}{% if post.title != null %}
 <ul><li>{{ post.date | date: "%Y-%m-%d" }}&nbsp;&nbsp;&raquo;&nbsp;&nbsp;<a href="{{ post.url }}">{{ post.title }}</a></li></ul>
 {% endif %}{% endfor %}
 {% endunless %}{% endfor %}
