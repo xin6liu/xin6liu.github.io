@@ -9,17 +9,20 @@ nav-menu: true
 # 计算流体力学 CFD 
 
 ### 数学部分
+<ul class="posts">
+{% for post in site.posts %}
+	{% if post.tags == "ansys" %}
+	<li>
+		<a href="{{ post.url }}">{{ post.title }}</a>
+		<span> &raquo; {{ post.date | date: "%B %d, %Y" }}</span>
+	</li>
+	{% endif %}
+{% endfor %}
+</ul>
 
 <ul class="actions">
 	<a href="/file/3cfd/计算流体力学/PDE" class="button">PDE</a>
-	{% for post in site.posts %}
-		{% if post.tags == "ansys" %}
-		<li>
-			<a href="{{ post.url }}">{{ post.title }}</a>
-			<span> &raquo; {{ post.date | date: "%B %d, %Y" }}</span>
-		</li>
-		{% endif %}
-	{% endfor %}
+
 	<a href="/file/3cfd/计算流体力学/变分法" class="button">变分法</a>
 	<a href="/file/3cfd/计算流体力学/有限体积法" class="button">有限体积法</a>
 </ul>

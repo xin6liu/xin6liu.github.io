@@ -65,7 +65,7 @@
 			
 		
 			
-				<li><a href="/home/8categories.html">总目录 Categories</a></li>
+				<li><a href="/home/8categories.html">总目录 tags</a></li>
 			
 		
 	</ul>
@@ -84,10 +84,10 @@
 	<div class="inner">
 		<header class="major">
 <!-- title -->
-			<h1>傅立叶级数</h1>
+			<h1>2-变分法近似解法</h1>
 <!-- 日期 -->		
 		
-		2017-02-10
+		2017-08-02
 		
 		</header>
 <!-- description -->	
@@ -96,14 +96,55 @@
 		<!-- 
 		 -->
 <!-- 正文 -->
-		<p><p>a periodic function f(t) of period T = 2π/ω 
-<img src="https://cdn-images-1.medium.com/max/800/1*EyuCtGwq_81SDfFgPbgMGQ.png" alt="" />
-If the period T of the periodic function f(t) is taken to be 2π then ω = 1 
-<img src="https://cdn-images-1.medium.com/max/800/1*S7vX8tJOys9AexQ3hcSvkg.png" alt="" />
-an even periodic function f(t) with period T 
-<img src="https://cdn-images-1.medium.com/max/800/1*NTz5OhFnLTUs7BAV15DOmg.png" alt="" />
-an odd periodic function f(t) with period T 
-<img src="https://cdn-images-1.medium.com/max/800/1*lnX6o9Y4WqVI5nsHYULZnQ.png" alt="" /></p>
+		<p><h2 id="强解">强解</h2>
+
+<p><img src="http://wx2.sinaimg.cn/mw690/8db2c8cbgy1ficnnlgy4dj20i60egtb9.jpg" alt="" /></p>
+
+<h2 id="弱解">弱解</h2>
+
+<p><img src="http://wx3.sinaimg.cn/mw690/8db2c8cbly1fiaw27g8gij20jb02rmxn.jpg" alt="" /></p>
+
+<p>将微分方程乘以一个权函数（基函数），然后令加权积分为零</p>
+
+<p>在弱形式中，我们将乘的这个函数称为检验函数(test function)，用V￼表示。</p>
+
+<p><img src="http://wx4.sinaimg.cn/mw690/8db2c8cbgy1fiawxi3fzzj20kt050js0.jpg" alt="" /></p>
+
+<p>第一项积分内y是二次微分而检验函数v是零次微分。如果使用分部积分，就可以将一次微分转移到检验函数v上，这样y的近似解函数只需是一阶线性的而不用是二次的了。通过分部积分可得：</p>
+
+<p><img src="http://wx4.sinaimg.cn/mw690/8db2c8cbgy1fiawxjy0huj20kq02wwev.jpg" alt="" /></p>
+
+<p>最后得到加权积分(弱形式)：</p>
+
+<p><img src="http://wx3.sinaimg.cn/mw690/8db2c8cbgy1fiawxlswh9j20i101y0su.jpg" alt="" /></p>
+
+<p>反求出I，我们知道 I 的一阶变分，与上面的加权积分形式是一样的。原来，$\delta y$ 就是v。</p>
+
+<p><img src="http://wx4.sinaimg.cn/mw690/8db2c8cbgy1fiaythj8auj20gx04aq3f.jpg" alt="" /></p>
+
+<h2 id="example2">Example2:</h2>
+
+<p><img src="http://wx3.sinaimg.cn/mw690/8db2c8cbgy1fiaytj4a0wj20g605djs0.jpg" alt="" /></p>
+
+<blockquote>
+  <p><img src="http://wx3.sinaimg.cn/mw690/8db2c8cbgy1fickqggrnrj20dn067t9k.jpg" alt="" /></p>
+</blockquote>
+
+<p><img src="http://wx3.sinaimg.cn/mw690/8db2c8cbgy1fickqifcsij20fx0e3jtb.jpg" alt="" /></p>
+
+<p><img src="http://wx2.sinaimg.cn/mw690/8db2c8cbgy1fickqkcv6zj20gj05yt9l.jpg" alt="" /></p>
+
+<p>强解解法：</p>
+
+<p><img src="http://wx2.sinaimg.cn/mw690/8db2c8cbgy1ficnnnkdnqj20hl0cc763.jpg" alt="" /></p>
+
+<h2 id="总结">总结</h2>
+
+<p><img src="http://wx2.sinaimg.cn/mw690/8db2c8cbgy1ficubsrdtgj20ei0af3zu.jpg" alt="" /></p>
+
+<h2 id="注释">注释</h2>
+
+<p><img src="http://wx1.sinaimg.cn/mw690/8db2c8cbly1fiaw28zmuej20iy05h74w.jpg" alt="" /></p>
 
 </p>
 	</div>
