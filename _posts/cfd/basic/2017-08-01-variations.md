@@ -3,8 +3,8 @@ layout: post
 author: liuxin
 title: 1-泛函数 (Functionals)
 date: 2017-08-01
-category: 变分法
-tags: calculus of variations 
+category: cfd
+tags: 基础知识 变分法 calculus of variations 
 ---
 
 ## 泛函数

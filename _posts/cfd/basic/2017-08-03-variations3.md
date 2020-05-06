@@ -3,8 +3,8 @@ layout: post
 author: liuxin
 title: 弱解
 date: 2017-08-03
-category: 变分法
-tags: 基础知识 
+category: cfd
+tags: 基础知识 变分法
 ---
 
 ![][image-1]
