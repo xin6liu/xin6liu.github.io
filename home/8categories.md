@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 总目录 tags
-description: 这是所有目录的汇总 All the tags are included.
+title: 标签 tags
+description: 这是所有标签的汇总 All the tags are included
 image: assets/images/pic08.jpg
 nav-menu: true
 ---
