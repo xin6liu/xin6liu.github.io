@@ -65,7 +65,7 @@
 			
 		
 			
-				<li><a href="/home/8categories.html">总目录 tags</a></li>
+				<li><a href="/home/8categories.html">标签 tags</a></li>
 			
 		
 	</ul>
@@ -141,7 +141,7 @@ for n in range(nt):
   1.  1.  1.]
 </code></pre>
 
-<p><img src="/img/posts/3/output_3_1.png" alt="png" /></p>
+<p><img src="/assets/2017-11-06-cfd/output_3_1.png" alt="png" /></p>
 
 <pre><code class="language-python">nx = 21
 dx = 2 / (nx - 1)
@@ -166,7 +166,7 @@ for n in range(nt):
   1.  1.  1.]
 </code></pre>
 
-<p><img src="/img/posts/3/output_4_1.png" alt="png" /></p>
+<p><img src="/assets/2017-11-06-cfd/output_4_1.png" alt="png" /></p>
 
 <h2 id="总结">总结</h2>
 
@@ -281,31 +281,31 @@ b[int(3 * ny / 4), int(3 * nx / 4)] = -100
 plot2D(x, y, p)
 </code></pre>
 
-<p><img src="/img/posts/3/output_13_0.png" alt="png" /></p>
+<p><img src="/assets/2017-11-06-cfd/output_13_0.png" alt="png" /></p>
 
 <pre><code class="language-python">create_p(10)
 plot2D(x, y, p)
 </code></pre>
 
-<p><img src="/img/posts/3/output_14_0.png" alt="png" /></p>
+<p><img src="/assets/2017-11-06-cfd/output_14_0.png" alt="png" /></p>
 
 <pre><code class="language-python">create_p(20)
 plot2D(x, y, p)
 </code></pre>
 
-<p><img src="/img/posts/3/output_15_0.png" alt="png" /></p>
+<p><img src="/assets/2017-11-06-cfd/output_15_0.png" alt="png" /></p>
 
 <pre><code class="language-python">create_p(100)
 plot2D(x, y, p)
 </code></pre>
 
-<p><img src="/img/posts/3/output_16_0.png" alt="png" /></p>
+<p><img src="/assets/2017-11-06-cfd/output_16_0.png" alt="png" /></p>
 
 <pre><code class="language-python">create_p(1000)
 plot2D(x, y, p)
 </code></pre>
 
-<p><img src="/img/posts/3/output_17_0.png" alt="png" /></p>
+<p><img src="/assets/2017-11-06-cfd/output_17_0.png" alt="png" /></p>
 
 <p>我们看到参数nt有点像时间步数，但又不是真的，只是descrete需要多步来达到稳定值。</p>
 
@@ -507,7 +507,7 @@ pyplot.xlabel('X')
 pyplot.ylabel('Y');
 </code></pre>
 
-<p><img src="/img/posts/3/output_29_0.png" alt="png" /></p>
+<p><img src="/assets/2017-11-06-cfd/output_29_0.png" alt="png" /></p>
 
 <h2 id="利用-projection-method">利用 projection method</h2>
 
@@ -662,7 +662,7 @@ pyplot.xlabel('X')
 pyplot.ylabel('Y');
 </code></pre>
 
-<p><img src="/img/posts/3/output_38_0.png" alt="png" /></p>
+<p><img src="/assets/2017-11-06-cfd/output_38_0.png" alt="png" /></p>
 
 <p>可以看出 <strong>projection method</strong> 和 <strong>直接求p的poisson方程</strong> 结果一样。</p>
 

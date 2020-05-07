@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>LiuXin</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="/assets/css/main_new.css">
+	<link rel="stylesheet" href="/assets/css/syntax.css">
+	<!--[if lte IE 9]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="http://localhost:4000/assets/css/ie8.css" /><![endif]-->
+	<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+
+
+<body>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+<!-- Header -->
+<header id="header"	
+					>
+	<a href="http://localhost:4000/" class="logo"><strong>LiuXin</strong> <span>stay hungry, stay foolish</span></a>
+	<nav>
+		<a href="#menu">Menu</a>
+	</nav>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+	<ul class="links">
+		
+		
+			
+				<li><a href="/home/1python.html">网页开发 Web Development</a></li>
+			
+		
+			
+				<li><a href="/home/2ai.html">机器学习 Machine Learning</a></li>
+			
+		
+			
+				<li><a href="/home/3cfd.html">计算流体力学 CFD</a></li>
+			
+		
+			
+				<li><a href="/home/4cs.html">计算机科学 Computer Science</a></li>
+			
+		
+			
+				<li><a href="/home/5mns.html">纳米科学 Nanoscience</a></li>
+			
+		
+			
+				<li><a href="/home/6course.html">课程 Course</a></li>
+			
+		
+			
+				<li><a href="/home/7diary.html">生活 Diary</a></li>
+			
+		
+			
+				<li><a href="/home/8categories.html">标签 tags</a></li>
+			
+		
+	</ul>
+	<!-- <ul class="actions vertical">
+		<li><a href="#" class="button special fit">Get Started</a></li>
+		<li><a href="#" class="button fit">Log In</a></li>
+	</ul> -->
+</nav> 
+    
+    
+<!-- Main -->
+<div id="main" class="alt">
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+<!-- title -->
+			<h1>流体力学4 —— 纳维斯托克斯方程(动量守恒)</h1>
+<!-- 日期 -->		
+		
+		2017-03-23
+		
+		</header>
+<!-- description -->	
+		<h5></h5>
+<!-- 图片 -->		
+		<!-- 
+		 -->
+<!-- 正文 -->
+		<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath:[['$','$']]}});</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<p>这里我们用<strong>流体微团</strong>模型来推导NS方程，也就是所谓的拉氏描述。而对于<strong>控制体</strong>模型(欧式描述)来说，不能使用受力分析方法来推导NS方程，我们留到后面讨论。</p>
+<h2 id="流体微团受力分析">流体微团受力分析</h2>
+<p>运动的流体微团受到的x方向的力有两个来源：</p>
+<ol>
+  <li><strong>体积力 body force</strong>。直接作用在整体上的力，如各种场力。</li>
+  <li><strong>表面力 surface force</strong>。作用在表面，由两种原因引起：1. 由周围流体施加的压力；2. 由周围流体以摩擦的方式作用与表面的切应力和正应力。
+<img src="https://cdn-images-1.medium.com/max/800/1*KpOV6U67KXagOrKZyR3LIw.png" alt="" /></li>
+</ol>
+
+<p>只考虑<strong>x方向</strong>的力，整体受到<strong>体积力</strong>，<strong>左右</strong>两个面受到<strong>压力</strong>和<strong>正应力</strong>，<strong>上下前后</strong>四个面受到<strong>切应力</strong>。所以x方向一共是：1个body force加上8个surface force (2个pressure force, 2个normal stress, 4个shear stress).
+<img src="https://cdn-images-1.medium.com/max/800/1*vPg7oZ2v2DrkPwudHUsxQQ.png" alt="" />
+我们先考虑上下前后四个面的<strong>四个切应力</strong>。我们规定：速度的三个分量 u、v、w 的正的增量与坐标轴的正向一致。也就是说，u (速度的x轴分量) 沿y轴正向是增加的，所以上平面比下平面的速度要大，于是形成了“拉”的动作：下平面受到向左的切应力 $\tau_{yx} dx dz$, 上平面受到向右的切应力 $[\tau_{yx} +(\frac{\partial \tau_{yx}}{\partial y})dy ]\ dx dz$ (我们约定用 $\tau_{ij}$ 表示 j 方向的应力作用在垂直于 i 轴的平面上). 前后两个面的分析和上下两个面分析相同。</p>
+
+<p>接下来考虑左右两个面的<strong>两个正应力</strong>。对于左平面来说，平面左边比平面速度要稍小，所以正应力的粘性作用在左平面上就好像是一个吸力，产生一个向左拉的作用 $\tau_{xx} \ dy dz$; 而对于右平面，右边比平面稍快，吸力将流体微团向右拉，力的大小为$[\tau_{xx} +(\frac{\partial \tau_{xx}}{\partial x})dx ]\ dy dz$.</p>
+
+<p>对于左右两个面的<strong>两个压力</strong>来说，正好与正应力方向相反，左平面受到向右的压力 $p\ dy dz$, 右平面受到向左的压力 $(p + \frac{\partial p}{\partial x} dx)\ dy dz$.</p>
+
+<p>最后是总体受到的<strong>体积力</strong>，设$f_x$是body force per <strong>unit mass</strong> 的x分量，所以x方向上的体积力就是：$ \rho f_x (dx dy dz)$</p>
+
+<p>把这9个力加起来：</p>
+
+<p><script type="math/tex">F_x =  [p - (p + \frac{\partial p}{\partial x}dx)]dy dz</script>  <strong>2压力</strong></p>
+
+<p>$+ [(\tau_{xx} + \frac{\partial \tau_{xx}}{\partial x}dx) - \tau_{xx}]dy dz $</p>
+
+<p><script type="math/tex">+ [(\tau_{yx} + \frac{\partial \tau_{yx}}{\partial y}dy) - \tau\_{yx}]dx dz + [(\tau_{zx} + \frac{\partial \tau_{zx}}{\partial z}dz) - \tau\_{xx}]dx dy</script> <strong>6应力</strong></p>
+
+<p>$+ \rho f_x (dx dy dz) $ <strong>1体积力</strong></p>
+
+<p>化简得到：</p>
+
+<p><strong><script type="math/tex">F_x = (-\frac{\partial p}{\partial x} + \frac{\partial \tau_{xx} }{\partial x } + \frac{\partial \tau_{yx} }{\partial y } + \frac{\partial \tau_{zx} }{\partial z })dx dy dz + \rho f_x (dx dy dz)</script></strong></p>
+
+<h2 id="动量守恒">动量守恒</h2>
+<p>上面我们已经算了F，接下来算ma。利用牛二定律：F=ma</p>
+
+<p>对于运动的流体微团，其质量是固定不变的(自行对比固定位置的控制体):
+$m=\rho dx dy dz$</p>
+
+<p>因为我们考虑的是运动的流体微团，因此时间的变化率是由物质导数给出的(再次自行对比固定位置的控制体):
+$a_x = \frac{Du}{Dt}$</p>
+
+<p>综合$F_x, m 和a_x$, 我们得到粘性流在x方向上的动量方程：</p>
+
+<p><strong><script type="math/tex">\rho \frac{Du}{Dt} = (-\frac{\partial p}{\partial x} + \frac{\partial \tau_{xx} }{\partial x } + \frac{\partial \tau_{yx} }{\partial y } + \frac{\partial \tau_{zx} }{\partial z }) + \rho f_x</script></strong></p>
+
+<p>由于流体微团是运动的，所以此偏微分方程是非守恒形式的。</p>
+
+<p>下面我们要推导NS的<strong>守恒形式</strong>。</p>
+
+<p>根据<a href="http://liuxin.in/comsol/2017/03/22/f2.html">物质导数</a>的定义，</p>
+<blockquote>
+  <p>$ \frac{D}{Dt} = \frac{\partial}{\partial t} + (\mathbf V \cdot \nabla)$
+其中，$\nabla = \mathbf i \frac{\partial}{\partial x} + \mathbf j \frac{\partial}{\partial y} +\mathbf k \frac{\partial}{\partial z}$
+$\mathbf V = u \mathbf i + v \mathbf j + w \mathbf z  $</p>
+</blockquote>
+
+<p>可以将非守恒形式方程的左边写成(其中运用了导数的展开以及<a href="http://liuxin.in/comsol/2017/03/24/intro6.html">标量与向量积的散度的向量恒等式</a>)：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\rho \frac{Du}{Dt} & = \rho \frac{\partial u}{\partial t} + \rho V \cdot \nabla u \\
+& =  [\frac{\partial( \rho u)}{\partial t} - u \frac{\partial \rho}{\partial t}] + [\nabla \cdot (\rho u V) - u \nabla \cdot (\rho V) ]\\
+& = \frac{\partial (\rho u)}{\partial t} - u[\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho V)] + \nabla \cdot (\rho u V)
+\end{align} %]]></script>
+
+<p>最后方括号里面正好是上一篇文章中连续性方程的左边，为零。于是可以化简为：</p>
+
+<p><strong><script type="math/tex">\rho \frac{Du}{Dt} = \frac{\partial (\rho u)}{\partial t} + \nabla \cdot (\rho u V)</script></strong></p>
+
+<p>至此，我们得到x方向上NS方程的守恒形式：</p>
+
+<p><strong><script type="math/tex">\frac{\partial (\rho u)}{\partial t} + \nabla \cdot (\rho u V) ＝ (-\frac{\partial p}{\partial x} + \frac{\partial \tau_{xx} }{\partial x } + \frac{\partial \tau_{yx} }{\partial y } + \frac{\partial \tau_{zx} }{\partial z }) + \rho f_x</script></strong></p>
+
+<p>要得到完整的NS方程守恒形式，首先展开<strong>$\nabla \cdot (\rho u V)$</strong>为$\frac{\partial (\rho u^2)}{\partial x} + \frac{\partial (\rho u v)}{\partial y} + \frac{\partial (\rho u w)}{\partial z}$</p>
+
+<p>接下来把应力$\tau$给替换掉: 根据牛顿流体的定义：切应力$\tau$与应变的时间变化率(也就是速度梯度)是成正比的：</p>
+
+<p>$\tau_{xx} = \lambda (\nabla \cdot \mathbf V) + 2\mu \frac{\partial u}{\partial x}$</p>
+
+<p>$\tau_{yx} = \mu (\frac{\partial v}{\partial x} + \frac{\partial u}{\partial y})$</p>
+
+<p>$\tau_{zx} = \mu (\frac{\partial u}{\partial z} + \frac{\partial w}{\partial x})$</p>
+
+<p>最后我们得到x方向上的NS方程守恒形式：</p>
+
+<p><strong><script type="math/tex">\frac{\partial (\rho u)}{\partial t} + \frac{\partial (\rho u^2)}{\partial x} + \frac{\partial (\rho u v)}{\partial y} + \frac{\partial (\rho u w)}{\partial z}</script></strong>
+<strong><script type="math/tex">＝ -\frac{\partial p}{\partial x} + \frac{\partial }{\partial x } (\lambda (\nabla \cdot \mathbf V) + 2\mu \frac{\partial u}{\partial x})+ \frac{\partial }{\partial y } [\mu (\frac{\partial v}{\partial x} + \frac{\partial u}{\partial y})]+ \frac{\partial}{\partial z } [\mu (\frac{\partial u}{\partial z} + \frac{\partial w}{\partial x})]+ \rho f_x</script></strong></p>
+
+</p>
+	</div>
+
+</section>
+</div>
+
+
+<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<ul class="icons">
+				
+				
+				<li><a href="http://weibo.com/u/2377304267" class="icon alt fa-weibo" target="_blank"><span class="label">weibo</span></a></li>
+				
+				
+				<li><a href="https://www.facebook.com/profile.php?id=100009585159226" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
+				
+				
+				<li><a href="https://www.instagram.com/harryliuxin/" class="icon alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+				
+				
+				
+				
+				
+				<li><a href="http://www.miaopai.com/u/wxsso_p4mslofx14" class="icon alt fa-video-camera" target="_blank"><span class="label">video</span></a></li>
+				
+				
+				<li><a href="https://www.linkedin.com/in/xin-liu-868501134" class="icon alt fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
+				
+			</ul>
+			<ul class="copyright">
+				<li>&copy; LiuXin </li>
+				<li> stay hungry, stay foolish</li>
+				<li>Designed by: <a href="https://liuxin.in/about/" target="_blank">刘鑫</a></li>
+
+			</ul>
+		</div>
+	</footer>
+
+	
+
+</body>
+
+</html>
