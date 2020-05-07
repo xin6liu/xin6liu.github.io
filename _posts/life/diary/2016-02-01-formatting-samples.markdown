@@ -5,6 +5,26 @@ date: 2016-02-01
 category: diary
 duoshuo: true
 ---
+# mathjax
+<h1>MathJax v3 beta: TeX input, HTML output test</h1>
+
+<p>
+When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
+$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+</p>
+
+<h2>The Lorenz Equations</h2>
+
+<p>
+\begin{align}
+\dot{x} &amp; = \sigma(y-x) \\
+\dot{y} &amp; = \rho x - y - xz \\
+\dot{z} &amp; = -\beta z + xy
+\end{align}
+</p>
+
+---
+
 
 The following text has been taken from [this page][1].
 
