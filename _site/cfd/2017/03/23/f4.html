@@ -96,9 +96,28 @@
 		<!-- 
 		 -->
 <!-- 正文 -->
-		<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath:[['$','$']]}});</script>
+		<p><!-- <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath:[['$','$']]}});</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+
+<script type="text/javascript" async="" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_CHTML"></script>
+
+<p>1
+$\alpha$</p>
+
+<p>2
+(\alpha)</p>
+
+<p>3
+<script type="math/tex">\alpha</script></p>
+
+<p>4
+[\alpha]</p>
 
 <p>这里我们用<strong>流体微团</strong>模型来推导NS方程，也就是所谓的拉氏描述。而对于<strong>控制体</strong>模型(欧式描述)来说，不能使用受力分析方法来推导NS方程，我们留到后面讨论。</p>
 <h2 id="流体微团受力分析">流体微团受力分析</h2>

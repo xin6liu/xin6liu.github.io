@@ -96,9 +96,24 @@
 		<!-- 
 		 -->
 <!-- 正文 -->
-		<p><script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath:[['$','$']]}});</script>
+		<p><!-- <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath:[['$','$']]}});</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+<script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<p>1
+$\alpha$</p>
+
+<p>2
+(\alpha)</p>
+
+<p>3
+<script type="math/tex">\alpha</script></p>
+
+<p>4
+[\alpha]</p>
 
 <h2 id="流动模型-models-of-the-flow">流动模型 Models of the Flow</h2>
 <p>总的来说有四种流动模型：固定控制体，运动控制体，固定流体微团，运动流体微团。(<strong>finite control volume</strong> &amp; <strong>infinitesimal fluid element</strong>)
