@@ -7,7 +7,7 @@ duoshuo: true
 ---
 # mathjax
 
-$$\alpha$$
+this is paragraph $$\alpha$$
 
 <p>$$\alpha$$</p>
 
